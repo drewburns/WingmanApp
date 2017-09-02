@@ -8,22 +8,55 @@
 
 /* Begin PBXBuildFile section */
 		5110F9B51F58944600B5B26B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9B41F58944600B5B26B /* AppDelegate.swift */; };
-		5110F9B71F58944600B5B26B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9B61F58944600B5B26B /* ViewController.swift */; };
-		5110F9BA1F58944600B5B26B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5110F9B81F58944600B5B26B /* Main.storyboard */; };
 		5110F9BD1F58944600B5B26B /* Wingman.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9BB1F58944600B5B26B /* Wingman.xcdatamodeld */; };
 		5110F9BF1F58944600B5B26B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5110F9BE1F58944600B5B26B /* Assets.xcassets */; };
 		5110F9C21F58944600B5B26B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5110F9C01F58944600B5B26B /* LaunchScreen.storyboard */; };
+		5110F9CA1F58949C00B5B26B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9C91F58949C00B5B26B /* LoginViewController.swift */; };
+		5110F9CD1F5895B200B5B26B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9CC1F5895B200B5B26B /* SignUpViewController.swift */; };
+		5110F9CF1F5898E200B5B26B /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9CE1F5898E200B5B26B /* HomeTableViewController.swift */; };
+		5110F9D31F58AAFC00B5B26B /* ChatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9D21F58AAFC00B5B26B /* ChatCollectionViewController.swift */; };
+		5110F9D51F58AB1600B5B26B /* CreateChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9D41F58AB1600B5B26B /* CreateChatTableViewController.swift */; };
+		5110F9D81F58AB3B00B5B26B /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9D71F58AB3B00B5B26B /* PopUpViewController.swift */; };
+		5110F9DC1F58AB6400B5B26B /* FindFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9DB1F58AB6400B5B26B /* FindFriendsTableViewController.swift */; };
+		5110F9DE1F58AB6E00B5B26B /* FriendListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9DD1F58AB6E00B5B26B /* FriendListTableViewController.swift */; };
+		5110F9E01F58C2FD00B5B26B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5110F9DF1F58C2FD00B5B26B /* GoogleService-Info.plist */; };
+		5110F9E81F59025D00B5B26B /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9E71F59025D00B5B26B /* AppUser.swift */; };
+		5110F9EA1F590BDE00B5B26B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9E91F590BDE00B5B26B /* SettingsViewController.swift */; };
+		51116A661F5B3B0900C38842 /* FriendTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51116A651F5B3B0900C38842 /* FriendTVC.swift */; };
+		51116A6B1F5B404B00C38842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51116A691F5B404B00C38842 /* Main.storyboard */; };
+		518A7A951F5915C400E65A9D /* SearchUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A941F5915C400E65A9D /* SearchUserTVC.swift */; };
+		518A7A981F5A1E7B00E65A9D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A971F5A1E7B00E65A9D /* Extensions.swift */; };
+		518A7A9A1F5A51B600E65A9D /* Friendship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A991F5A51B600E65A9D /* Friendship.swift */; };
+		62A90473C46C2FF04B7B4ACA /* Pods_Wingman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D10377704FD32A30C9A611F /* Pods_Wingman.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D3DE783D4682E1B939D21DA /* Pods-Wingman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wingman.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wingman/Pods-Wingman.release.xcconfig"; sourceTree = "<group>"; };
+		4D10377704FD32A30C9A611F /* Pods_Wingman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wingman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5110F9B11F58944600B5B26B /* Wingman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wingman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5110F9B41F58944600B5B26B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5110F9B61F58944600B5B26B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5110F9B91F58944600B5B26B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5110F9BC1F58944600B5B26B /* Wingman.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wingman.xcdatamodel; sourceTree = "<group>"; };
 		5110F9BE1F58944600B5B26B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5110F9C11F58944600B5B26B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5110F9C31F58944600B5B26B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5110F9C91F58949C00B5B26B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5110F9CC1F5895B200B5B26B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		5110F9CE1F5898E200B5B26B /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		5110F9D21F58AAFC00B5B26B /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewController.swift; sourceTree = "<group>"; };
+		5110F9D41F58AB1600B5B26B /* CreateChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChatTableViewController.swift; sourceTree = "<group>"; };
+		5110F9D71F58AB3B00B5B26B /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		5110F9DB1F58AB6400B5B26B /* FindFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsTableViewController.swift; sourceTree = "<group>"; };
+		5110F9DD1F58AB6E00B5B26B /* FriendListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewController.swift; sourceTree = "<group>"; };
+		5110F9DF1F58C2FD00B5B26B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5110F9E11F58CA2F00B5B26B /* Wingman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wingman.entitlements; sourceTree = "<group>"; };
+		5110F9E71F59025D00B5B26B /* AppUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		5110F9E91F590BDE00B5B26B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		51116A651F5B3B0900C38842 /* FriendTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTVC.swift; sourceTree = "<group>"; };
+		51116A6A1F5B404B00C38842 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		518A7A941F5915C400E65A9D /* SearchUserTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserTVC.swift; sourceTree = "<group>"; };
+		518A7A971F5A1E7B00E65A9D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		518A7A991F5A51B600E65A9D /* Friendship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friendship.swift; sourceTree = "<group>"; };
+		B28C4332046A891909A92A6F /* Pods-Wingman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wingman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wingman/Pods-Wingman.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A90473C46C2FF04B7B4ACA /* Pods_Wingman.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +76,8 @@
 			children = (
 				5110F9B31F58944600B5B26B /* Wingman */,
 				5110F9B21F58944600B5B26B /* Products */,
+				B18C12E7E5373E97C73CB399 /* Pods */,
+				DF3E3ECF2E9F91F7A68E288E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +92,103 @@
 		5110F9B31F58944600B5B26B /* Wingman */ = {
 			isa = PBXGroup;
 			children = (
+				518A7A961F5A1E6A00E65A9D /* Helpers */,
+				518A7A931F5915A500E65A9D /* Views */,
+				5110F9E21F58D4E500B5B26B /* Models */,
+				5110F9E11F58CA2F00B5B26B /* Wingman.entitlements */,
+				5110F9CB1F5894A100B5B26B /* Controllers */,
 				5110F9B41F58944600B5B26B /* AppDelegate.swift */,
-				5110F9B61F58944600B5B26B /* ViewController.swift */,
-				5110F9B81F58944600B5B26B /* Main.storyboard */,
 				5110F9BE1F58944600B5B26B /* Assets.xcassets */,
 				5110F9C01F58944600B5B26B /* LaunchScreen.storyboard */,
+				51116A691F5B404B00C38842 /* Main.storyboard */,
 				5110F9C31F58944600B5B26B /* Info.plist */,
+				5110F9DF1F58C2FD00B5B26B /* GoogleService-Info.plist */,
 				5110F9BB1F58944600B5B26B /* Wingman.xcdatamodeld */,
 			);
 			path = Wingman;
+			sourceTree = "<group>";
+		};
+		5110F9CB1F5894A100B5B26B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5110F9D61F58AB2800B5B26B /* User */,
+				5110F9D11F58AAE200B5B26B /* Chat */,
+				5110F9D01F58AAD500B5B26B /* Login */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5110F9D01F58AAD500B5B26B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5110F9C91F58949C00B5B26B /* LoginViewController.swift */,
+				5110F9CC1F5895B200B5B26B /* SignUpViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		5110F9D11F58AAE200B5B26B /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5110F9CE1F5898E200B5B26B /* HomeTableViewController.swift */,
+				5110F9D21F58AAFC00B5B26B /* ChatCollectionViewController.swift */,
+				5110F9D41F58AB1600B5B26B /* CreateChatTableViewController.swift */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		5110F9D61F58AB2800B5B26B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				5110F9D71F58AB3B00B5B26B /* PopUpViewController.swift */,
+				5110F9DB1F58AB6400B5B26B /* FindFriendsTableViewController.swift */,
+				5110F9DD1F58AB6E00B5B26B /* FriendListTableViewController.swift */,
+				5110F9E91F590BDE00B5B26B /* SettingsViewController.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		5110F9E21F58D4E500B5B26B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5110F9E71F59025D00B5B26B /* AppUser.swift */,
+				518A7A991F5A51B600E65A9D /* Friendship.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		518A7A931F5915A500E65A9D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				518A7A941F5915C400E65A9D /* SearchUserTVC.swift */,
+				51116A651F5B3B0900C38842 /* FriendTVC.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		518A7A961F5A1E6A00E65A9D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				518A7A971F5A1E7B00E65A9D /* Extensions.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		B18C12E7E5373E97C73CB399 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B28C4332046A891909A92A6F /* Pods-Wingman.debug.xcconfig */,
+				1D3DE783D4682E1B939D21DA /* Pods-Wingman.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DF3E3ECF2E9F91F7A68E288E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4D10377704FD32A30C9A611F /* Pods_Wingman.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5110F9C61F58944600B5B26B /* Build configuration list for PBXNativeTarget "Wingman" */;
 			buildPhases = (
+				7DF36D2E0513D8019DA81674 /* [CP] Check Pods Manifest.lock */,
 				5110F9AD1F58944600B5B26B /* Sources */,
 				5110F9AE1F58944600B5B26B /* Frameworks */,
 				5110F9AF1F58944600B5B26B /* Resources */,
+				A93AD421303EEA35FDDAB095 /* [CP] Embed Pods Frameworks */,
+				5653743BE19231E1909C72AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -99,7 +226,13 @@
 				TargetAttributes = {
 					5110F9B01F58944600B5B26B = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 9RJ722B5F2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -126,42 +259,104 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5110F9E01F58C2FD00B5B26B /* GoogleService-Info.plist in Resources */,
 				5110F9C21F58944600B5B26B /* LaunchScreen.storyboard in Resources */,
 				5110F9BF1F58944600B5B26B /* Assets.xcassets in Resources */,
-				5110F9BA1F58944600B5B26B /* Main.storyboard in Resources */,
+				51116A6B1F5B404B00C38842 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5653743BE19231E1909C72AC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wingman/Pods-Wingman-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DF36D2E0513D8019DA81674 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A93AD421303EEA35FDDAB095 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wingman/Pods-Wingman-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5110F9AD1F58944600B5B26B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5110F9B71F58944600B5B26B /* ViewController.swift in Sources */,
+				5110F9D31F58AAFC00B5B26B /* ChatCollectionViewController.swift in Sources */,
+				5110F9DE1F58AB6E00B5B26B /* FriendListTableViewController.swift in Sources */,
+				5110F9D51F58AB1600B5B26B /* CreateChatTableViewController.swift in Sources */,
+				5110F9E81F59025D00B5B26B /* AppUser.swift in Sources */,
+				5110F9CA1F58949C00B5B26B /* LoginViewController.swift in Sources */,
+				518A7A951F5915C400E65A9D /* SearchUserTVC.swift in Sources */,
 				5110F9B51F58944600B5B26B /* AppDelegate.swift in Sources */,
+				5110F9DC1F58AB6400B5B26B /* FindFriendsTableViewController.swift in Sources */,
+				5110F9CD1F5895B200B5B26B /* SignUpViewController.swift in Sources */,
 				5110F9BD1F58944600B5B26B /* Wingman.xcdatamodeld in Sources */,
+				5110F9CF1F5898E200B5B26B /* HomeTableViewController.swift in Sources */,
+				5110F9D81F58AB3B00B5B26B /* PopUpViewController.swift in Sources */,
+				518A7A9A1F5A51B600E65A9D /* Friendship.swift in Sources */,
+				5110F9EA1F590BDE00B5B26B /* SettingsViewController.swift in Sources */,
+				518A7A981F5A1E7B00E65A9D /* Extensions.swift in Sources */,
+				51116A661F5B3B0900C38842 /* FriendTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5110F9B81F58944600B5B26B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5110F9B91F58944600B5B26B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5110F9C01F58944600B5B26B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5110F9C11F58944600B5B26B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		51116A691F5B404B00C38842 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51116A6A1F5B404B00C38842 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -260,8 +455,11 @@
 		};
 		5110F9C71F58944600B5B26B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B28C4332046A891909A92A6F /* Pods-Wingman.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Wingman/Wingman.entitlements;
+				DEVELOPMENT_TEAM = 9RJ722B5F2;
 				INFOPLIST_FILE = Wingman/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.Wingman;
@@ -272,8 +470,11 @@
 		};
 		5110F9C81F58944600B5B26B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D3DE783D4682E1B939D21DA /* Pods-Wingman.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Wingman/Wingman.entitlements;
+				DEVELOPMENT_TEAM = 9RJ722B5F2;
 				INFOPLIST_FILE = Wingman/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.Wingman;
@@ -301,6 +502,7 @@
 				5110F9C81F58944600B5B26B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

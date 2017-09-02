@@ -1,0 +1,6 @@
+framework module Pods_Wingman {
+  umbrella header "Pods-Wingman-umbrella.h"
+
+  export *
+  module * { export * }
+}
