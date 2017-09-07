@@ -123,6 +123,7 @@ class HomeTableViewController: UITableViewController {
         }, withCancel: nil)
         
         ref.observe(.childRemoved, with: { (snapshot) in
+
             print(snapshot.key)
             print(self.messagesDictionary)
             
@@ -138,7 +139,8 @@ class HomeTableViewController: UITableViewController {
         
         messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let dictionary = snapshot.value as? [String: AnyObject] {
+            if var dictionary = snapshot.value as? [String: AnyObject] {
+                dictionary["id"] = snapshot.key as AnyObject?
                 let message = Message(dictionary: dictionary)
                 
                 if let chatPartnerId = message.chatPartnerId() {
@@ -226,9 +228,17 @@ class HomeTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("SELECTED")
         let message = messages[indexPath.row]
         guard let chatPartnerId = message.chatPartnerId() else {
             return
+        }
+        
+        if message.toId == Auth.auth().currentUser?.uid {
+            let messageRef = Database.database().reference().child("messages").child(message.id!)
+            print("made read true")
+
+            messageRef.updateChildValues(["read":true])
         }
         
         

@@ -16,9 +16,12 @@ class UserCell: UITableViewCell {
             
             setUserInfo()
 //            if message?.read! == false {
-//                unreadMarker.isHidden = false
+////                unreadMarker.isHidden = false
+//                detailTextLabel?.textColor = UIColor.blue
 //            } else {
-//                unreadMarker.isHidden = true
+//                detailTextLabel?.textColor = UIColor.black
+////                unreadMarker.isHidden = true
+//                
 //            }
             if message?.text != nil{
                 let str = message?.text
@@ -92,23 +95,22 @@ class UserCell: UITableViewCell {
         return label
     }()
     
-//    let unreadMarker: UIView = {
-//        let marker = UIView()
-//        let circlePath = UIBezierPath(arcCenter: CGPoint(x: ,y: 50), radius: CGFloat(5), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-//        
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.path = circlePath.cgPath
-//        
-//        //change the fill color
-//        shapeLayer.fillColor = UIColor.clear.cgColor
-//        //you can change the stroke color
-//        shapeLayer.strokeColor = UIColor.red.cgColor
-//        //you can change the line width
-//        shapeLayer.lineWidth = 3.0
-//        marker.layer.addSublayer(shapeLayer)
-//        
-//        return marker
-//    }()
+    let unreadMarker: UIView = {
+        let circle = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10.0, height: 10.0))
+        
+//        circle.center = self.center
+        circle.layer.cornerRadius = 50
+        circle.backgroundColor = UIColor.black
+        circle.clipsToBounds = true
+        
+        
+        var darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        var blurView = UIVisualEffectView(effect: darkBlur)
+        
+        blurView.frame = circle.bounds
+        
+        return circle
+    }()
     
 
     override func layoutSubviews() {
@@ -127,11 +129,12 @@ class UserCell: UITableViewCell {
         addSubview(profileImageView)
         addSubview(timeLabel)
 //        addSubview(unreadMarker)
+//        addSubview(unreadMarker)
 
         
         //ios 9 constraint anchors
         //need x,y,width,height anchors
-        
+////        
 //        unreadMarker.rightAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
 //        unreadMarker.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
 //        unreadMarker.widthAnchor.constraint(equalToConstant: 10).isActive = true

@@ -40,9 +40,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 guard let dictionary = snapshot.value as? [String:Any] else {
                     return
                 }
-                if self.user?.id != Auth.auth().currentUser?.uid {
-                    messageRef.updateChildValues(["read":true])
-                }
+
 
                 self.messages.append(Message(dictionary: dictionary))
                 DispatchQueue.main.async(execute: {

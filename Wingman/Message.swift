@@ -21,6 +21,7 @@ class Message: NSObject {
     var imageHeight: NSNumber?
     var first: Bool?
     var read: Bool?
+    var id: String?
     
     init(dictionary: [String: Any]) {
         self.fromId = dictionary["fromId"] as? String
@@ -34,6 +35,7 @@ class Message: NSObject {
         self.imageHeight = dictionary["imageHeight"] as? NSNumber
         self.first = dictionary["first"] as? Bool
         self.read = dictionary["read"] as? Bool
+        self.id = dictionary["id"] as? String
     }
     
     func chatPartnerId() -> String? {
