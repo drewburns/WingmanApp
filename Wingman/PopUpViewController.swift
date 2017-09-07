@@ -29,7 +29,9 @@ class PopUpViewController: UIViewController {
         var downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
         downSwipe.direction = UISwipeGestureRecognizerDirection.down
         self.mainView.addGestureRecognizer(downSwipe)
-        userImage.setRadius(radius: 55)
+        userImage.maskCircle()
+        mainView.layer.cornerRadius = 5;
+        mainView.layer.masksToBounds = true;
 
         // Do any additional setup after loading the view.
     }
@@ -64,6 +66,7 @@ class PopUpViewController: UIViewController {
             } else {
                 // if current user friendship exists
                 print("setting up friends stuff")
+            if (currentID != nil) {
                 let ref = Database.database().reference().child("friendships").child(currentID!).child((self.user?.id)!)
                 ref.observeSingleEvent(of: .value, with: { (snapshot) in
                     print(snapshot)
@@ -79,6 +82,8 @@ class PopUpViewController: UIViewController {
                 print("ete")
                 findFriendsButton.isEnabled = false
                 findFriendsButton.setTitle("", for: .disabled)
+            }
+
         }
     }
     
@@ -151,6 +156,7 @@ class PopUpViewController: UIViewController {
             
         } else if segue.identifier == "settings" {
             let viewController:SettingsViewController = segue.destination as! SettingsViewController
+            viewController.vc = self.self
             
         }
     }
@@ -172,5 +178,18 @@ class PopUpViewController: UIViewController {
 extension UIViewController {
     func swipeAction(swipe:UIGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

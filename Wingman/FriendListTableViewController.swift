@@ -14,7 +14,8 @@ class FriendListTableViewController: UITableViewController {
     var users:[AppUser] = []
     let base = Database.database().reference()
     
-    func done() {
+    
+    @IBAction func done(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -51,7 +52,8 @@ class FriendListTableViewController: UITableViewController {
                                 params["id"] = snapshot.key
                                 newUser.setValuesForKeys(params)
                                 self.users.append(newUser)
-                                self.users.sort { $0.usernamesearch! < $1.usernamesearch! }
+                                self.users.sort { $0.name! < $1.name! }
+                                
                                 self.tableView.reloadData()
                                 print(self.users.count)
                             }

@@ -11,7 +11,7 @@ import Firebase
 
 class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate {
     var users:[AppUser] = []
-    var search = ""
+//    var search = ""
 
 
     
@@ -46,7 +46,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
                         var params = user.value
                         params["id"] = user.key
                         print(params)
-                        var newUser = AppUser()
+                        let newUser = AppUser()
                         newUser.setValuesForKeys(params)
                         self.users.append(newUser)
                         self.tableView.reloadData()

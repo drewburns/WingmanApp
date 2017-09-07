@@ -15,7 +15,7 @@ class SearchUserTVC: UITableViewCell {
             setAddButton()
             nameLabel.text! = (user?.name)!
             usernameLabel.text! = (user?.usernamesearch)!
-            userImage.setRadius(radius: 18)
+            userImage.maskCircle()
             let currentUser = Auth.auth().currentUser?.uid
             let ref = base.child("friendships").child(currentUser!)
             
@@ -29,12 +29,12 @@ class SearchUserTVC: UITableViewCell {
                                 self.addButton.setTitle("Friends", for: .normal)
                             } else {
                                 self.addButton.isEnabled = true
-                                self.addButton.setTitle("Add Friend", for: .normal)
+                                self.addButton.setTitle("Add", for: .normal)
                             }
                         }
                     } else {
                         self.addButton.isEnabled = true
-                        self.addButton.setTitle("Add Friend", for: .normal)
+                        self.addButton.setTitle("Add", for: .normal)
                     }
                 })
             } else {
@@ -56,7 +56,7 @@ class SearchUserTVC: UITableViewCell {
 
     @IBAction func friendChange(_ sender: Any) {
         print("Button clicked")
-        if addButton.titleLabel?.text == "Add Friend" {
+        if addButton.titleLabel?.text == "Add" {
             addFriendship()
         } else {
             removeFriendship()

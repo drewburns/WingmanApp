@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
        let ref = Database.database().reference(fromURL: "https://wingman-d2039.firebaseio.com/")
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         userImage.isUserInteractionEnabled = true

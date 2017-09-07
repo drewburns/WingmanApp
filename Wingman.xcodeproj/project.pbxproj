@@ -21,12 +21,18 @@
 		5110F9DE1F58AB6E00B5B26B /* FriendListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9DD1F58AB6E00B5B26B /* FriendListTableViewController.swift */; };
 		5110F9E01F58C2FD00B5B26B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5110F9DF1F58C2FD00B5B26B /* GoogleService-Info.plist */; };
 		5110F9E81F59025D00B5B26B /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9E71F59025D00B5B26B /* AppUser.swift */; };
-		5110F9EA1F590BDE00B5B26B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9E91F590BDE00B5B26B /* SettingsViewController.swift */; };
 		51116A661F5B3B0900C38842 /* FriendTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51116A651F5B3B0900C38842 /* FriendTVC.swift */; };
 		51116A6B1F5B404B00C38842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51116A691F5B404B00C38842 /* Main.storyboard */; };
+		51116A6D1F5B551D00C38842 /* NewChatUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51116A6C1F5B551D00C38842 /* NewChatUserTVC.swift */; };
+		51116A6F1F5CBF5000C38842 /* ChatConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51116A6E1F5CBF5000C38842 /* ChatConfirmViewController.swift */; };
 		518A7A951F5915C400E65A9D /* SearchUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A941F5915C400E65A9D /* SearchUserTVC.swift */; };
 		518A7A981F5A1E7B00E65A9D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A971F5A1E7B00E65A9D /* Extensions.swift */; };
 		518A7A9A1F5A51B600E65A9D /* Friendship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A991F5A51B600E65A9D /* Friendship.swift */; };
+		51930EB71F5DBF3D0080EE11 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930EB61F5DBF3D0080EE11 /* SettingsViewController.swift */; };
+		51930EB91F5F129E0080EE11 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930EB81F5F129E0080EE11 /* Message.swift */; };
+		51930EBB1F5F13A80080EE11 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930EBA1F5F13A80080EE11 /* UserCell.swift */; };
+		51930EBD1F5F35840080EE11 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930EBC1F5F35840080EE11 /* ChatLogController.swift */; };
+		51930EBF1F5F38B70080EE11 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930EBE1F5F38B70080EE11 /* ChatMessageCell.swift */; };
 		62A90473C46C2FF04B7B4ACA /* Pods_Wingman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D10377704FD32A30C9A611F /* Pods_Wingman.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,12 +56,18 @@
 		5110F9DF1F58C2FD00B5B26B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5110F9E11F58CA2F00B5B26B /* Wingman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wingman.entitlements; sourceTree = "<group>"; };
 		5110F9E71F59025D00B5B26B /* AppUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
-		5110F9E91F590BDE00B5B26B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		51116A651F5B3B0900C38842 /* FriendTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTVC.swift; sourceTree = "<group>"; };
 		51116A6A1F5B404B00C38842 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		51116A6C1F5B551D00C38842 /* NewChatUserTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatUserTVC.swift; sourceTree = "<group>"; };
+		51116A6E1F5CBF5000C38842 /* ChatConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConfirmViewController.swift; sourceTree = "<group>"; };
 		518A7A941F5915C400E65A9D /* SearchUserTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserTVC.swift; sourceTree = "<group>"; };
 		518A7A971F5A1E7B00E65A9D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		518A7A991F5A51B600E65A9D /* Friendship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friendship.swift; sourceTree = "<group>"; };
+		51930EB61F5DBF3D0080EE11 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		51930EB81F5F129E0080EE11 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		51930EBA1F5F13A80080EE11 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		51930EBC1F5F35840080EE11 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		51930EBE1F5F38B70080EE11 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		B28C4332046A891909A92A6F /* Pods-Wingman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wingman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wingman/Pods-Wingman.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +145,8 @@
 				5110F9CE1F5898E200B5B26B /* HomeTableViewController.swift */,
 				5110F9D21F58AAFC00B5B26B /* ChatCollectionViewController.swift */,
 				5110F9D41F58AB1600B5B26B /* CreateChatTableViewController.swift */,
+				51116A6E1F5CBF5000C38842 /* ChatConfirmViewController.swift */,
+				51930EBC1F5F35840080EE11 /* ChatLogController.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -143,7 +157,7 @@
 				5110F9D71F58AB3B00B5B26B /* PopUpViewController.swift */,
 				5110F9DB1F58AB6400B5B26B /* FindFriendsTableViewController.swift */,
 				5110F9DD1F58AB6E00B5B26B /* FriendListTableViewController.swift */,
-				5110F9E91F590BDE00B5B26B /* SettingsViewController.swift */,
+				51930EB61F5DBF3D0080EE11 /* SettingsViewController.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -153,6 +167,7 @@
 			children = (
 				5110F9E71F59025D00B5B26B /* AppUser.swift */,
 				518A7A991F5A51B600E65A9D /* Friendship.swift */,
+				51930EB81F5F129E0080EE11 /* Message.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -162,6 +177,9 @@
 			children = (
 				518A7A941F5915C400E65A9D /* SearchUserTVC.swift */,
 				51116A651F5B3B0900C38842 /* FriendTVC.swift */,
+				51116A6C1F5B551D00C38842 /* NewChatUserTVC.swift */,
+				51930EBA1F5F13A80080EE11 /* UserCell.swift */,
+				51930EBE1F5F38B70080EE11 /* ChatMessageCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -324,19 +342,25 @@
 				5110F9D31F58AAFC00B5B26B /* ChatCollectionViewController.swift in Sources */,
 				5110F9DE1F58AB6E00B5B26B /* FriendListTableViewController.swift in Sources */,
 				5110F9D51F58AB1600B5B26B /* CreateChatTableViewController.swift in Sources */,
+				51930EBD1F5F35840080EE11 /* ChatLogController.swift in Sources */,
 				5110F9E81F59025D00B5B26B /* AppUser.swift in Sources */,
 				5110F9CA1F58949C00B5B26B /* LoginViewController.swift in Sources */,
 				518A7A951F5915C400E65A9D /* SearchUserTVC.swift in Sources */,
+				51930EBF1F5F38B70080EE11 /* ChatMessageCell.swift in Sources */,
 				5110F9B51F58944600B5B26B /* AppDelegate.swift in Sources */,
+				51930EB91F5F129E0080EE11 /* Message.swift in Sources */,
+				51930EBB1F5F13A80080EE11 /* UserCell.swift in Sources */,
+				51116A6F1F5CBF5000C38842 /* ChatConfirmViewController.swift in Sources */,
 				5110F9DC1F58AB6400B5B26B /* FindFriendsTableViewController.swift in Sources */,
 				5110F9CD1F5895B200B5B26B /* SignUpViewController.swift in Sources */,
 				5110F9BD1F58944600B5B26B /* Wingman.xcdatamodeld in Sources */,
 				5110F9CF1F5898E200B5B26B /* HomeTableViewController.swift in Sources */,
 				5110F9D81F58AB3B00B5B26B /* PopUpViewController.swift in Sources */,
 				518A7A9A1F5A51B600E65A9D /* Friendship.swift in Sources */,
-				5110F9EA1F590BDE00B5B26B /* SettingsViewController.swift in Sources */,
+				51116A6D1F5B551D00C38842 /* NewChatUserTVC.swift in Sources */,
 				518A7A981F5A1E7B00E65A9D /* Extensions.swift in Sources */,
 				51116A661F5B3B0900C38842 /* FriendTVC.swift in Sources */,
+				51930EB71F5DBF3D0080EE11 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,8 +483,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Wingman/Wingman.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9RJ722B5F2;
 				INFOPLIST_FILE = Wingman/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.Wingman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -474,8 +500,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Wingman/Wingman.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9RJ722B5F2;
 				INFOPLIST_FILE = Wingman/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.Wingman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
