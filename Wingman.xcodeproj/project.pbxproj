@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		51076ED81F61C53700E52F46 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51076ED71F61C53700E52F46 /* Reachability.swift */; };
 		5110F9B51F58944600B5B26B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9B41F58944600B5B26B /* AppDelegate.swift */; };
 		5110F9BD1F58944600B5B26B /* Wingman.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9BB1F58944600B5B26B /* Wingman.xcdatamodeld */; };
 		5110F9BF1F58944600B5B26B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5110F9BE1F58944600B5B26B /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		1D3DE783D4682E1B939D21DA /* Pods-Wingman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wingman.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wingman/Pods-Wingman.release.xcconfig"; sourceTree = "<group>"; };
 		4D10377704FD32A30C9A611F /* Pods_Wingman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wingman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		51076ED71F61C53700E52F46 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		5110F9B11F58944600B5B26B /* Wingman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wingman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5110F9B41F58944600B5B26B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5110F9BC1F58944600B5B26B /* Wingman.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wingman.xcdatamodel; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				518A7A971F5A1E7B00E65A9D /* Extensions.swift */,
+				51076ED71F61C53700E52F46 /* Reachability.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				5110F9DC1F58AB6400B5B26B /* FindFriendsTableViewController.swift in Sources */,
 				5110F9CD1F5895B200B5B26B /* SignUpViewController.swift in Sources */,
 				5110F9BD1F58944600B5B26B /* Wingman.xcdatamodeld in Sources */,
+				51076ED81F61C53700E52F46 /* Reachability.swift in Sources */,
 				5110F9CF1F5898E200B5B26B /* HomeTableViewController.swift in Sources */,
 				5110F9D81F58AB3B00B5B26B /* PopUpViewController.swift in Sources */,
 				518A7A9A1F5A51B600E65A9D /* Friendship.swift in Sources */,

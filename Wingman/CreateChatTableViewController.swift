@@ -12,6 +12,7 @@ import Firebase
 class CreateChatTableViewController: UITableViewController {
     var user: AppUser?
     var users:[AppUser] = []
+    var selectedUsers:[AppUser] = []
     //    var search = ""
     let base = Database.database().reference()
     
@@ -139,7 +140,12 @@ class CreateChatTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // set checkbox to checked and highlight kind of
+
         if let list = tableView.indexPathsForSelectedRows {
+            selectedUsers.removeAll()
+            for item in list {
+                self.selectedUsers.append(self.users[item.row])
+            }
             if list.count > 2 {
                 tableView.deselectRow(at: indexPath, animated: true)
             }
@@ -155,7 +161,11 @@ class CreateChatTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let list = tableView.indexPathsForSelectedRows {
-            print(list.count)
+            selectedUsers.removeAll()
+            for item in list {
+                self.selectedUsers.append(self.users[item.row])
+            }
+            
             if list.count == 2 {
                 createButton.isEnabled = true
             } else {
@@ -177,7 +187,7 @@ class CreateChatTableViewController: UITableViewController {
         if segue.identifier == "confirm" {
             let viewController:ChatConfirmViewController = segue.destination as! ChatConfirmViewController
             viewController.nav = self.navigationController
-            viewController.users = self.users
+            viewController.users = self.selectedUsers
             viewController.user = self.user
         }
     }

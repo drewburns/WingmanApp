@@ -7,6 +7,9 @@ target 'Wingman' do
  pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
+pod 'NotificationBannerSwift'
+pod 'IQKeyboardManagerSwift'
+pod 'ReachabilitySwift', '~> 3'
   # Pods for Wingman
 
 end

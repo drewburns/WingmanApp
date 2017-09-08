@@ -406,18 +406,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brp-y7-eL2">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brp-y7-eL2">
                                 <rect key="frame" x="22" y="28" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="done:" destination="6Hi-kL-AUg" eventType="touchUpInside" id="xJD-nf-EMZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEU-xr-aFC">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEU-xr-aFC">
                                 <rect key="frame" x="122" y="122" width="130" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="AbA-gd-dw6"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
@@ -426,14 +425,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Brp-y7-eL2" firstAttribute="top" secondItem="L95-wu-fzo" secondAttribute="bottom" constant="8" symbolic="YES" id="4U4-Je-lH0"/>
-                            <constraint firstItem="Brp-y7-eL2" firstAttribute="leading" secondItem="BlI-Gs-Dxo" secondAttribute="leadingMargin" constant="6" id="IlU-wX-Jxn"/>
-                            <constraint firstItem="6Ox-wZ-mSh" firstAttribute="top" secondItem="kEU-xr-aFC" secondAttribute="bottom" constant="481" id="J1j-n8-XdT"/>
-                            <constraint firstItem="kEU-xr-aFC" firstAttribute="top" secondItem="L95-wu-fzo" secondAttribute="bottom" constant="102" id="VP4-QD-UAM"/>
-                            <constraint firstItem="kEU-xr-aFC" firstAttribute="centerX" secondItem="BlI-Gs-Dxo" secondAttribute="centerX" id="YK0-UM-SNq"/>
-                        </constraints>
                     </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toLogin" id="wjR-KH-DnT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gce-PC-KRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1079,6 +1074,6 @@
         <image name="user" width="700" height="700"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uie-ce-g65"/>
+        <segue reference="wjR-KH-DnT"/>
     </inferredMetricsTieBreakers>
 </document>

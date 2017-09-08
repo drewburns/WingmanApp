@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import NotificationBannerSwift
 
 class ChatConfirmViewController: UIViewController , UITextViewDelegate{
     var users:[AppUser] = []
@@ -83,6 +84,9 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
             
             let recipientUserMessagesRef = Database.database().reference().child("user-message").child(toId!).child(fromId!)
             recipientUserMessagesRef.updateChildValues([messageId: 1])
+            let banner = NotificationBanner(title: "Success", subtitle: "Chat created!", style: .success)
+            banner.autoDismiss = true
+            banner.show()
         }
     }
     

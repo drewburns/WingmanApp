@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 import Firebase
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -78,9 +79,10 @@ class HomeTableViewController: UITableViewController {
         }
 
         // get friendship
-        ref.child("friendships").child(userID!).observe(.childAdded, with: {(snapshot) in
+        ref.child("friendships").child(userID!).observe(.value, with: {(snapshot) in
             if snapshot.exists() {
-//                print(snapshot)
+                print("FRIEND SNAPSHOT")
+                print(snapshot.value)
             } else {
                 print("No friends found")
             }
@@ -94,7 +96,8 @@ class HomeTableViewController: UITableViewController {
         tableView.reloadData()
         observeUserMessages()
         
-
+        let reachability = Reachability()!
+        
     
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -115,6 +118,7 @@ class HomeTableViewController: UITableViewController {
             let userId = snapshot.key
             Database.database().reference().child("user-message").child(uid).child(userId).observe(.childAdded, with: { (snapshot) in
                 print("Found next things")
+
                 let messageId = snapshot.key
                 self.fetchMessageWithMessageId(messageId)
                 
@@ -146,6 +150,8 @@ class HomeTableViewController: UITableViewController {
                 if let chatPartnerId = message.chatPartnerId() {
                     self.messagesDictionary[chatPartnerId] = message
                 }
+                print("INCOMING MESSAGE")
+                print(message)
                 
                 self.attemptReloadOfTable()
             }

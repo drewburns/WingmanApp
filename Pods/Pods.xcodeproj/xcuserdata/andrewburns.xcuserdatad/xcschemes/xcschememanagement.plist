@@ -14,7 +14,32 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MarqueeLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NotificationBannerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Wingman.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ReachabilitySwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,7 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>735AE6F8B243389176B4B76B5E3112B4</key>
+		<key>320AD47B0C6BA014D301395D3BFC8FB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AE7ED498DFF1C717184CFB719097E23E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,7 +72,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C235F77E101E742652CCF98FFDFA5182</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7E22BEB205BF5EDC7D383150E23BC40</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EAA88C5A4B6AEAC54C2772A9995B99C2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F449710980EBC83D949606FAE92D273B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import NotificationBannerSwift
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
@@ -27,7 +28,10 @@ class LoginViewController: UIViewController {
         }
         Auth.auth().signIn(withEmail: email, password: password, completion: {(user, error) in
             if error != nil {
-                print(error)
+                print(error.unsafelyUnwrapped.localizedDescription)
+                let banner = NotificationBanner(title: "Error", subtitle: "Incorrect Login", style: .danger)
+                banner.autoDismiss = true
+                banner.show()
                 return
             }
             

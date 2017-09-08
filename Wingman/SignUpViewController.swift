@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import NotificationBannerSwift
 class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var usernameField: UITextField!
@@ -22,11 +22,13 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+//        self.navigationController = ni
        let ref = Database.database().reference(fromURL: "https://wingman-d2039.firebaseio.com/")
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         userImage.isUserInteractionEnabled = true
         userImage.addGestureRecognizer(tapGestureRecognizer)
         userImage.setRadius(radius: 55)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -112,7 +114,9 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
             }
             if errors.count > 0 {
                 print(errors)
-                
+                let banner = NotificationBanner(title: "Error", subtitle: errors.joined(separator: ", "), style: .danger)
+                banner.autoDismiss = true
+                banner.show()
             } else {
                 
                 self.attemptCreate()
@@ -143,7 +147,8 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
             print("Button capture")
             
             imagePicker.delegate = self
-            imagePicker.sourceType = .savedPhotosAlbum;
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.modalPresentationStyle = .overCurrentContext
             imagePicker.allowsEditing = true
             
             self.present(imagePicker, animated: true, completion: nil)
