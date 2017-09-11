@@ -15,6 +15,8 @@ class CreateChatTableViewController: UITableViewController {
     var selectedUsers:[AppUser] = []
     //    var search = ""
     let base = Database.database().reference()
+    let reachability = Reachability()!
+    var internet = ""
     
     @IBOutlet weak var createButton: UIBarButtonItem!
     
@@ -32,6 +34,37 @@ class CreateChatTableViewController: UITableViewController {
 
         getFriends()
         createButton.isEnabled = false
+        reachability.whenReachable = { _ in
+            if self.internet == "unreachable" {
+                DispatchQueue.main.async(execute: {
+                    self.dismiss(animated: false, completion: nil)
+                    // dismiss unreachable view
+                })
+                self.internet = ""
+            }
+            
+        }
+        
+        reachability.whenUnreachable = {_ in
+            self.internet = "unreachable"
+            DispatchQueue.main.async(execute: {
+                let alert = UIAlertController(title: nil, message: "Connect to Internet", preferredStyle: .alert)
+                
+                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                loadingIndicator.hidesWhenStopped = true
+                loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+                loadingIndicator.startAnimating();
+                
+                alert.view.addSubview(loadingIndicator)
+                self.present(alert, animated: true, completion: nil)
+            })
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: ReachabilityChangedNotification, object: reachability)
+        do {
+            try reachability.startNotifier()
+        } catch {
+            // something went wrong
+        }
         // get all the user's friends and list them
         
         // Uncomment the following line to preserve selection between presentations
@@ -39,6 +72,10 @@ class CreateChatTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func internetChanged(note: Notification) {
+        
     }
     func getFriends() {
         print("here")

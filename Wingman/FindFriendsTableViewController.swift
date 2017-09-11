@@ -14,16 +14,50 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
 //    var search = ""
 
 
-    
+    let reachability = Reachability()!
+    var internet = ""
     @IBOutlet weak var searchUsers: UISearchBar!
     
-    
+    func internetChanged(note: Notification) {
+        
+    }
     @IBAction func done(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         searchUsers.delegate = self
+        reachability.whenReachable = { _ in
+            if self.internet == "unreachable" {
+                DispatchQueue.main.async(execute: {
+                    self.dismiss(animated: false, completion: nil)
+                    // dismiss unreachable view
+                })
+                self.internet = ""
+            }
+            
+        }
+        
+        reachability.whenUnreachable = {_ in
+            self.internet = "unreachable"
+            DispatchQueue.main.async(execute: {
+                let alert = UIAlertController(title: nil, message: "Connect to Internet", preferredStyle: .alert)
+                
+                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                loadingIndicator.hidesWhenStopped = true
+                loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+                loadingIndicator.startAnimating();
+                
+                alert.view.addSubview(loadingIndicator)
+                self.present(alert, animated: true, completion: nil)
+            })
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: ReachabilityChangedNotification, object: reachability)
+        do {
+            try reachability.startNotifier()
+        } catch {
+            // something went wrong
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

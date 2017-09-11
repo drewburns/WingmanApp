@@ -11,11 +11,48 @@ import Firebase
 
 class SettingsViewController: UIViewController, UITextViewDelegate {
 
+    let reachability = Reachability()!
+    var internet = ""
     @IBOutlet weak var textview: UITextView!
     var vc: UIViewController?
+    
+    func internetChanged(note: Notification) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        reachability.whenReachable = { _ in
+            if self.internet == "unreachable" {
+                DispatchQueue.main.async(execute: {
+                    self.dismiss(animated: false, completion: nil)
+                    // dismiss unreachable view
+                })
+                self.internet = ""
+            }
+            
+        }
         
+        reachability.whenUnreachable = {_ in
+            self.internet = "unreachable"
+            DispatchQueue.main.async(execute: {
+                let alert = UIAlertController(title: nil, message: "Connect to Internet", preferredStyle: .alert)
+                
+                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                loadingIndicator.hidesWhenStopped = true
+                loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+                loadingIndicator.startAnimating();
+                
+                alert.view.addSubview(loadingIndicator)
+                self.present(alert, animated: true, completion: nil)
+            })
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: ReachabilityChangedNotification, object: reachability)
+        do {
+            try reachability.startNotifier()
+        } catch {
+            // something went wrong
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -23,11 +60,7 @@ class SettingsViewController: UIViewController, UITextViewDelegate {
     
 
     
-    func textViewDidChange(textView: UITextView) {
 
-        
-        
-    }
     @IBAction func logout(_ sender: Any) {
         handleLogout()
     }

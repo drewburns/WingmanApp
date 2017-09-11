@@ -272,7 +272,7 @@
                     <navigationItem key="navigationItem" title="Wingman" id="xHd-qC-Col">
                         <barButtonItem key="leftBarButtonItem" title="Me" id="t5Q-xd-ZJ7">
                             <connections>
-                                <segue destination="ehJ-ww-H9M" kind="presentation" identifier="me" modalPresentationStyle="overCurrentContext" id="8W4-af-tiY"/>
+                                <action selector="meClicked:" destination="wrq-4Y-QYa" id="mUK-5T-OR8"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New" id="c62-7a-oXZ">
@@ -286,6 +286,7 @@
                         <segue destination="tNb-1p-xAA" kind="show" identifier="new" id="Wtg-k3-TLm"/>
                         <segue destination="k4v-S3-UCd" kind="show" id="y3K-RM-dwf"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="login" id="uie-ce-g65"/>
+                        <segue destination="ehJ-ww-H9M" kind="presentation" identifier="me" id="tMQ-dL-HxF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LF3-gp-Er8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -583,7 +584,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3D-e0-eLh" id="p8y-Qk-BSF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="jrI-2d-rAb">
@@ -697,7 +698,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hht-bd-3hc" id="Ktk-C1-hyO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="72a-Vy-VWA">
@@ -1074,6 +1075,6 @@
         <image name="user" width="700" height="700"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wjR-KH-DnT"/>
+        <segue reference="uie-ce-g65"/>
     </inferredMetricsTieBreakers>
 </document>

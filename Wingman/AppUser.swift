@@ -17,4 +17,5 @@ class AppUser: NSObject {
     var usernamesearch: String?
     var profileImageURL: String?
     var friendship: Friendship?
+    
 }

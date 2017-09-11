@@ -15,14 +15,21 @@ class UserCell: UITableViewCell {
         didSet {
             
             setUserInfo()
-//            if message?.read! == false {
-////                unreadMarker.isHidden = false
+            if message?.read! == false && message?.toId == Auth.auth().currentUser?.uid {
+//                unreadMarker.isHidden = false
 //                detailTextLabel?.textColor = UIColor.blue
-//            } else {
+                profileImageView.layer.borderWidth = 2
+                
+                profileImageView.layer.borderColor = UIColor.blue.cgColor
+                timeLabel.textColor = UIColor.blue
+            } else {
 //                detailTextLabel?.textColor = UIColor.black
-////                unreadMarker.isHidden = true
-//                
-//            }
+                profileImageView.layer.borderWidth = 0
+                timeLabel.textColor = UIColor.black
+                profileImageView.layer.borderColor = UIColor.red.cgColor
+//                unreadMarker.isHidden = true
+                
+            }
             if message?.text != nil{
                 let str = message?.text
                 if (str?.characters.count)! < 30 {

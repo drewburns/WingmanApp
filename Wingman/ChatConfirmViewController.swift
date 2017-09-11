@@ -23,13 +23,29 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
     @IBOutlet weak var user2Name: UILabel!
     @IBOutlet weak var textInput: UITextView!
     @IBOutlet weak var sendMessageButton: UIButton!
+    let reachability = Reachability()!
+    var internet = ""
     
+    
+    func internetChanged(note: Notification) {
+        
+    }
     
     @IBAction func sendMessage(_ sender: Any) {
         if textInput.text != "" {
+            let alert = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            loadingIndicator.startAnimating();
+            
+            alert.view.addSubview(loadingIndicator)
+            present(alert, animated: true, completion: nil)
             createSetUp()
             createFirstMessage()
             goBack()
+            dismiss(animated: false, completion: nil)
         } else {
             print("Please enter some text")
         }
@@ -165,7 +181,37 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
         var downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
         downSwipe.direction = UISwipeGestureRecognizerDirection.down
         self.mainView.addGestureRecognizer(downSwipe)
+        reachability.whenReachable = { _ in
+            if self.internet == "unreachable" {
+                DispatchQueue.main.async(execute: {
+                    self.dismiss(animated: false, completion: nil)
+                    // dismiss unreachable view
+                })
+                self.internet = ""
+            }
+            
+        }
         
+        reachability.whenUnreachable = {_ in
+            self.internet = "unreachable"
+            DispatchQueue.main.async(execute: {
+                let alert = UIAlertController(title: nil, message: "Connect to Internet", preferredStyle: .alert)
+                
+                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                loadingIndicator.hidesWhenStopped = true
+                loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+                loadingIndicator.startAnimating();
+                
+                alert.view.addSubview(loadingIndicator)
+                self.present(alert, animated: true, completion: nil)
+            })
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: ReachabilityChangedNotification, object: reachability)
+        do {
+            try reachability.startNotifier()
+        } catch {
+            // something went wrong
+        }
 
         // Do any additional setup after loading the view.
     }

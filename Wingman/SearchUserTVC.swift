@@ -72,12 +72,20 @@ class SearchUserTVC: UITableViewCell {
                 self.addButton.setTitle("Friends", for: .normal)
             })
         }
+        
+        if let userId = self.user?.id {
+            let ref2 = base.child("added-friendships").child(userId)
+            ref2.updateChildValues([currentID!: 0], withCompletionBlock: { (error, ref) in
+            })
+        }
     }
     
     func removeFriendship() {
         let currentID = Auth.auth().currentUser?.uid
         let ref = base.child("friendships").child(currentID!).child((self.user?.id)!)
         ref.removeValue()
+        let ref2 = base.child("added-friendships").child((self.user?.id)!).child(currentID!)
+        ref2.removeValue()
     }
     
 

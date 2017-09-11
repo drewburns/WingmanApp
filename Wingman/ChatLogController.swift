@@ -25,7 +25,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     var messages = [Message]()
     var containerViewBottomAnchor: NSLayoutConstraint?
     let cellId = "cellId"
-
+    let reachability = Reachability()!
+    var internet = ""
+    
+    func internetChanged(note: Notification) {
+        
+    }
     
     func observeMessages() {
         guard let uid = Auth.auth().currentUser?.uid , let toId = user?.id else {
@@ -37,10 +42,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             let messageId = snapshot.key
             let messageRef = Database.database().reference().child("messages").child(messageId)
             messageRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                guard let dictionary = snapshot.value as? [String:Any] else {
+                guard var dictionary = snapshot.value as? [String:Any] else {
                     return
                 }
-
+                dictionary["id"] = snapshot.key
 
                 self.messages.append(Message(dictionary: dictionary))
                 DispatchQueue.main.async(execute: {
@@ -75,8 +80,38 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         collectionView?.keyboardDismissMode = .interactive
         
         setupKeyboardObservers()
-        
 
+        reachability.whenReachable = { _ in
+            if self.internet == "unreachable" {
+                DispatchQueue.main.async(execute: {
+                    self.dismiss(animated: false, completion: nil)
+                    // dismiss unreachable view
+                })
+                self.internet = ""
+            }
+            
+        }
+        
+        reachability.whenUnreachable = {_ in
+            self.internet = "unreachable"
+            DispatchQueue.main.async(execute: {
+                let alert = UIAlertController(title: nil, message: "Connect to Internet", preferredStyle: .alert)
+                
+                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                loadingIndicator.hidesWhenStopped = true
+                loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+                loadingIndicator.startAnimating();
+                
+                alert.view.addSubview(loadingIndicator)
+                self.present(alert, animated: true, completion: nil)
+            })
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: ReachabilityChangedNotification, object: reachability)
+        do {
+            try reachability.startNotifier()
+        } catch {
+            // something went wrong
+        }
 
         
     }
@@ -169,7 +204,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             }
         })
         uploadTask.observe(.progress) { (snapshot) in
-            if let completedUnitCount = snapshot.progress?.completedUnitCount {
+            if let completedUnitCount = snapshot.progress?.fractionCompleted {
                 self.navigationItem.title = String(completedUnitCount)
             }
         }
@@ -299,6 +334,14 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         cell.textView.text = message.text
         
+        let messageRef = Database.database().reference().child("messages").child(message.id!)
+        print("made read true")
+        if cell.message?.read == false {
+            messageRef.updateChildValues(["read":true])
+        }
+//        messages[indexPath.row].read = true
+
+        
         setupCell(cell, message: message)
         
         if let text = message.text {
@@ -396,8 +439,11 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     func handleSend() {
-        let properties = ["text": inputTextField.text!]
-        sendMessageWithProperties(properties as [String : AnyObject])
+        if inputTextField.text! != "" {
+            let properties = ["text": inputTextField.text!]
+            sendMessageWithProperties(properties as [String : AnyObject])
+        }
+
     }
     
     fileprivate func sendMessageWithImageUrl(_ imageUrl: String, image: UIImage) {
