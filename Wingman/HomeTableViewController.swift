@@ -45,21 +45,23 @@ class HomeTableViewController: UITableViewController {
     var wentToChatWithUserId:String?
     let reachability = Reachability()!
     var internet = ""
+    var fromLogin = ""
 //    var newUser:AppUser?
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+//        let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+//        
+//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+//        loadingIndicator.startAnimating();
+//        
+//        alert.view.addSubview(loadingIndicator)
+//        present(alert, animated: true, completion: nil)
         
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        loadingIndicator.startAnimating();
-        
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
         
         let userID = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()
@@ -110,10 +112,11 @@ class HomeTableViewController: UITableViewController {
         messagesDictionary.removeAll()
         tableView.reloadData()
         getMessagesAndFriends()
+        print("Dis", self.isBeingDismissed)
+        print("Pres", self.isBeingPresented)
+//        self.dismiss(animated: false, completion: nil)
         
         
-        
-        dismiss(animated: false, completion: nil)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -245,7 +248,8 @@ class HomeTableViewController: UITableViewController {
                 self.showFriendBanner(id: snapshot.key)
             }
         })
-
+        print("made it to here")
+        
     }
     
     func showFriendBanner(id: String) {
