@@ -37,6 +37,7 @@ class LoginViewController: UIViewController {
             
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "app")
+            UserDefaults.standard.setValue(true, forKey: "first")
             self.show(vc, sender: self)
             
         })

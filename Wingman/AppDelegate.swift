@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         if Auth.auth().currentUser != nil {
-            print(Auth.auth().currentUser)
+//            print(Auth.auth().currentUser)
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -32,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         
         }
+        UINavigationBar.appearance().barTintColor = UIColor(rgbColorCodeRed: 1, green: 151, blue: 207, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         IQKeyboardManager.sharedManager().enable = true
         return true
     }

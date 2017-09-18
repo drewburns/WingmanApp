@@ -77,7 +77,7 @@ class FriendListTableViewController: UITableViewController {
                     for friendString in friendStrings {
             
                         self.base.child("users").child(friendString.key).observeSingleEvent(of: .value, with: { (snapshot) in
-                            print(snapshot.value)
+//                            print(snapshot.value)
                             if snapshot.exists() {
                                 print("made it to 3")
                                 let newUser = AppUser()

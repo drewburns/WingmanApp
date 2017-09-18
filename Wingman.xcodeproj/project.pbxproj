@@ -247,7 +247,7 @@
 				TargetAttributes = {
 					5110F9B01F58944600B5B26B = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 9RJ722B5F2;
+						DevelopmentTeam = 92VN998L5W;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -488,11 +488,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Wingman/Wingman.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9RJ722B5F2;
+				DEVELOPMENT_TEAM = 92VN998L5W;
 				INFOPLIST_FILE = Wingman/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.Wingman;
+				PRODUCT_BUNDLE_IDENTIFIER = andrewiburns.Wingman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -505,11 +505,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Wingman/Wingman.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9RJ722B5F2;
+				DEVELOPMENT_TEAM = 92VN998L5W;
 				INFOPLIST_FILE = Wingman/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.Wingman;
+				PRODUCT_BUNDLE_IDENTIFIER = andrewiburns.Wingman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

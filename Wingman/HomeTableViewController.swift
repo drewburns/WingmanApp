@@ -47,25 +47,32 @@ class HomeTableViewController: UITableViewController {
     var internet = ""
     var fromLogin = ""
 //    var newUser:AppUser?
+    @IBOutlet weak var newChatButton: UIBarButtonItem!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
-//        
-//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-//        loadingIndicator.hidesWhenStopped = true
-//        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-//        loadingIndicator.startAnimating();
-//        
-//        alert.view.addSubview(loadingIndicator)
-//        present(alert, animated: true, completion: nil)
+
+        if UserDefaults.standard.value(forKey: "first") == nil {
+            print("loading wil not appear")
+            let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+            
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            loadingIndicator.startAnimating();
+            
+            alert.view.addSubview(loadingIndicator)
+            present(alert, animated: true, completion: nil)
+        }
+
         
         
         let userID = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()
         meButton.isEnabled = false
+        newChatButton.isEnabled = false
         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
 //            print(snapshot.value)
@@ -81,6 +88,7 @@ class HomeTableViewController: UITableViewController {
                     self.user = newUser
                     DispatchQueue.main.async {
                         self.meButton.isEnabled = true
+                        self.newChatButton.isEnabled =  true
                     }
                 }
 
@@ -114,7 +122,12 @@ class HomeTableViewController: UITableViewController {
         getMessagesAndFriends()
         print("Dis", self.isBeingDismissed)
         print("Pres", self.isBeingPresented)
-//        self.dismiss(animated: false, completion: nil)
+        if UserDefaults.standard.value(forKey: "first") == nil {
+            print("yessdaskdsldasks")
+            self.dismiss(animated: false, completion: nil)
+            UserDefaults.standard.removeObject(forKey:"first")
+            UserDefaults.standard.synchronize()
+        }
         
         
         // Uncomment the following line to preserve selection between presentations

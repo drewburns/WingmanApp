@@ -81,6 +81,7 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
             
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "app")
+            UserDefaults.standard.setValue(true, forKey: "first")
             self.show(vc, sender: self)
             print("Saved!")
         })
@@ -100,7 +101,7 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
         if nameField.text! == "" {
             errors.append("Enter a name")
         }
-        if userImage.image! == UIImage(named: "user") {
+        if userImage.image! == UIImage(named: "logo-clear") {
             errors.append("Select an image")
         }
 
