@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+
         if Auth.auth().currentUser != nil {
 //            print(Auth.auth().currentUser)
             self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -36,9 +37,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         IQKeyboardManager.sharedManager().enable = true
+        let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(setting)
+        UIApplication.shared.registerForRemoteNotifications()
+        application.registerForRemoteNotifications()
+        application.applicationIconBadgeNumber = 0
         return true
     }
+    
+    func removeBadges() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("error \(error)")
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
 
+            
+        UserDefaults.standard.set(token, forKey: "token")
+        
+        
+    
+        
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("WE FETCHED IT")
+        application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -50,6 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        removeBadges()
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 

@@ -53,6 +53,12 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let logerror {
+//            print(logerror)
+//        }
 
         if UserDefaults.standard.value(forKey: "first") == nil {
             print("loading wil not appear")
@@ -91,7 +97,26 @@ class HomeTableViewController: UITableViewController {
                         self.newChatButton.isEnabled =  true
                     }
                 }
+                let token = UserDefaults.standard.value(forKey: "token")
+                print("user token", self.user?.token)
+                if  ((self.user?.token) == "none")   {
+                    print("We are about to save the user's token into firebase from HomeController")
+                    if Auth.auth().currentUser != nil {
+                        ref.child("users").child(userID!).updateChildValues(["token": token])
+                        self.user?.token = token as! String?
+                        UserDefaults.standard.removeObject(forKey: "token")
+                    }
+                }
+//                let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)!
+//                print("STRING", string)
+//                
+//                let request = URLRequest(url: URL(string: string)!)
+//                let connection = NSURLConnection(request: request, delegate:nil, startImmediately: true)
 
+                
+                print(self.user?.name)
+                UserDefaults.standard.set(self.user?.name, forKey: "username")
+                print("STORED USER NAME",UserDefaults.standard.string(forKey: "username"))
 //                print(self.user?.id)
             } else{
                 self.performSegue(withIdentifier: "login", sender: nil)
@@ -112,7 +137,8 @@ class HomeTableViewController: UITableViewController {
 //            }
 //        })
         
-    
+
+
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         tableView.allowsMultipleSelectionDuringEditing = true
         messages.removeAll()
@@ -166,6 +192,9 @@ class HomeTableViewController: UITableViewController {
         } catch {
             // something went wrong
         }
+        
+        
+
         
     }
 
@@ -396,6 +425,7 @@ class HomeTableViewController: UITableViewController {
     func showChatControllerForUser(_ user: AppUser) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
+        chatLogController.currentUserName = (self.user?.name)!
         navigationController?.pushViewController(chatLogController, animated: true)
     }
     
@@ -411,10 +441,14 @@ class HomeTableViewController: UITableViewController {
         performSegue(withIdentifier: "new", sender: nil)
     }
     override func viewDidAppear(_ animated: Bool) {
-       
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.removeBadges()
         self.attemptReloadOfTable()
         if messagesDictionary.count > 0 {
-            messagesDictionary[wentToChatWithUserId!]?.read = true
+            if wentToChatWithUserId != nil {
+                messagesDictionary[wentToChatWithUserId!]?.read = true
+            }
+            
         }
          wentToChatWithUserId = ""
         print("VIEW APPEARED")
@@ -552,6 +586,7 @@ class HomeTableViewController: UITableViewController {
             
            let viewController:PopUpViewController = segue.destination as! PopUpViewController
             viewController.user = sender as? AppUser
+            viewController.currentUserName = (self.user?.name)!
             
         } else if segue.identifier == "new"{
             let viewController:CreateChatTableViewController = segue.destination as! CreateChatTableViewController

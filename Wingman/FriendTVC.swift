@@ -80,6 +80,26 @@ class FriendTVC: UITableViewCell {
             ref2.updateChildValues([currentID!: 0], withCompletionBlock: { (error, ref) in
             })
         }
+        if self.user?.token != "none" && self.user?.token != nil {
+            print("STORED USER NAME IN FRIEND LIST",UserDefaults.standard.string(forKey: "username"))
+            var alert = UserDefaults.standard.string(forKey: "username")! + " added you as a friend"
+            alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)! + "&alert=" + alert
+            
+            let url = URL(string: string)
+            URLSession.shared.dataTask(with: url!, completionHandler: {
+                (data, response, error) in
+                if(error != nil){
+                    print("error")
+                }else{
+                    do{
+                        
+                    } catch let error as NSError{
+                        print(error)
+                    }
+                }
+            }).resume()
+        }
     }
     
     func removeFriendship() {

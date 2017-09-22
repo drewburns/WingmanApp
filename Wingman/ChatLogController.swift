@@ -19,15 +19,25 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     var user: AppUser? {
         didSet {
             navigationItem.title = user?.name
+//            let btn1 = UIButton(type: .custom)
+//            btn1.setImage(UIImage(named:"logo-clear"), for: .normal)
+//            btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+//            btn1.addTarget(self, action: #selector(showUser), for: .touchUpInside)
+//            let item1 = UIBarButtonItem(customView: btn1)
+//            self.navigationItem.setRightBarButton(item1, animated: true)
             observeMessages()
         }
+    }
+    
+    func showUser() {
+//        performSegue(withIdentifier: "me", sender: self.user)
     }
     var messages = [Message]()
     var containerViewBottomAnchor: NSLayoutConstraint?
     let cellId = "cellId"
     let reachability = Reachability()!
     var internet = ""
-    
+    var currentUserName = ""
     func internetChanged(note: Notification) {
         
     }
@@ -480,6 +490,27 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             let recipientUserMessagesRef = Database.database().reference().child("user-message").child(toId).child(fromId)
             recipientUserMessagesRef.updateChildValues([messageId: 1])
         }
+        if self.user?.token != "none" {
+//            let currentUser = Auth.auth().c
+            var alert = (self.currentUserName) + " sent you a message"
+            alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)! + "&alert=" + alert
+            
+            let url = URL(string: string)
+            URLSession.shared.dataTask(with: url!, completionHandler: {
+                (data, response, error) in
+                if(error != nil){
+                    print("error")
+                }else{
+                    do{
+                        
+                    } catch let error as NSError{
+                        print(error)
+                    }
+                }
+            }).resume()
+        }
+
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

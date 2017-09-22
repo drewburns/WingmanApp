@@ -104,6 +104,47 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
             banner.autoDismiss = true
             banner.show()
         }
+        
+        // first user
+        if self.users[0].token != "none" && self.users[0].token != nil {
+            var alert = "You got put into a chat with "+(self.users[1].name)! + "!"
+            alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.users[0].token)! + "&alert=" + alert
+            
+            let url = URL(string: string)
+            URLSession.shared.dataTask(with: url!, completionHandler: {
+                (data, response, error) in
+                if(error != nil){
+                    print("error")
+                }else{
+                    do{
+                        
+                    } catch let error as NSError{
+                        print(error)
+                    }
+                }
+            }).resume()
+        }
+        // second user
+        if self.users[1].token != "none" && self.users[1].token != nil {
+            var alert = "You got put into a chat with "+(self.users[0].name)! + "!"
+            alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.users[1].token)! + "&alert=" + alert
+            
+            let url = URL(string: string)
+            URLSession.shared.dataTask(with: url!, completionHandler: {
+                (data, response, error) in
+                if(error != nil){
+                    print("error")
+                }else{
+                    do{
+                        
+                    } catch let error as NSError{
+                        print(error)
+                    }
+                }
+            }).resume()
+        }
     }
     
 //    func createUserMessages(messageId: String) {

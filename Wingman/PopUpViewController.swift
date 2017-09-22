@@ -21,13 +21,14 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var viewFriendButton: UIButton!
     let reachability = Reachability()!
     var internet = ""
+    var currentUserName = ""
     
     @IBOutlet weak var mainView: UIView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+        let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
         downSwipe.direction = UISwipeGestureRecognizerDirection.down
         self.mainView.addGestureRecognizer(downSwipe)
         userImage.maskCircle()
@@ -93,7 +94,8 @@ class PopUpViewController: UIViewController {
         let currentID = Auth.auth().currentUser?.uid
         let id = Auth.auth().currentUser?.uid
         if user?.id == Auth.auth().currentUser?.uid {
-            friendButton.setTitle("Settings", for: .normal)
+            friendButton.setTitle("Added Me", for: .normal)
+            
                 
             } else {
                 // if current user friendship exists
@@ -112,6 +114,8 @@ class PopUpViewController: UIViewController {
                 // if this vc's user is contained in current users friendship -> show "friends"
                 // else -> show "add"
                 print("ete")
+                closeButton.isEnabled = false
+                closeButton.setTitle("", for: .disabled)
                 findFriendsButton.isEnabled = false
                 findFriendsButton.setTitle("", for: .disabled)
             }
@@ -120,8 +124,8 @@ class PopUpViewController: UIViewController {
     }
     
     @IBAction func friendButtonClicked(_ sender: Any) {
-        if friendButton.titleLabel?.text! == "Settings" {
-            performSegue(withIdentifier: "settings", sender: nil)
+        if friendButton.titleLabel?.text! == "Added Me" {
+            performSegue(withIdentifier: "addedme", sender: nil)
         } else if friendButton.titleLabel?.text! == "Friends" {
             // and others
             removeFriendship()
@@ -143,9 +147,31 @@ class PopUpViewController: UIViewController {
             })
         }
         
-        if let userId = self.user?.id {
+        if let userId = self.user?.id  {
             let ref2 = Database.database().reference().child("added-friendships").child(userId)
-            ref2.updateChildValues([currentID!: 0], withCompletionBlock: { (error, ref) in
+            ref2.updateChildValues([currentID!: 0], withCompletionBlock: {
+                (error, ref) in
+                if self.user?.token != "none" && self.user?.token != nil {
+                    var alert = UserDefaults.standard.string(forKey: "username")! + " added you as a friend"
+                    alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+                    let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)! + "&alert=" + alert
+                
+                    let url = URL(string: string)
+                    URLSession.shared.dataTask(with: url!, completionHandler: {
+                        (data, response, error) in
+                        if(error != nil){
+                            print("error")
+                        }else{
+                            do{
+       
+                            }catch let error as NSError{
+                                print(error)
+                            }
+                        }
+                    }).resume()
+                }
+
+                
             })
         }
     }
@@ -178,7 +204,7 @@ class PopUpViewController: UIViewController {
     }
     
     @IBAction func close(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier:"settings", sender: nil)
     }
 
     
@@ -198,6 +224,10 @@ class PopUpViewController: UIViewController {
             let viewController:SettingsViewController = segue.destination as! SettingsViewController
             viewController.vc = self.self
             
+        } else if segue.identifier == "addedme" {
+            var DestViewController = segue.destination as! UINavigationController
+            let targetController = DestViewController.topViewController as! AddedMeTableViewController
+            targetController.user = self.user
         }
     }
     

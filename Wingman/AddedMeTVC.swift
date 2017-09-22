@@ -1,17 +1,20 @@
 //
-//  SearchUserTVC.swift
+//  AddedMeTVC.swift
 //  Wingman
 //
-//  Created by Andrew Burns on 9/1/17.
+//  Created by Andrew Burns on 9/19/17.
 //  Copyright © 2017 Andrew Burns. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class SearchUserTVC: UITableViewCell {
+class AddedMeTVC: UITableViewCell {
+
     var user:AppUser? {
         didSet {
+            
+            print("USER", user)
             setAddButton()
             nameLabel.text! = (user?.name)!
             usernameLabel.text! = (user?.usernamesearch)!
@@ -53,7 +56,7 @@ class SearchUserTVC: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
-
+    
     @IBAction func friendChange(_ sender: Any) {
         print("Button clicked")
         if addButton.titleLabel?.text == "Add" {
@@ -78,10 +81,11 @@ class SearchUserTVC: UITableViewCell {
             ref2.updateChildValues([currentID!: 0], withCompletionBlock: { (error, ref) in
             })
         }
-        if (self.user?.token != "none" && self.user?.token == nil){
-            var alert = UserDefaults.standard.string(forKey: "username")! + "added you as a friend"
+        
+        if self.user?.token != "none" && self.user?.token != nil {
+            print("STORED USER NAME IN ADDED",UserDefaults.standard.string(forKey: "username"))
+            var alert = UserDefaults.standard.string(forKey: "username")! + " added you as a friend"
             alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-            
             let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)! + "&alert=" + alert
             
             let url = URL(string: string)
@@ -108,15 +112,15 @@ class SearchUserTVC: UITableViewCell {
         ref2.removeValue()
     }
     
-
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         print("test!!!!!!!!!!!")
-
+        
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -124,6 +128,4 @@ class SearchUserTVC: UITableViewCell {
     }
     
     
-    
-
 }

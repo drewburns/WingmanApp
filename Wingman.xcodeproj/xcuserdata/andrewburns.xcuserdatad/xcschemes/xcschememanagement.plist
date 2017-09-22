@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>OneSignalNotificationServiceExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 		<key>Wingman.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>5110F9B01F58944600B5B26B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>51FE9BBE1F741B0B0042E0F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -47,24 +47,47 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
                 return
             }
             
-
+//            let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+//            
+//            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+//            loadingIndicator.hidesWhenStopped = true
+//            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+//            loadingIndicator.startAnimating();
+//            
+//            alert.view.addSubview(loadingIndicator)
+//            self.present(alert, animated: true, completion: nil)
     
             
             let storageRef = Storage.storage().reference().child("\(uid)-profile.png")
             
             if let uploadData = UIImagePNGRepresentation(self.userImage.image!) {
+                let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+                
+                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                loadingIndicator.hidesWhenStopped = true
+                loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+                loadingIndicator.startAnimating();
+                
+                alert.view.addSubview(loadingIndicator)
+                self.present(alert, animated: true, completion: nil)
                 storageRef.putData(uploadData, metadata: nil , completion: {(metadata, error) in
+                    
                     if error != nil {
                         print(error)
                         return
                     }
                     let name = self.nameField.text!
                     let username = self.usernameField.text!
-                    let values = ["name": name, "email": email, "username":username, "namesearch": name.lowercased(), "usernamesearch": username.lowercased(), "profileImageURL": metadata?.downloadURL()?.absoluteString ]
                     
+                    var values = ["name": name, "email": email, "username":username, "namesearch": name.lowercased(), "usernamesearch": username.lowercased(), "profileImageURL": metadata?.downloadURL()?.absoluteString]
+                    values["token"] = "none"
+                    print("VALUES",values)
+                  
+            
                     self.createUser(uid: uid, values: values )
                     
                 })
+                self.dismiss(animated: true, completion: nil)
             }
             
             
@@ -73,12 +96,15 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
     func createUser(uid: String, values: [String:Any]) {
         let ref = Database.database().reference(fromURL: "https://wingman-d2039.firebaseio.com/")
         let usersref = ref.child("users").child(uid)
+        
+
+        
         usersref.updateChildValues(values, withCompletionBlock: {( err,ref ) in
             if err != nil {
                 print(err)
                 return
             }
-            
+//            self.dismiss(animated: true, completion: nil)
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "app")
             UserDefaults.standard.setValue(true, forKey: "first")
@@ -96,6 +122,9 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
         }
         if password1.text! != password2.text! {
             errors.append("Passwords don't match")
+        }
+        if usernameField.text!.containsWhitespace == true {
+            errors.append("Can't have whitespaces")
         }
         
         if nameField.text! == "" {
@@ -193,5 +222,11 @@ extension UIView {
     func setRadius(radius: CGFloat? = nil) {
         self.layer.cornerRadius = radius ?? self.frame.width / 2;
         self.layer.masksToBounds = true;
+    }
+}
+
+extension String {
+    var containsWhitespace : Bool {
+        return(self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil)
     }
 }
