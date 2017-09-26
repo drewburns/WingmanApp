@@ -74,7 +74,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
 
             let strSearch = searchUsers.text!.lowercased()
             print(strSearch)
-            ref.child("users").queryOrdered(byChild:  "username").queryStarting(atValue: strSearch).queryEnding(atValue: strSearch + "\u{f8ff}").observeSingleEvent(of: .value, with: { (snapshot) in
+            ref.child("users").queryOrdered(byChild:  "usernamesearch").queryStarting(atValue: strSearch).queryEnding(atValue: strSearch + "\u{f8ff}").observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() == true {
                     for user in snapshot.value as! [String:[String:Any]] {
                         var params = user.value
@@ -87,6 +87,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
                     }
                 } else {
                     // no users found
+                    print("no users found -----------")
                 }
    
                 

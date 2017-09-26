@@ -30,8 +30,37 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     func showUser() {
-//        performSegue(withIdentifier: "me", sender: self.user)
+        let viewController:PopUpViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popup") as! PopUpViewController
+        viewController.user = self.user
+        self.present(viewController, animated: false, completion: nil)
     }
+    
+    override func didMove(toParentViewController parent: UIViewController?) {
+        super.didMove(toParentViewController: parent)
+        
+        if parent != nil && self.navigationItem.titleView == nil {
+            initNavigationItemTitleView()
+        }
+    }
+    
+    private func initNavigationItemTitleView() {
+        let titleView = UILabel()
+        titleView.text = user?.name
+        titleView.font = UIFont(name: "HelveticaNeue-Medium", size: 17)
+        titleView.textColor = UIColor.white
+        let width = titleView.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)).width
+        titleView.frame = CGRect(origin:CGPoint.zero, size:CGSize(width: width, height: 500))
+        self.navigationItem.titleView = titleView
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(ChatLogController.titleWasTapped))
+        titleView.isUserInteractionEnabled = true
+        titleView.addGestureRecognizer(recognizer)
+    }
+    
+    @objc private func titleWasTapped() {
+        showUser()
+    }
+
     var messages = [Message]()
     var containerViewBottomAnchor: NSLayoutConstraint?
     let cellId = "cellId"
