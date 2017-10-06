@@ -127,6 +127,10 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
             errors.append("Can't have whitespaces")
         }
         
+        if usernameField.text!.characters.count < 3 {
+            errors.append("Username must be longer than 3")
+        }
+        
         if nameField.text! == "" {
             errors.append("Enter a name")
         }
