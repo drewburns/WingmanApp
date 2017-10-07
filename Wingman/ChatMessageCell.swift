@@ -12,7 +12,7 @@ import AVFoundation
 class ChatMessageCell: UICollectionViewCell {
     var message: Message?
     
-    var chatLogController: ChatLogController?
+    var chatLogController: Any?
     
     let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -110,7 +110,9 @@ class ChatMessageCell: UICollectionViewCell {
         
         if let imageView = tapGesture.view as? UIImageView {
             //PRO Tip: don't perform a lot of custom logic inside of a view class
-            self.chatLogController?.performZoomInForStartingImageView(imageView)
+            if let log = self.chatLogController as? ChatLogController {
+                log.performZoomInForStartingImageView(imageView)
+            }
         }
     }
     
@@ -118,6 +120,8 @@ class ChatMessageCell: UICollectionViewCell {
     var bubbleViewRightAnchor: NSLayoutConstraint?
     var bubbleViewLeftAnchor: NSLayoutConstraint?
     var bubbleViewCenterAnchor: NSLayoutConstraint?
+    var profileImageLeftAnchor: NSLayoutConstraint?
+    var profileImageRightAnchor: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -147,16 +151,19 @@ class ChatMessageCell: UICollectionViewCell {
         activityIndicatorView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
-        profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+        profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = false
+        profileImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 8).isActive = false
         profileImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         
+        profileImageLeftAnchor = profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8)
+        profileImageRightAnchor = profileImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
         //x,y,w,h
         
-        bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
+        bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: profileImageView.leftAnchor, constant: -8)
         
-        bubbleViewRightAnchor?.isActive = true
+//        bubbleViewRightAnchor?.isActive = true
         
         bubbleViewLeftAnchor = bubbleView.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8)
         

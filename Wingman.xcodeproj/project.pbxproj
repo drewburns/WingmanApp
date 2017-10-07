@@ -26,6 +26,8 @@
 		51116A6B1F5B404B00C38842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51116A691F5B404B00C38842 /* Main.storyboard */; };
 		51116A6D1F5B551D00C38842 /* NewChatUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51116A6C1F5B551D00C38842 /* NewChatUserTVC.swift */; };
 		51116A6F1F5CBF5000C38842 /* ChatConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51116A6E1F5CBF5000C38842 /* ChatConfirmViewController.swift */; };
+		512323641F87FB36000021E8 /* SetupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512323631F87FB36000021E8 /* SetupCell.swift */; };
+		512323671F880AED000021E8 /* SetUpChatLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512323661F880AED000021E8 /* SetUpChatLog.swift */; };
 		518A7A951F5915C400E65A9D /* SearchUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A941F5915C400E65A9D /* SearchUserTVC.swift */; };
 		518A7A981F5A1E7B00E65A9D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A971F5A1E7B00E65A9D /* Extensions.swift */; };
 		518A7A9A1F5A51B600E65A9D /* Friendship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A991F5A51B600E65A9D /* Friendship.swift */; };
@@ -77,6 +79,8 @@
 		51116A6A1F5B404B00C38842 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51116A6C1F5B551D00C38842 /* NewChatUserTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatUserTVC.swift; sourceTree = "<group>"; };
 		51116A6E1F5CBF5000C38842 /* ChatConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConfirmViewController.swift; sourceTree = "<group>"; };
+		512323631F87FB36000021E8 /* SetupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupCell.swift; sourceTree = "<group>"; };
+		512323661F880AED000021E8 /* SetUpChatLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetUpChatLog.swift; sourceTree = "<group>"; };
 		518A7A941F5915C400E65A9D /* SearchUserTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserTVC.swift; sourceTree = "<group>"; };
 		518A7A971F5A1E7B00E65A9D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		518A7A991F5A51B600E65A9D /* Friendship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friendship.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				5110F9D41F58AB1600B5B26B /* CreateChatTableViewController.swift */,
 				51116A6E1F5CBF5000C38842 /* ChatConfirmViewController.swift */,
 				51930EBC1F5F35840080EE11 /* ChatLogController.swift */,
+				512323661F880AED000021E8 /* SetUpChatLog.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				51930EBA1F5F13A80080EE11 /* UserCell.swift */,
 				51930EBE1F5F38B70080EE11 /* ChatMessageCell.swift */,
 				51D33AFD1F71988900BD1B63 /* AddedMeTVC.swift */,
+				512323631F87FB36000021E8 /* SetupCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -403,10 +409,12 @@
 				5110F9DC1F58AB6400B5B26B /* FindFriendsTableViewController.swift in Sources */,
 				5110F9CD1F5895B200B5B26B /* SignUpViewController.swift in Sources */,
 				5110F9BD1F58944600B5B26B /* Wingman.xcdatamodeld in Sources */,
+				512323671F880AED000021E8 /* SetUpChatLog.swift in Sources */,
 				51076ED81F61C53700E52F46 /* Reachability.swift in Sources */,
 				5110F9CF1F5898E200B5B26B /* HomeTableViewController.swift in Sources */,
 				5110F9D81F58AB3B00B5B26B /* PopUpViewController.swift in Sources */,
 				518A7A9A1F5A51B600E65A9D /* Friendship.swift in Sources */,
+				512323641F87FB36000021E8 /* SetupCell.swift in Sources */,
 				51116A6D1F5B551D00C38842 /* NewChatUserTVC.swift in Sources */,
 				51D33AFC1F7185DD00BD1B63 /* AddedMeTableViewController.swift in Sources */,
 				518A7A981F5A1E7B00E65A9D /* Extensions.swift in Sources */,

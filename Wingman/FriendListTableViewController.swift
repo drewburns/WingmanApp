@@ -26,6 +26,7 @@ class FriendListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getFriends()
+        
 
         reachability.whenReachable = { _ in
             if self.internet == "unreachable" {
@@ -67,6 +68,7 @@ class FriendListTableViewController: UITableViewController {
     }
     
     func getFriends() {
+        
         print("here")
         let ref = base.child("friendships").child((user?.id)!)
         ref.observeSingleEvent(of: .value, with:{ (snapshot) in

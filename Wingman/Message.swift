@@ -22,6 +22,10 @@ class Message: NSObject {
     var first: Bool?
     var read: Bool?
     var id: String?
+    var setup: Bool?
+    var setupId: String?
+    var userWhoSetup: String?
+
     
     init(dictionary: [String: Any]) {
         self.fromId = dictionary["fromId"] as? String
@@ -36,6 +40,10 @@ class Message: NSObject {
         self.first = dictionary["first"] as? Bool
         self.read = dictionary["read"] as? Bool
         self.id = dictionary["id"] as? String
+        self.setup = dictionary["setup"] as? Bool
+        self.setupId = dictionary["setupId"] as? String
+        self.userWhoSetup = dictionary["userWhoSetup"] as? String
+    
     }
     
     func chatPartnerId() -> String? {

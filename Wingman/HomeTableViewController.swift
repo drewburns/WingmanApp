@@ -38,6 +38,7 @@ class HomeTableViewController: UITableViewController {
     var messages = [Message]()
     var friends = [String]()
     var messagesDictionary = [String: Message]()
+    var setupDictionary = [String: Message]()
 //    var idArray:[String] = []
     @IBOutlet weak var meButton: UIBarButtonItem!
     let cellId = "cellId"
@@ -140,6 +141,7 @@ class HomeTableViewController: UITableViewController {
 
 
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(SetupCell.self, forCellReuseIdentifier: "setId")
         tableView.allowsMultipleSelectionDuringEditing = true
         messages.removeAll()
         friends.removeAll()
@@ -238,8 +240,33 @@ class HomeTableViewController: UITableViewController {
             print("Finished getting values")
             self.observeUserMessages()
         })
-
         
+        let setupref = Database.database().reference().child("user-setup").child(uid)
+        
+        setupref.observeSingleEvent(of: .value, with: {(snapshot) in
+//            print("SETUPS", snapshot.value)
+            
+        if let setups = snapshot.value as? [String:Any] {
+                for setup in setups {
+                    print("Setup:", setup)
+                    let ref4 = Database.database().reference().child("setup-messages").child(setup.key)
+                    ref4.observeSingleEvent(of: .value, with: { (snapshot2) in
+                        
+                        if let setupmessages = (snapshot2.value as? [String:Any]) {
+                            
+                            for setupmessage in setupmessages {
+                                print("MESSAGES")
+                                print(setupmessage)
+                                self.fetchMessageWithMessageIdSetup(setupmessage.key, setup.key, setupmessage.value as! Int)
+                            }
+                            
+                        }
+                    })
+                }
+            }
+
+        })
+
         
     }
     
@@ -248,6 +275,7 @@ class HomeTableViewController: UITableViewController {
     }
 
     func observeUserMessages() {
+
         print("Friends2" , friends)
         guard let uid = Auth.auth().currentUser?.uid else {
             return
@@ -338,6 +366,73 @@ class HomeTableViewController: UITableViewController {
             }
             
         }, withCancel: nil)
+
+    }
+    
+    fileprivate func fetchMessageWithMessageIdSetup(_ messageId: String, _ setupId: String,_ read: Int) {
+        
+        let messagesReference = Database.database().reference().child("messages").child(messageId)
+        
+        messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if var dictionary = snapshot.value as? [String: AnyObject] {
+                dictionary["id"] = snapshot.key as AnyObject?
+                dictionary["setup"] = true  as AnyObject?
+                if read == 0 {
+                    dictionary["read"] = false as AnyObject?
+                }
+                let message = Message(dictionary: dictionary)
+                let uniqueId = message.toId! + message.fromId!
+                let unique2 = message.fromId! + message.toId!
+                print("UNIQUE", uniqueId)
+                print("OTestld", self.setupDictionary[uniqueId]?.timestamp?.int32Value < message.timestamp?.int32Value)
+    
+                
+                    if (self.setupDictionary[uniqueId]?.timestamp?.int32Value < message.timestamp?.int32Value) {
+                        self.setupDictionary[uniqueId] = message
+                    }
+                
+                    if (self.setupDictionary[unique2]?.timestamp?.int32Value < message.timestamp?.int32Value) {
+                        self.setupDictionary[unique2] = message
+                    }
+                
+                if self.setupDictionary[uniqueId.splitByLength(28).reversed().joined(separator: "")] != nil {
+                    self.setupDictionary[unique2] = nil
+                }
+                
+                print("SETUPPPPP", self.setupDictionary)
+                self.attemptReloadOfTable()
+            }
+            
+        }, withCancel: nil)
+        
+    }
+    
+    
+    fileprivate func fetchMessageWithMessageIdSetup2(_ messageId: String) {
+        
+        let messagesReference = Database.database().reference().child("messages").child(messageId)
+        
+        messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if var dictionary = snapshot.value as? [String: AnyObject] {
+                dictionary["id"] = snapshot.key as AnyObject?
+                let message = Message(dictionary: dictionary)
+                
+                if let chatPartnerId = message.chatPartnerId() {
+                    if (self.messagesDictionary[chatPartnerId]?.timestamp?.int32Value < message.timestamp?.int32Value) {
+                        self.messagesDictionary[chatPartnerId] = message
+                    }
+                    
+                }
+                
+                
+                
+                self.attemptReloadOfTable()
+            }
+            
+        }, withCancel: nil)
+        
     }
     
     fileprivate func fetchMessageWithMessageId2(_ messageId: String) {
@@ -409,7 +504,8 @@ class HomeTableViewController: UITableViewController {
     }
     
     func handleReloadTable() {
-        self.messages = Array(self.messagesDictionary.values)
+        let temp = Array(self.messagesDictionary.values) + Array(self.setupDictionary.values)
+        self.messages = temp
         self.messages.sort(by: { (message1, message2) -> Bool in
             
             return (message1.timestamp?.int32Value)! > (message2.timestamp?.int32Value)!
@@ -423,9 +519,22 @@ class HomeTableViewController: UITableViewController {
     }
     
     func showChatControllerForUser(_ user: AppUser) {
+        print("SHOWING CHAT LOG")
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
         chatLogController.currentUserName = (self.user?.name)!
+        navigationController?.pushViewController(chatLogController, animated: true)
+    }
+    
+    func showSetupChatControllerForUser(_ user: AppUser,_ user2:AppUser, _ setupId: String) {
+        print("SHOWING SETUP LOG")
+        let chatLogController = SetUpChatLog(collectionViewLayout: UICollectionViewFlowLayout())
+        print("DWADWD", setupId)
+        chatLogController.setupId = setupId
+        chatLogController.user2 = user2
+        chatLogController.user = user
+        chatLogController.currentUserName = (self.user?.name)!
+
         navigationController?.pushViewController(chatLogController, animated: true)
     }
     
@@ -477,15 +586,26 @@ class HomeTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         
+//         print("MESSAGES HERE", messages)
         let message = messages[indexPath.row]
-        cell.message = message
-//        cell.width = 
+        if message.setup == true {
+//            print("THIS IS A SETUPPP")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "setId", for: indexPath) as! SetupCell
+            cell.user1 = message.toId
+            cell.user2 = message.fromId
+            
+            cell.message = message
+            return cell
+        } else {
+//            print("THIS IS NOT SETUPPP")
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
+            cell.message = message
+            return cell
+        }
         
-//        print(cell)
-//        print(message)
-        return cell
+
+       
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -496,34 +616,76 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("SELECTED")
         let message = messages[indexPath.row]
-        guard let chatPartnerId = message.chatPartnerId() else {
-            return
-        }
-        
-        if message.toId == Auth.auth().currentUser?.uid {
-            let messageRef = Database.database().reference().child("messages").child(message.id!)
-            print("made read true")
-
-            messageRef.updateChildValues(["read":true])
-            messages[indexPath.row].read = true
-            self.handleReloadTable()
-        }
-        
-        
-        
-        let ref = Database.database().reference().child("users").child(chatPartnerId)
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let dictionary = snapshot.value as? [String: AnyObject] else {
+        if message.first == true {
+            
+//            if message.toId == Auth.auth().currentUser?.uid {
+//                let messageRef = Database.database().reference().child("messages").child(message.id!)
+//                print("made read true")
+//                
+////                messageRef.updateChildValues(["read":true])
+////                messages[indexPath.row].read = true
+////                self.handleReloadTable()
+//            }
+            
+            let thesetupId = message.setupId
+            print("THE SET UP IS", thesetupId)
+            let ref = Database.database().reference().child("users").child(message.fromId!)
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                    return
+                }
+                
+                let user = AppUser()
+                user.setValuesForKeys(dictionary)
+                user.id = message.fromId
+                let ref2 = Database.database().reference().child("users").child(message.toId!)
+                ref2.observeSingleEvent(of: .value, with: { (snapshot) in
+                    guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                        return
+                    }
+                    
+                    let user2 = AppUser()
+                    user2.setValuesForKeys(dictionary)
+                    user2.id = message.toId
+                    //                self.wentToChatWithUserId = chatPartnerId
+                    self.showSetupChatControllerForUser(user,user2, thesetupId!)
+                    
+                }, withCancel: nil)
+//                self.wentToChatWithUserId = chatPartnerId
+                
+            }, withCancel: nil)
+            
+        } else {
+            guard let chatPartnerId = message.chatPartnerId() else {
                 return
             }
             
-            var user = AppUser()
-            user.setValuesForKeys(dictionary)
-            user.id = chatPartnerId
-            self.wentToChatWithUserId = chatPartnerId
-            self.showChatControllerForUser(user)
+            if message.toId == Auth.auth().currentUser?.uid {
+                let messageRef = Database.database().reference().child("messages").child(message.id!)
+                print("made read true")
+                
+                messageRef.updateChildValues(["read":true])
+                messages[indexPath.row].read = true
+                self.handleReloadTable()
+            }
             
-        }, withCancel: nil)
+            
+            
+            let ref = Database.database().reference().child("users").child(chatPartnerId)
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                    return
+                }
+                
+                let user = AppUser()
+                user.setValuesForKeys(dictionary)
+                user.id = chatPartnerId
+                self.wentToChatWithUserId = chatPartnerId
+                self.showChatControllerForUser(user)
+                
+            }, withCancel: nil)
+        }
+
     }
     /*
     // Override to support conditional editing of the table view.
@@ -598,5 +760,32 @@ class HomeTableViewController: UITableViewController {
 
 }
 
+
+extension String {
+    func splitByLength(_ length: Int) -> [String] {
+        var result = [String]()
+        var collectedCharacters = [Character]()
+        collectedCharacters.reserveCapacity(length)
+        var count = 0
+        
+        for character in self.characters {
+            collectedCharacters.append(character)
+            count += 1
+            if (count == length) {
+                // Reached the desired length
+                count = 0
+                result.append(String(collectedCharacters))
+                collectedCharacters.removeAll(keepingCapacity: true)
+            }
+        }
+        
+        // Append the remainder
+        if !collectedCharacters.isEmpty {
+            result.append(String(collectedCharacters))
+        }
+        
+        return result
+    }
+}
 
 

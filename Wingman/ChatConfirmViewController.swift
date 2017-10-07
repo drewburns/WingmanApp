@@ -43,7 +43,7 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
             alert.view.addSubview(loadingIndicator)
             present(alert, animated: true, completion: nil)
             createSetUp()
-            createFirstMessage()
+            
             goBack()
             dismiss(animated: false, completion: nil)
         } else {
@@ -53,7 +53,7 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
       
     }
     
-    func createFirstMessage() {
+    func createFirstMessage(setupId: String) {
 //        let ref = base.child("messages").childByAutoId()
 //        let timestamp:Int = Int(NSDate().timeIntervalSince1970)
 //        print(timestamp)
@@ -76,9 +76,9 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
         let toId = users[0].id
         let fromId = users[1].id
         let timestamp = Int(Date().timeIntervalSince1970)
-        let text = "From Setup: " + textInput.text!
+        let text = "From a wingman: " + textInput.text!
         
-        var values: [String: AnyObject] = ["toId": toId as AnyObject, "fromId": fromId as AnyObject, "timestamp": timestamp as AnyObject, "text": text as AnyObject, "first": true as AnyObject, "read": false as AnyObject]
+        var values: [String: AnyObject] = ["toId": toId as AnyObject, "fromId": fromId as AnyObject, "timestamp": timestamp as AnyObject, "text": text as AnyObject, "first": true as AnyObject, "read": false as AnyObject, "setupId": setupId as AnyObject, "userWhoSetup": Auth.auth().currentUser!.uid as AnyObject]
         
         
 
@@ -90,6 +90,9 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
                 print(error!)
                 return
             }
+            let newref = Database.database().reference().child("setup-messages").child(setupId)
+            print("THIS IS THE REF", ref.key)
+            newref.updateChildValues([ref.key : 1])
             
 //            self.inputTextField.text = nil
             
@@ -194,7 +197,7 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
         let ref = base.child("setup").childByAutoId()
         let timestamp:Int = Int(NSDate().timeIntervalSince1970)
         print(timestamp)
-        let values = ["user1": self.users[0].id, "user2": self.users[1].id, "timestamp": timestamp] as [String : Any]
+        let values = ["user1": self.users[0].id, "user2": self.users[1].id, "timestamp": timestamp, "n": 10] as [String : Any]
         print(values)
         
         ref.updateChildValues(values, withCompletionBlock: {(err, ref) in
@@ -202,10 +205,12 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
                 print(err)
                 return
             }
-            print("setup ref")
+            self.createFirstMessage(setupId: ref.key)
             self.makeUserSetUp(setUpId: ref.key)
             //            print(ref.substring(from:ref.index(ref.endIndex, offsetBy: -20)))
         })
+        
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -269,6 +274,7 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
     
    func goBack() {
     self.dismiss(animated: true, completion: {
+        self.dismiss(animated: true, completion: nil)
 //        let presenting = self.presentedViewController
 //        let nav = presenting?.navigationController
             self.nav?.popToRootViewController(animated: true)
