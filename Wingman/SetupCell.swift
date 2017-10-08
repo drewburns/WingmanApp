@@ -19,6 +19,7 @@ class SetupCell: UITableViewCell {
         didSet {
             
             setUserInfo()
+            print("READ OR UNDREAD", message?.read!)
             if message?.read! == false {
                 //                unreadMarker.isHidden = false
                 //                detailTextLabel?.textColor = UIColor.blue

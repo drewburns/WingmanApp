@@ -509,6 +509,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 return
             }
             
+            print("REFFFF", ref)
+            
             self.inputTextField.text = nil
             
             let userMessagesRef = Database.database().reference().child("user-message").child(fromId).child(toId)
@@ -521,9 +523,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             
 //            let setUpRef = Database.database().reference().child("user-message").child(toId).child(fromId)
             recipientUserMessagesRef.updateChildValues([messageId: 1])
-            self.handleAddToSetUpMessages(messageId)
+            self.handleAddToSetUpMessages(values)
         }
-        if self.user?.token != "none" {
+        if self.user?.token != nil {
 //            let currentUser = Auth.auth().c
             var alert = (self.currentUserName) + " sent you a message"
             alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
@@ -551,10 +553,67 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         return true
     }
     
-    func handleAddToSetUpMessages(_ messageId: String) {
-        //when page opened set all to 1 - for read
+    func handleAddToSetUpMessages(_ values: [String:Any]) {
         
         // Find all messages here where first = true
+        var setupmessages:[Message] = []
+        
+        for message in self.messages {
+            if message.first == true && message.text != "Wingman can no longer see messages" {
+                setupmessages.append(message)
+            }
+        }
+//        var lessthantens:[Message] = []
+    
+        for setupmessage in setupmessages {
+            let ref = Database.database().reference().child("setup-messages").child(setupmessage.setupId!)
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let data = snapshot.value as? [String:Any] {
+                    var newValues = values
+                    if data.count == 10 {
+                        let messageRef = Database.database().reference().child("messages").childByAutoId()
+                        let timestamp = Int(Date().timeIntervalSince1970)
+                        let text = "Wingman can no longer see messages"
+                        var leftChatVals = ["toId": setupmessage.toId as AnyObject, "fromId": setupmessage.fromId as AnyObject, "timestamp": timestamp as AnyObject, "text": text as AnyObject, "first": true as AnyObject, "read": false as AnyObject]
+                        messageRef.updateChildValues(leftChatVals, withCompletionBlock: { (err, ref) in
+                            let user1ref = Database.database().reference().child("user-message").child(setupmessage.toId!).child(setupmessage.fromId!)
+                            user1ref.updateChildValues([ref.key : 1])
+                            let user2ref = Database.database().reference().child("user-message").child(setupmessage.fromId!).child(setupmessage.toId!)
+                            user2ref.updateChildValues([ref.key : 1])
+                        })
+                        
+                        leftChatVals["setupId"] = setupmessage.setupId as AnyObject?
+                        print("LEFT CAHT VALS", leftChatVals)
+                        let newref = Database.database().reference().child("messages").childByAutoId()
+                        newref.updateChildValues(leftChatVals, withCompletionBlock: { (err, ref44) in
+                            let anotherref = Database.database().reference().child("setup-messages").child(setupmessage.setupId!)
+                            print("SECONDsadas", setupmessage.setupId!)
+                            print("MOST IMPORTANT", ref44.key)
+                            anotherref.updateChildValues([ref44.key : 0], withCompletionBlock: { (err2, ref2) in
+                                // send push to wingman
+                            })
+                        })
+
+                        
+                        // figure out to how notif
+                    } else if data.count < 10 {
+                        newValues["setupId"] = setupmessage.setupId
+                        let newref = Database.database().reference().child("messages").childByAutoId()
+                        newref.updateChildValues(newValues, withCompletionBlock: { (err, ref44) in
+                            let anotherref = Database.database().reference().child("setup-messages").child(setupmessage.setupId!)
+                            print("SECONDsadas", setupmessage.setupId!)
+                            print("MOST IMPORTANT", ref44.key)
+                            anotherref.updateChildValues([ref44.key : 0], withCompletionBlock: { (err2, ref2) in
+                                // send push to wingman
+                            })
+                        })
+                        
+                    }
+                }
+            })
+        }
+        
+        
         // if the setup has 10 messages -> send a "wingman can't see anymore" + send notif to Wingman
         // else go forward and do next part
         // For each of those - duplicate this message but with the setupid from the setups and = 0

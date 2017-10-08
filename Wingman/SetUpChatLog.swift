@@ -380,7 +380,7 @@ class SetUpChatLog: UICollectionViewController, UITextFieldDelegate, UICollectio
         
         cell.textView.text = message.text
         
-        let messageRef = Database.database().reference().child("setup-messages").child(message.id!)
+        let messageRef = Database.database().reference().child("setup-messages").child(setupId!)
         print("made read true")
         if cell.message?.read == false {
             messageRef.updateChildValues([(cell.message?.id!)!:1])

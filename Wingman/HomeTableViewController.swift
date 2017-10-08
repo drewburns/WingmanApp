@@ -47,6 +47,8 @@ class HomeTableViewController: UITableViewController {
     let reachability = Reachability()!
     var internet = ""
     var fromLogin = ""
+    var setupArray:[String] = []
+    var setupsObserving:[String] = []
 //    var newUser:AppUser?
     @IBOutlet weak var newChatButton: UIBarButtonItem!
     
@@ -55,6 +57,7 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+
 //        do {
 //            try Auth.auth().signOut()
 //        } catch let logerror {
@@ -228,6 +231,33 @@ class HomeTableViewController: UITableViewController {
 
         
         })
+        
+        let setupref = Database.database().reference().child("user-setup").child(uid)
+        
+        setupref.observeSingleEvent(of: .value, with: {(snapshot) in
+            //            print("SETUPS", snapshot.value)
+            
+            if let setups = snapshot.value as? [String:Any] {
+                for setup in setups {
+                    
+                    print("Setup:", setup)
+                    let ref4 = Database.database().reference().child("setup-messages").child(setup.key)
+                    ref4.observeSingleEvent(of: .value, with: { (snapshot2) in
+                        
+                        if let setupmessages = (snapshot2.value as? [String:Any]) {
+                            self.setupArray.append(setup.key)
+                            for setupmessage in setupmessages {
+                                print("MESSAGES")
+                                print(setupmessage)
+                                self.fetchMessageWithMessageIdSetup(setupmessage.key, setup.key, setupmessage.value as! Int)
+                            }
+                            
+                        }
+                    })
+                }
+            }
+            
+        })
         let ref2 = Database.database().reference().child("added-friendships").child(uid)
         ref2.observeSingleEvent(of: .value, with: {(snapshot) in
             if let data = snapshot.value as? [String:Any] {
@@ -241,31 +271,7 @@ class HomeTableViewController: UITableViewController {
             self.observeUserMessages()
         })
         
-        let setupref = Database.database().reference().child("user-setup").child(uid)
-        
-        setupref.observeSingleEvent(of: .value, with: {(snapshot) in
-//            print("SETUPS", snapshot.value)
-            
-        if let setups = snapshot.value as? [String:Any] {
-                for setup in setups {
-                    print("Setup:", setup)
-                    let ref4 = Database.database().reference().child("setup-messages").child(setup.key)
-                    ref4.observeSingleEvent(of: .value, with: { (snapshot2) in
-                        
-                        if let setupmessages = (snapshot2.value as? [String:Any]) {
-                            
-                            for setupmessage in setupmessages {
-                                print("MESSAGES")
-                                print(setupmessage)
-                                self.fetchMessageWithMessageIdSetup(setupmessage.key, setup.key, setupmessage.value as! Int)
-                            }
-                            
-                        }
-                    })
-                }
-            }
 
-        })
 
         
     }
@@ -319,6 +325,31 @@ class HomeTableViewController: UITableViewController {
             }
         })
         print("made it to here")
+        
+        print("SETUPARRY", setupArray)
+        for setup in setupArray {
+            let ref10 = Database.database().reference().child("setup-messages").child(setup)
+            ref10.observe(.childAdded, with: { (snapshot0) in
+               self.fetchMessageWithMessageIdSetup2(snapshot0.key, setup, snapshot0.value as! Int)
+            }, withCancel: nil)
+        }
+//
+        let setupref = Database.database().reference().child("user-setup").child(uid)
+        
+        
+        setupref.observe(.childAdded, with: {(snapshot1) in
+            if self.setupArray.contains(snapshot1.key) {
+                print("ALREADY HAVE IT")
+            } else {
+                print("GOT  ADWD WJNEIWND")
+                let newref2 = Database.database().reference().child("setup-messages").child(snapshot1.key)
+                
+                newref2.observe(.childAdded, with: { (snapshot34) in
+                    self.fetchMessageWithMessageIdSetup2(snapshot34.key, snapshot1.key, snapshot34.value as! Int)
+                }, withCancel: nil)
+            }
+        })
+        
         
     }
     
@@ -378,8 +409,11 @@ class HomeTableViewController: UITableViewController {
             if var dictionary = snapshot.value as? [String: AnyObject] {
                 dictionary["id"] = snapshot.key as AnyObject?
                 dictionary["setup"] = true  as AnyObject?
+                print("ADWDAWDWADWAD", read)
                 if read == 0 {
                     dictionary["read"] = false as AnyObject?
+                } else {
+                    dictionary["read"] = true as AnyObject?
                 }
                 let message = Message(dictionary: dictionary)
                 let uniqueId = message.toId! + message.fromId!
@@ -409,7 +443,7 @@ class HomeTableViewController: UITableViewController {
     }
     
     
-    fileprivate func fetchMessageWithMessageIdSetup2(_ messageId: String) {
+    fileprivate func fetchMessageWithMessageIdSetup2(_ messageId: String, _ setupId: String,_ read: Int) {
         
         let messagesReference = Database.database().reference().child("messages").child(messageId)
         
@@ -417,22 +451,54 @@ class HomeTableViewController: UITableViewController {
             
             if var dictionary = snapshot.value as? [String: AnyObject] {
                 dictionary["id"] = snapshot.key as AnyObject?
+                dictionary["setup"] = true  as AnyObject?
+                print("ADWDAWDWADWAD", read)
+                if read == 0 {
+                    dictionary["read"] = false as AnyObject?
+                } else {
+                    dictionary["read"] = true as AnyObject?
+                }
                 let message = Message(dictionary: dictionary)
+                let uniqueId = message.toId! + message.fromId!
+                let unique2 = message.fromId! + message.toId!
+                print("UNIQUE", uniqueId)
+                print("OTestld", self.setupDictionary[uniqueId]?.timestamp?.int32Value < message.timestamp?.int32Value)
                 
-                if let chatPartnerId = message.chatPartnerId() {
-                    if (self.messagesDictionary[chatPartnerId]?.timestamp?.int32Value < message.timestamp?.int32Value) {
-                        self.messagesDictionary[chatPartnerId] = message
-                    }
-                    
+                
+                if (self.setupDictionary[uniqueId]?.timestamp?.int32Value < message.timestamp?.int32Value) {
+                    self.setupDictionary[uniqueId] = message
                 }
                 
+                if (self.setupDictionary[unique2]?.timestamp?.int32Value < message.timestamp?.int32Value) {
+                    self.setupDictionary[unique2] = message
+                }
                 
+                if self.setupDictionary[uniqueId.splitByLength(28).reversed().joined(separator: "")] != nil {
+                    self.setupDictionary[unique2] = nil
+                }
                 
+                print("SETUPPPPP", self.setupDictionary)
                 self.attemptReloadOfTable()
             }
             
         }, withCancel: nil)
         
+    }
+    
+    func usernameFromId(_ id: String) -> String {
+        let ref = Database.database().reference().child("users").child(id)
+        var name = ""
+        ref.observeSingleEvent(of: .value, with: {(snap) in
+            print("SNAP VALUE", snap.value)
+            if let data = snap.value as? [String:Any] {
+                let name1 = data["name"] as? String
+                name = name1!.components(separatedBy: " ")[0]
+                print("adwidioawokdwa", name)
+            } else {
+                name = ""
+            }
+        })
+        return name
     }
     
     fileprivate func fetchMessageWithMessageId2(_ messageId: String) {
@@ -616,14 +682,14 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("SELECTED")
         let message = messages[indexPath.row]
-        if message.first == true {
+        if message.setup == true {
             
 //            if message.toId == Auth.auth().currentUser?.uid {
 //                let messageRef = Database.database().reference().child("messages").child(message.id!)
 //                print("made read true")
 //                
 ////                messageRef.updateChildValues(["read":true])
-////                messages[indexPath.row].read = true
+                messages[indexPath.row].read = true
 ////                self.handleReloadTable()
 //            }
             
@@ -759,6 +825,9 @@ class HomeTableViewController: UITableViewController {
     
 
 }
+
+
+
 
 
 extension String {
