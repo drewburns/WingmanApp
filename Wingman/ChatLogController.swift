@@ -402,6 +402,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         if let profileImageUrl = self.user?.profileImageURL {
             cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
         }
+        cell.user = self.user!
         if message.first == true {
             // from the set up guy
             cell.bubbleView.backgroundColor = UIColor(rgbColorCodeRed: 240, green: 248, blue: 255, alpha: 1)
@@ -419,7 +420,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
                 cell.textView.textColor = UIColor.white
                 cell.profileImageView.isHidden = true
-                
+                cell.profileImageLeftAnchor?.isActive = false
+                cell.profileImageRigthAnchor?.isActive = false
                 cell.bubbleViewRightAnchor?.isActive = true
                 cell.bubbleViewCenterAnchor?.isActive = false
                 cell.bubbleViewLeftAnchor?.isActive = false
@@ -428,7 +430,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 cell.bubbleView.backgroundColor = UIColor(rgbColorCodeRed: 220, green: 220, blue: 220, alpha: 1)
                 cell.textView.textColor = UIColor.black
                 cell.profileImageView.isHidden = false
-                
+                cell.profileImageLeftAnchor?.isActive = true
+                cell.profileImageRigthAnchor?.isActive = false
                 cell.bubbleViewRightAnchor?.isActive = false
                 cell.bubbleViewCenterAnchor?.isActive = false
                 cell.bubbleViewLeftAnchor?.isActive = true
@@ -591,6 +594,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                             print("MOST IMPORTANT", ref44.key)
                             anotherref.updateChildValues([ref44.key : 0], withCompletionBlock: { (err2, ref2) in
                                 // send push to wingman
+                                
                             })
                         })
 
@@ -605,6 +609,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                             print("MOST IMPORTANT", ref44.key)
                             anotherref.updateChildValues([ref44.key : 0], withCompletionBlock: { (err2, ref2) in
                                 // send push to wingman
+                                self.sendNotif(userset_id: setupmessage.userWhoSetup!, user2:setupmessage.toId!, user3:setupmessage.fromId!, message: "New message between")
                             })
                         })
                         
@@ -620,6 +625,60 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         //  Add that message to corresponding setup-messages + send push to wingman
     }
     
+    
+    func sendNotif(userset_id: String, user2: String, user3: String, message: String) {
+        let usersetref = Database.database().reference().child("users").child(userset_id)
+        let user2ref = Database.database().reference().child("users").child(user2)
+        let user3ref = Database.database().reference().child("users").child(user3)
+        
+        usersetref.observeSingleEvent(of: .value, with: {(snap1) in
+            if snap1.exists() {
+                let data1 = snap1.value as? [String:Any]
+                let usersetname = data1?["name"] as? String
+                if let usersettoken = data1?["token"] as? String {
+                    user2ref.observeSingleEvent(of: .value, with: { (snap2) in
+                        if let data2 = snap2.value as? [String:Any]{
+                            let user2name = data2["name"] as? String
+                            user3ref.observeSingleEvent(of: .value, with: { (snap3) in
+                                if let data3 = snap3.value as? [String:Any]{
+                                    let user3name = data3["name"] as? String
+                                    
+                                    if usersettoken != nil {
+                                        //            let currentUser = Auth.auth().c
+                                        var alert = "New message between " + (user2name)! + " and " + (user3name)!
+                                        alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+                                        let string = "https://wingman-notifs.herokuapp.com/send?token=" + (usersettoken) + "&alert=" + alert
+                                        
+                                        print("THIS IS THE STRING THAT IS SENT TO HEROKU", string)
+                                        let url = URL(string: string)
+                                        URLSession.shared.dataTask(with: url!, completionHandler: {
+                                            (data, response, error) in
+                                            print("DATA", data)
+                                            print("RESPONSE", response)
+                                            if(error != nil){
+                                                print("error")
+                                            }else{
+                                                do{
+                                                    
+                                                } catch let error as NSError{
+                                                    print(error)
+                                                }
+                                            }
+                                        }).resume()
+                                    }
+
+                                    
+                                    
+                                    
+                                }
+                            })
+                        }
+                    })
+                }
+            }
+        })
+        
+    }
     var startingFrame: CGRect?
     var blackBackgroundView: UIView?
     var startingImageView: UIImageView?

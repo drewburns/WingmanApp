@@ -25,12 +25,88 @@ class PopUpViewController: UIViewController {
     
     @IBOutlet weak var mainView: UIView!
     
+    func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        //        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        performZoomInForStartingImageView(userImage)
+
+        //
+        // Your action
+    }
+    var startingFrame: CGRect?
+    var blackBackgroundView: UIView?
+    var startingImageView: UIImageView?
+    func performZoomInForStartingImageView(_ startingImageView: UIImageView) {
+        
+        self.startingImageView = startingImageView
+        self.startingImageView?.isHidden = true
+        
+        startingFrame = startingImageView.superview?.convert(startingImageView.frame, to: nil)
+        
+        let zoomingImageView = UIImageView(frame: startingFrame!)
+        zoomingImageView.backgroundColor = UIColor.red
+        zoomingImageView.image = startingImageView.image
+        zoomingImageView.isUserInteractionEnabled = true
+        zoomingImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+        
+        if let keyWindow = UIApplication.shared.keyWindow {
+            blackBackgroundView = UIView(frame: keyWindow.frame)
+            blackBackgroundView?.backgroundColor = UIColor.black
+            blackBackgroundView?.alpha = 0
+            keyWindow.addSubview(blackBackgroundView!)
+            
+            keyWindow.addSubview(zoomingImageView)
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                
+                self.blackBackgroundView?.alpha = 1
+                self.view.alpha = 0
+                
+                // math?
+                // h2 / w1 = h1 / w1
+                // h2 = h1 / w1 * w1
+                let height = self.startingFrame!.height / self.startingFrame!.width * keyWindow.frame.width
+                
+                zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
+                
+                zoomingImageView.center = keyWindow.center
+                
+            }, completion: { (completed) in
+                //                    do nothing
+            })
+            
+        }
+    }
+    
+    func handleZoomOut(_ tapGesture: UITapGestureRecognizer) {
+        if let zoomOutImageView = tapGesture.view {
+            //need to animate back out to controller
+            zoomOutImageView.layer.cornerRadius = 16
+            zoomOutImageView.clipsToBounds = true
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                
+                zoomOutImageView.frame = self.startingFrame!
+                self.blackBackgroundView?.alpha = 0
+                self.view.alpha = 1
+                
+            }, completion: { (completed) in
+                zoomOutImageView.removeFromSuperview()
+                self.startingImageView?.isHidden = false
+            })
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
         downSwipe.direction = UISwipeGestureRecognizerDirection.down
         self.mainView.addGestureRecognizer(downSwipe)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        userImage.isUserInteractionEnabled = true
+        userImage.addGestureRecognizer(tapGestureRecognizer)
+        
         userImage.maskCircle()
         mainView.layer.cornerRadius = 5;
         mainView.layer.masksToBounds = true;
@@ -177,12 +253,32 @@ class PopUpViewController: UIViewController {
     }
     
     func removeFriendship() {
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Remove Friend?", message: "Are you sure?", preferredStyle: .alert)
+        
+        // Create the actions
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            let currentID = Auth.auth().currentUser?.uid
+            let ref = Database.database().reference().child("friendships").child(currentID!).child((self.user?.id)!)
+            let ref2 = Database.database().reference().child("added-friendships").child((self.user?.id)!).child(currentID!)
+            ref.removeValue()
+            ref2.removeValue()
+            self.friendButton.setTitle("Add Friend", for: .normal)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            //
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
         let currentID = Auth.auth().currentUser?.uid
-        let ref = Database.database().reference().child("friendships").child(currentID!).child((self.user?.id)!)
-        let ref2 = Database.database().reference().child("added-friendships").child((self.user?.id)!).child(currentID!)
-        ref.removeValue()
-        ref2.removeValue()
-        self.friendButton.setTitle("Add Friend", for: .normal)
+
     }
     
     func handleLogout() {
@@ -231,14 +327,14 @@ class PopUpViewController: UIViewController {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        var touch: UITouch? = touches.first as! UITouch?
-        //location is relative to the current view
-        // do something with the touched point
-        if touch?.view != mainView {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        var touch: UITouch? = touches.first as! UITouch?
+//        //location is relative to the current view
+//        // do something with the touched point
+//        if touch?.view != mainView || touch?.view != userImage {
+//            self.dismiss(animated: true, completion: nil)
+//        }
+//    }
     
     func internetChanged(note: Notification) {
         

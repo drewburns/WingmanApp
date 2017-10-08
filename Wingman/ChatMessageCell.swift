@@ -13,6 +13,7 @@ class ChatMessageCell: UICollectionViewCell {
     var message: Message?
     
     var chatLogController: Any?
+    var user:AppUser?
     
     let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -121,7 +122,21 @@ class ChatMessageCell: UICollectionViewCell {
     var bubbleViewLeftAnchor: NSLayoutConstraint?
     var bubbleViewCenterAnchor: NSLayoutConstraint?
     var profileImageLeftAnchor: NSLayoutConstraint?
-    var profileImageRightAnchor: NSLayoutConstraint?
+    var profileImageRigthAnchor: NSLayoutConstraint?
+    var bubbleViewRightAnchor2: NSLayoutConstraint?
+    
+    
+    
+    func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+//        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        let viewController:PopUpViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popup") as! PopUpViewController
+        viewController.user = self.user
+        self.window?.rootViewController?.present(viewController, animated: false, completion: nil)
+//
+        // Your action
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -129,6 +144,10 @@ class ChatMessageCell: UICollectionViewCell {
         addSubview(bubbleView)
         addSubview(textView)
         addSubview(profileImageView)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapGestureRecognizer)
         
         bubbleView.addSubview(messageImageView)
         messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true
@@ -152,17 +171,22 @@ class ChatMessageCell: UICollectionViewCell {
         
         //x,y,w,h
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = false
-        profileImageView.rightAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = false
+        profileImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = false
         profileImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         
         
-        profileImageLeftAnchor = profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: -8)
-        profileImageRightAnchor = profileImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
+        profileImageLeftAnchor = profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8)
+        profileImageRigthAnchor = profileImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
         //x,y,w,h
         
+
+        bubbleViewRightAnchor2 = bubbleView.rightAnchor.constraint(equalTo: profileImageView.leftAnchor, constant: -8)
+        
+        
         bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
+  
         
         bubbleViewRightAnchor?.isActive = true
         

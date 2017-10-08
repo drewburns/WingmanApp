@@ -330,7 +330,8 @@ class HomeTableViewController: UITableViewController {
         for setup in setupArray {
             let ref10 = Database.database().reference().child("setup-messages").child(setup)
             ref10.observe(.childAdded, with: { (snapshot0) in
-               self.fetchMessageWithMessageIdSetup2(snapshot0.key, setup, snapshot0.value as! Int)
+                
+                self.fetchMessageWithMessageIdSetup2(snapshot0.key, setup, snapshot0.value as! Int)
             }, withCancel: nil)
         }
 //
@@ -464,7 +465,6 @@ class HomeTableViewController: UITableViewController {
                 print("UNIQUE", uniqueId)
                 print("OTestld", self.setupDictionary[uniqueId]?.timestamp?.int32Value < message.timestamp?.int32Value)
                 
-                
                 if (self.setupDictionary[uniqueId]?.timestamp?.int32Value < message.timestamp?.int32Value) {
                     self.setupDictionary[uniqueId] = message
                 }
@@ -476,6 +476,7 @@ class HomeTableViewController: UITableViewController {
                 if self.setupDictionary[uniqueId.splitByLength(28).reversed().joined(separator: "")] != nil {
                     self.setupDictionary[unique2] = nil
                 }
+                
                 
                 print("SETUPPPPP", self.setupDictionary)
                 self.attemptReloadOfTable()

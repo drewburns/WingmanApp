@@ -105,11 +105,29 @@ class AddedMeTVC: UITableViewCell {
     }
     
     func removeFriendship() {
-        let currentID = Auth.auth().currentUser?.uid
-        let ref = base.child("friendships").child(currentID!).child((self.user?.id)!)
-        ref.removeValue()
-        let ref2 = base.child("added-friendships").child((self.user?.id)!).child(currentID!)
-        ref2.removeValue()
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Remove friend?", message: "Are you sure?", preferredStyle: .alert)
+        
+        // Create the actions
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            let currentID = Auth.auth().currentUser?.uid
+            let ref = self.base.child("friendships").child(currentID!).child((self.user?.id)!)
+            ref.removeValue()
+            let ref2 = self.base.child("added-friendships").child((self.user?.id)!).child(currentID!)
+            ref2.removeValue()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            //            NSLog("Cancel Pressed")
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the controller
+        self.parentViewController?.present(alertController, animated: true, completion: nil)
     }
     
     
@@ -128,4 +146,17 @@ class AddedMeTVC: UITableViewCell {
     }
     
     
+}
+
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if parentResponder is UIViewController {
+                return parentResponder as! UIViewController!
+            }
+        }
+        return nil
+    }
 }

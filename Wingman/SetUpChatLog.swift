@@ -421,10 +421,11 @@ class SetUpChatLog: UICollectionViewController, UITextFieldDelegate, UICollectio
         } else {
             if message.fromId == user?.id {
                 if let profileImageUrl = self.user?.profileImageURL {
+                    cell.user = self.user
                     cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
                     cell.profileImageView.isHidden = false
                     cell.profileImageLeftAnchor?.isActive = false
-                    cell.profileImageRightAnchor?.isActive = true
+                    cell.profileImageRigthAnchor?.isActive = true
                 }
                 //outgoing blue
                 cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
@@ -432,16 +433,19 @@ class SetUpChatLog: UICollectionViewController, UITextFieldDelegate, UICollectio
 
                 
                 
-                cell.bubbleViewRightAnchor?.isActive = true
+                
+                cell.bubbleViewRightAnchor2?.isActive = true
+                cell.bubbleViewRightAnchor?.isActive = false
                 cell.bubbleViewCenterAnchor?.isActive = false
                 cell.bubbleViewLeftAnchor?.isActive = false
             } else {
                 //incoming gray
                 if let profileImageUrl = self.user2?.profileImageURL {
+                    cell.user = self.user2
                     cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
                     cell.profileImageView.isHidden = false
                     cell.profileImageLeftAnchor?.isActive = true
-                    cell.profileImageRightAnchor?.isActive = false
+                    cell.profileImageRigthAnchor?.isActive = false
                     
                 }
                 cell.bubbleView.backgroundColor = UIColor(rgbColorCodeRed: 220, green: 220, blue: 220, alpha: 1)
