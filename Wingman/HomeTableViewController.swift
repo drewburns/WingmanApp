@@ -56,7 +56,16 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+//        let phoneNumer = "+18607346043"
+//        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumer) { (verificationID, error) in
+//            if let error = error {
+//                print("ERRORZZZZ BOYZ")
+//                print(error)
+//                return
+//            }
+//            // Sign in using the verificationID and the code sent to the user
+//            // ...
+//        }
 
 //        do {
 //            try Auth.auth().signOut()
@@ -550,7 +559,7 @@ class HomeTableViewController: UITableViewController {
                     if message.videoUrl != nil {
                         content = "Video"
                     }
-                    let banner = NotificationBanner(title: dictionary["name"] as! String, subtitle: content, style: .info)
+                    let banner = NotificationBanner(title: dictionary["name"] as! String, subtitle: content, style: .success)
                     banner.autoDismiss = true
                     banner.show(queuePosition: .front)
                     print("BANNNNNNNNNNNNNNNER")

@@ -102,7 +102,11 @@ class PopUpViewController: UIViewController {
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
         downSwipe.direction = UISwipeGestureRecognizerDirection.down
         self.mainView.addGestureRecognizer(downSwipe)
+        setImage()
+        nameLabel.text! = (user?.name)!
+        usernameLabel.text! = (user?.usernamesearch)!
         
+        setFriendButton()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         userImage.isUserInteractionEnabled = true
         userImage.addGestureRecognizer(tapGestureRecognizer)
@@ -149,12 +153,7 @@ class PopUpViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-       
-        setImage()
-        nameLabel.text! = (user?.name)!
-        usernameLabel.text! = (user?.usernamesearch)!
-
-        setFriendButton()
+    
         
     }
     

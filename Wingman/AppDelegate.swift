@@ -10,9 +10,11 @@ import UIKit
 import CoreData
 import Firebase
 import IQKeyboardManagerSwift
+import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    
     var window: UIWindow?
 
 
@@ -22,25 +24,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if Auth.auth().currentUser != nil {
 //            print(Auth.auth().currentUser)
-            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let loggin_status = UserDefaults.standard.value(forKey: "loggin_status") as? String
+            if loggin_status == "add_info" {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let initialViewController = storyboard.instantiateViewController(withIdentifier: "create")
+                
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            } else {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let initialViewController = storyboard.instantiateViewController(withIdentifier: "app")
+                
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            }
+
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "app")
-            
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-            
-        
+        } else {
+            let loggin_status = UserDefaults.standard.value(forKey: "loggin_status") as? String
+            if loggin_status == "verify" {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let initialViewController = storyboard.instantiateViewController(withIdentifier: "verify")
+                
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            } else {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let initialViewController = storyboard.instantiateViewController(withIdentifier: "login")
+                
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            }
         }
         UINavigationBar.appearance().barTintColor = UIColor(rgbColorCodeRed: 1, green: 151, blue: 207, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         IQKeyboardManager.sharedManager().enable = true
-        let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(setting)
-        UIApplication.shared.registerForRemoteNotifications()
-        application.registerForRemoteNotifications()
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge,.sound,.alert], completionHandler: { (granted, error) in })
+            application.registerForRemoteNotifications()
+        } else {
+            let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(setting)
+            UIApplication.shared.registerForRemoteNotifications()
+            application.registerForRemoteNotifications()
+        }
         application.applicationIconBadgeNumber = 0
         return true
     }
@@ -55,18 +95,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("DOING SOMETHING WITH APNS TOKEN????")
+        Auth.auth().setAPNSToken(deviceToken, type:AuthAPNSTokenType.sandbox )//.sandbox for development
 
             
         UserDefaults.standard.set(token, forKey: "token")
         
-        
-    
-        
     }
+
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("WE FETCHED IT")
-        application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
+        if Auth.auth().canHandleNotification(userInfo) {
+            completionHandler(UIBackgroundFetchResult.noData)
+            return
+        } else {
+            application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
+        }
+    
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -145,4 +191,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
 

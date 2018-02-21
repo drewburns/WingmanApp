@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>858241318333-9876altl33m5ttdl4ucvnl4306rgdc91.apps.googleusercontent.com</string>
+	<string>858241318333-vddtcui5bjgs5ftpj9jm8l5d7e8a8ls9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.858241318333-9876altl33m5ttdl4ucvnl4306rgdc91</string>
+	<string>com.googleusercontent.apps.858241318333-vddtcui5bjgs5ftpj9jm8l5d7e8a8ls9</string>
 	<key>API_KEY</key>
 	<string>AIzaSyC55cQOPyjdVcy2fWYx-9qdCi6zkwX6saE</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,23 +17,23 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>andrewburns.Wingman</string>
+	<string>andrewiburns.Wingman</string>
 	<key>PROJECT_ID</key>
 	<string>wingman-d2039</string>
 	<key>STORAGE_BUCKET</key>
 	<string>wingman-d2039.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:858241318333:ios:9f68efd973884800</string>
+	<string>1:858241318333:ios:c9618e15268529f4</string>
 	<key>DATABASE_URL</key>
 	<string>https://wingman-d2039.firebaseio.com</string>
 </dict>

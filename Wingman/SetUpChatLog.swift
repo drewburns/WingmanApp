@@ -428,8 +428,8 @@ class SetUpChatLog: UICollectionViewController, UITextFieldDelegate, UICollectio
                     cell.profileImageRigthAnchor?.isActive = true
                 }
                 //outgoing blue
-                cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
-                cell.textView.textColor = UIColor.white
+                cell.bubbleView.backgroundColor = UIColor(rgbColorCodeRed: 220, green: 220, blue: 220, alpha: 1)
+                cell.textView.textColor = UIColor.black
 
                 
                 

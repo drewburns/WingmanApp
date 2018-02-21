@@ -162,17 +162,17 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
         containerView.backgroundColor = UIColor.white
         
-        let uploadImageView = UIImageView()
-        uploadImageView.isUserInteractionEnabled = true
-        uploadImageView.image = UIImage(named: "upload")
-        uploadImageView.translatesAutoresizingMaskIntoConstraints = false
-        uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleUploadTap)))
-        containerView.addSubview(uploadImageView)
-        //x,y,w,h
-        uploadImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        uploadImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        uploadImageView.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        uploadImageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+//        let uploadImageView = UIImageView()
+//        uploadImageView.isUserInteractionEnabled = true
+//        uploadImageView.image = UIImage(named: "upload")
+//        uploadImageView.translatesAutoresizingMaskIntoConstraints = false
+//        uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleUploadTap)))
+//        containerView.addSubview(uploadImageView)
+//        //x,y,w,h
+//        uploadImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+//        uploadImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+//        uploadImageView.widthAnchor.constraint(equalToConstant: 44).isActive = true
+//        uploadImageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
         let sendButton = UIButton(type: .system)
         sendButton.setTitle("Send", for: UIControlState())
@@ -187,7 +187,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         containerView.addSubview(self.inputTextField)
         //x,y,w,h
-        self.inputTextField.leftAnchor.constraint(equalTo: uploadImageView.rightAnchor, constant: 8).isActive = true
+        self.inputTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
         self.inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         self.inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
         self.inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
@@ -205,24 +205,27 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         return containerView
     }()
     
-    func handleUploadTap() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.allowsEditing = false
-        imagePickerController.delegate = self
-        imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-        present(imagePickerController, animated: true, completion: nil)
-    }
+//    func handleUploadTap() {
+//        let imagePickerController = UIImagePickerController()
+//        imagePickerController.allowsEditing = false
+//        imagePickerController.delegate = self
+//        imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+//        present(imagePickerController, animated: true, completion: nil)
+//    }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let videoUrl = info[UIImagePickerControllerMediaURL] as? URL {
-            handleVideoSelectedForUrl(videoUrl)
-        } else {
-            handleImageSelectedForInfo(info as [String : AnyObject])
-        }
-        dismiss(animated: true, completion: nil)
-    }
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        if let videoUrl = info[UIImagePickerControllerMediaURL] as? URL {
+//            handleVideoSelectedForUrl(videoUrl)
+//        } else {
+//            handleImageSelectedForInfo(info as [String : AnyObject])
+//        }
+//        dismiss(animated: true, completion: nil)
+//    }
     
     fileprivate func handleVideoSelectedForUrl(_ url:URL) {
+        print("HEREHRHERHEHRHE")
+        print("____________")
+        print(url)
         let filename = UUID().uuidString + ".mov"
         let uploadTask = Storage.storage().reference().child("message_movies").child(filename).putFile(from: url, metadata: nil, completion: { (metadata, error) in
             

@@ -20,7 +20,6 @@
 		5110F9D81F58AB3B00B5B26B /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9D71F58AB3B00B5B26B /* PopUpViewController.swift */; };
 		5110F9DC1F58AB6400B5B26B /* FindFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9DB1F58AB6400B5B26B /* FindFriendsTableViewController.swift */; };
 		5110F9DE1F58AB6E00B5B26B /* FriendListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9DD1F58AB6E00B5B26B /* FriendListTableViewController.swift */; };
-		5110F9E01F58C2FD00B5B26B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5110F9DF1F58C2FD00B5B26B /* GoogleService-Info.plist */; };
 		5110F9E81F59025D00B5B26B /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110F9E71F59025D00B5B26B /* AppUser.swift */; };
 		51116A661F5B3B0900C38842 /* FriendTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51116A651F5B3B0900C38842 /* FriendTVC.swift */; };
 		51116A6B1F5B404B00C38842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51116A691F5B404B00C38842 /* Main.storyboard */; };
@@ -28,6 +27,8 @@
 		51116A6F1F5CBF5000C38842 /* ChatConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51116A6E1F5CBF5000C38842 /* ChatConfirmViewController.swift */; };
 		512323641F87FB36000021E8 /* SetupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512323631F87FB36000021E8 /* SetupCell.swift */; };
 		512323671F880AED000021E8 /* SetUpChatLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512323661F880AED000021E8 /* SetUpChatLog.swift */; };
+		5130A4C1203CE80500D6ED62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5130A4C0203CE80500D6ED62 /* GoogleService-Info.plist */; };
+		5130A4C3203D3C1900D6ED62 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5130A4C2203D3C1900D6ED62 /* VerifyViewController.swift */; };
 		518A7A951F5915C400E65A9D /* SearchUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A941F5915C400E65A9D /* SearchUserTVC.swift */; };
 		518A7A981F5A1E7B00E65A9D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A971F5A1E7B00E65A9D /* Extensions.swift */; };
 		518A7A9A1F5A51B600E65A9D /* Friendship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A7A991F5A51B600E65A9D /* Friendship.swift */; };
@@ -72,7 +73,6 @@
 		5110F9D71F58AB3B00B5B26B /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		5110F9DB1F58AB6400B5B26B /* FindFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsTableViewController.swift; sourceTree = "<group>"; };
 		5110F9DD1F58AB6E00B5B26B /* FriendListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewController.swift; sourceTree = "<group>"; };
-		5110F9DF1F58C2FD00B5B26B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5110F9E11F58CA2F00B5B26B /* Wingman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wingman.entitlements; sourceTree = "<group>"; };
 		5110F9E71F59025D00B5B26B /* AppUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		51116A651F5B3B0900C38842 /* FriendTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTVC.swift; sourceTree = "<group>"; };
@@ -81,6 +81,8 @@
 		51116A6E1F5CBF5000C38842 /* ChatConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConfirmViewController.swift; sourceTree = "<group>"; };
 		512323631F87FB36000021E8 /* SetupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupCell.swift; sourceTree = "<group>"; };
 		512323661F880AED000021E8 /* SetUpChatLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetUpChatLog.swift; sourceTree = "<group>"; };
+		5130A4C0203CE80500D6ED62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5130A4C2203D3C1900D6ED62 /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		518A7A941F5915C400E65A9D /* SearchUserTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserTVC.swift; sourceTree = "<group>"; };
 		518A7A971F5A1E7B00E65A9D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		518A7A991F5A51B600E65A9D /* Friendship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friendship.swift; sourceTree = "<group>"; };
@@ -137,7 +139,7 @@
 				5110F9C01F58944600B5B26B /* LaunchScreen.storyboard */,
 				51116A691F5B404B00C38842 /* Main.storyboard */,
 				5110F9C31F58944600B5B26B /* Info.plist */,
-				5110F9DF1F58C2FD00B5B26B /* GoogleService-Info.plist */,
+				5130A4C0203CE80500D6ED62 /* GoogleService-Info.plist */,
 				5110F9BB1F58944600B5B26B /* Wingman.xcdatamodeld */,
 			);
 			path = Wingman;
@@ -158,6 +160,7 @@
 			children = (
 				5110F9C91F58949C00B5B26B /* LoginViewController.swift */,
 				5110F9CC1F5895B200B5B26B /* SignUpViewController.swift */,
+				5130A4C2203D3C1900D6ED62 /* VerifyViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -312,7 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5110F9E01F58C2FD00B5B26B /* GoogleService-Info.plist in Resources */,
+				5130A4C1203CE80500D6ED62 /* GoogleService-Info.plist in Resources */,
 				5110F9C21F58944600B5B26B /* LaunchScreen.storyboard in Resources */,
 				5110F9BF1F58944600B5B26B /* Assets.xcassets in Resources */,
 				51116A6B1F5B404B00C38842 /* Main.storyboard in Resources */,
@@ -367,6 +370,7 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -378,6 +382,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -407,6 +412,7 @@
 				51930EBB1F5F13A80080EE11 /* UserCell.swift in Sources */,
 				51116A6F1F5CBF5000C38842 /* ChatConfirmViewController.swift in Sources */,
 				5110F9DC1F58AB6400B5B26B /* FindFriendsTableViewController.swift in Sources */,
+				5130A4C3203D3C1900D6ED62 /* VerifyViewController.swift in Sources */,
 				5110F9CD1F5895B200B5B26B /* SignUpViewController.swift in Sources */,
 				5110F9BD1F58944600B5B26B /* Wingman.xcdatamodeld in Sources */,
 				512323671F880AED000021E8 /* SetUpChatLog.swift in Sources */,
