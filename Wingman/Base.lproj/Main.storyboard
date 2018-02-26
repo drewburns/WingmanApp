@@ -68,7 +68,7 @@
                                                     <action selector="privacy:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XVe-HF-kY7"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="wingman-logo-iso" translatesAutoresizingMaskIntoConstraints="NO" id="Wwf-ea-u3v">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wingman-logo-iso" translatesAutoresizingMaskIntoConstraints="NO" id="Wwf-ea-u3v">
                                                 <rect key="frame" x="94" y="11" width="186" height="62"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="186" id="bfh-8y-QJV"/>
@@ -86,6 +86,7 @@
                                             <constraint firstAttribute="height" constant="720" id="Td5-2D-ZC2"/>
                                             <constraint firstItem="Dt9-8t-r1P" firstAttribute="width" secondItem="CbA-a8-qZF" secondAttribute="width" id="VHM-tx-zoi"/>
                                             <constraint firstItem="CVY-bm-KbJ" firstAttribute="width" secondItem="Dt9-8t-r1P" secondAttribute="width" id="Vcz-8q-ST3"/>
+                                            <constraint firstItem="Wwf-ea-u3v" firstAttribute="centerX" secondItem="RJB-6x-er1" secondAttribute="centerX" id="Vsl-pW-UqG"/>
                                             <constraint firstItem="Dt9-8t-r1P" firstAttribute="centerX" secondItem="RJB-6x-er1" secondAttribute="centerX" id="aB8-eg-9xL"/>
                                             <constraint firstItem="Nc5-Oy-ink" firstAttribute="centerX" secondItem="RJB-6x-er1" secondAttribute="centerX" id="ccp-FP-Nbt"/>
                                             <constraint firstItem="CVY-bm-KbJ" firstAttribute="centerX" secondItem="Dt9-8t-r1P" secondAttribute="centerX" id="eCR-SG-evS"/>

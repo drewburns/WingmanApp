@@ -211,6 +211,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
                         var params = user.value
                         params["id"] = user.key
                         print(params)
+                        params.removeValue(forKey: "age")
                         let newUser = AppUser()
                         newUser.setValuesForKeys(params)
                         self.users.append(newUser)

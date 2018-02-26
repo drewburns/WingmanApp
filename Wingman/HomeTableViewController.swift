@@ -92,22 +92,24 @@ class HomeTableViewController: UITableViewController {
 //        }
 
 //        if UserDefaults.standard.value(forKey: "first") == nil {
-            print("loading wil not appear")
-            let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
-            
-            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-            loadingIndicator.hidesWhenStopped = true
-            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-            loadingIndicator.startAnimating();
-            
-            alert.view.addSubview(loadingIndicator)
-            present(alert, animated: true, completion: nil)
+//            print("loading wil not appear")
+//            let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+//
+//            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+//            loadingIndicator.hidesWhenStopped = true
+//            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+//            loadingIndicator.startAnimating();
+//
+//            alert.view.addSubview(loadingIndicator)
+//            present(alert, animated: true, completion: nil)
 //        }
 
         if let currentUser = Auth.auth().currentUser {
             currentUser.getIDTokenForcingRefresh(true) { error in
                 if error.1 != nil {
+//                    self.dismiss(animated: true, completion: nil)
                     do {
+                        
                         try Auth.auth().signOut()
                         self.performSegue(withIdentifier: "login", sender: nil)
                     } catch let logerror {
@@ -169,10 +171,10 @@ class HomeTableViewController: UITableViewController {
                 print(self.user?.name)
                 UserDefaults.standard.set(self.user?.name, forKey: "username")
                 print("STORED USER NAME",UserDefaults.standard.string(forKey: "username"))
-                DispatchQueue.main.async(execute: {
-                    self.dismiss(animated: false, completion: nil)
-                    // dismiss unreachable view
-                })
+//                DispatchQueue.main.async(execute: {
+//                    self.dismiss(animated: false, completion: nil)
+//                    // dismiss unreachable view
+//                })
 
                 //                print(self.user?.id)
             } else{

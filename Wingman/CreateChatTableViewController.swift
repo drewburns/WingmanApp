@@ -93,6 +93,7 @@ class CreateChatTableViewController: UITableViewController {
                                 print("made it to 3")
                                 let newUser = AppUser()
                                 var params = snapshot.value as! [String:Any]
+                                params.removeValue(forKey: "age")
                                 params["id"] = snapshot.key
                                 newUser.setValuesForKeys(params)
                                 self.users.append(newUser)

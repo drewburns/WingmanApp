@@ -30,8 +30,8 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 
 
 	var newMessage1 = admin.database().ref("messages").push();
-	newMessage1.set({ "from_id": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
-	 "text": "Welcome to Wingman!", "timestamp": timestamp, "to_id": user_id });
+	newMessage1.set({ "fromId": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
+	 "text": "Welcome to Wingman!", "timestamp": timestamp, "toId": user_id });
 	promises.push(newMessage1);
 	console.log("newGroupUser")
 	console.log(promises)
@@ -42,13 +42,13 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 
 	var key1 = fields1[fields1.length - 1]
 
-	var newUserMessage1 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`).push();
-	newUserMessage1.set({ [key1] : 0 });
-	promises.push(newUserMessage1);
+	// var newUserMessage1 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`)
+	// newUserMessage1.set({ [key1] : 0 });
+	// promises.push(newUserMessage1);
 
 	var newMessage2 = admin.database().ref("messages").push();
-	newMessage2.set({ "from_id": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
-	 "text": "View the following images to learn how to use Wingman", "timestamp": timestamp, "to_id": user_id });
+	newMessage2.set({ "fromId": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
+	 "text": "View the following images to learn how to use Wingman", "timestamp": timestamp, "toId": user_id });
 	promises.push(newMessage2);
 	console.log("newGroupUser")
 	console.log(promises)
@@ -59,13 +59,13 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 
 	var key2 = fields2[fields2.length - 1]
 
-	var newUserMessage2 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`).push();
-	newUserMessage2.set({ [key2] : 0 });
-	promises.push(newUserMessage2);
+	// var newUserMessage2 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`)
+	// newUserMessage2.set({ [key2] : 0 });
+	// promises.push(newUserMessage2);
 
 	var newMessage3 = admin.database().ref("messages").push();
-	newMessage3.set({ "from_id": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
-	"timestamp": timestamp, "to_id": user_id,  "imageUrl": "http://res.cloudinary.com/groupphoto/image/upload/v1519592753/Screen_Shot_2018-02-25_at_4.04.22_PM_uwqnzz.png",
+	newMessage3.set({ "fromId": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
+	"timestamp": timestamp, "toId": user_id,  "imageUrl": "https://firebasestorage.googleapis.com/v0/b/wingman-d2039.appspot.com/o/screenshot1.png?alt=media&token=207face9-3833-4aaa-b7fd-1ffa0e516fb3",
 	"imageHeight" : 1136 , "imageWidth" : 640 });
 	promises.push(newMessage3);
 	console.log("newGroupUser")
@@ -77,13 +77,13 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 
 	var key3 = fields3[fields3.length - 1]
 
-	var newUserMessage3 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`).push();
-	newUserMessage3.set({ [key3] : 0 });
-	promises.push(newUserMessage3);
+	// var newUserMessage3 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`)
+	// newUserMessage3.set({ [key3] : 0 });
+	// promises.push(newUserMessage3);
 
 	var newMessage4 = admin.database().ref("messages").push();
-	newMessage4.set({ "from_id": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
-	"timestamp": timestamp, "to_id": user_id,  "imageUrl": "http://res.cloudinary.com/groupphoto/image/upload/v1519592753/Screen_Shot_2018-02-25_at_4.04.22_PM_uwqnzz.png",
+	newMessage4.set({ "fromId": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
+	"timestamp": timestamp, "toId": user_id,  "imageUrl": "https://firebasestorage.googleapis.com/v0/b/wingman-d2039.appspot.com/o/screenshot2.png?alt=media&token=b6909247-2872-4612-9e56-98c480067982",
 	"imageHeight" : 1136 , "imageWidth" : 640 });
 	promises.push(newMessage4);
 	console.log("newGroupUser4")
@@ -95,8 +95,8 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 
 	var key4 = fields4[fields4.length - 1]
 
-	var newUserMessage4 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`).push();
-	newUserMessage4.set({ [key4] : 0 });
+	var newUserMessage4 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`)
+	newUserMessage4.set({ [key4] : 0, [key3] : 0, [key2] : 0 , [key1] : 0  });
 	promises.push(newUserMessage4);
 
 	return Promise.all(promises);
