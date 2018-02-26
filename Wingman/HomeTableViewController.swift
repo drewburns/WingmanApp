@@ -49,13 +49,31 @@ class HomeTableViewController: UITableViewController {
     var fromLogin = ""
     var setupArray:[String] = []
     var setupsObserving:[String] = []
+    
 //    var newUser:AppUser?
     @IBOutlet weak var newChatButton: UIBarButtonItem!
     
     
+    func doSomething(refreshControl: UIRefreshControl) {
+        self.attemptReloadOfTable()
+        // somewhere in your code you might need to call:
+        refreshControl.endRefreshing()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        
+        // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = refreshControl
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        
 //        let phoneNumer = "+18607346043"
 //        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumer) { (verificationID, error) in
 //            if let error = error {
@@ -73,7 +91,7 @@ class HomeTableViewController: UITableViewController {
 //            print(logerror)
 //        }
 
-        if UserDefaults.standard.value(forKey: "first") == nil {
+//        if UserDefaults.standard.value(forKey: "first") == nil {
             print("loading wil not appear")
             let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
             
@@ -84,24 +102,43 @@ class HomeTableViewController: UITableViewController {
             
             alert.view.addSubview(loadingIndicator)
             present(alert, animated: true, completion: nil)
-        }
+//        }
 
-        
+        if let currentUser = Auth.auth().currentUser {
+            currentUser.getIDTokenForcingRefresh(true) { error in
+                if error.1 != nil {
+                    do {
+                        try Auth.auth().signOut()
+                        self.performSegue(withIdentifier: "login", sender: nil)
+                    } catch let logerror {
+                        print(logerror)
+                    }
+                    // log out
+                } else {
+                    // go in
+                }
+            }
+        } else {
+            // log in
+        }
         
         let userID = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()
         meButton.isEnabled = false
         newChatButton.isEnabled = false
+        print("USERID",userID)
         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
-//            print(snapshot.value)
+            print("SNAPSHTO VALUE")
+            print(snapshot.value)
             if snapshot.exists() == true {
                 
                 // get num of friends
                 
                 if var value = snapshot.value as? [String:Any] {
-                
+                    print("VALUE", value)
                     value["id"] = snapshot.key
+                    value.removeValue(forKey: "age")
                     let newUser = AppUser()
                     newUser.setValuesForKeys(value)
                     self.user = newUser
@@ -111,35 +148,51 @@ class HomeTableViewController: UITableViewController {
                     }
                 }
                 let token = UserDefaults.standard.value(forKey: "token")
+                let phoneNumber = UserDefaults.standard.value(forKey: "phoneNumber")
                 print("user token", self.user?.token)
-                if  ((self.user?.token) == "none")   {
-                    print("We are about to save the user's token into firebase from HomeController")
-                    if Auth.auth().currentUser != nil {
-                        ref.child("users").child(userID!).updateChildValues(["token": token])
-                        self.user?.token = token as! String?
-                        UserDefaults.standard.removeObject(forKey: "token")
-                    }
+                print("user_phone", UserDefaults.standard.value(forKey: "phoneNumber"))
+                //                if  ((self.user?.token) == "none")   {
+                print("We are about to save the user's token into firebase from HomeController")
+                if Auth.auth().currentUser != nil {
+                    ref.child("users").child(userID!).updateChildValues(["token": token, "phoneNumber": phoneNumber])
+                    self.user?.token = token as! String?
+                    UserDefaults.standard.removeObject(forKey: "token")
                 }
-//                let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)!
-//                print("STRING", string)
-//                
-//                let request = URLRequest(url: URL(string: string)!)
-//                let connection = NSURLConnection(request: request, delegate:nil, startImmediately: true)
-
+                //                }
+                //                let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)!
+                //                print("STRING", string)
+                //
+                //                let request = URLRequest(url: URL(string: string)!)
+                //                let connection = NSURLConnection(request: request, delegate:nil, startImmediately: true)
+                
                 
                 print(self.user?.name)
                 UserDefaults.standard.set(self.user?.name, forKey: "username")
                 print("STORED USER NAME",UserDefaults.standard.string(forKey: "username"))
-//                print(self.user?.id)
-            } else{
-                self.performSegue(withIdentifier: "login", sender: nil)
+                DispatchQueue.main.async(execute: {
+                    self.dismiss(animated: false, completion: nil)
+                    // dismiss unreachable view
+                })
 
+                //                print(self.user?.id)
+            } else{
+                print("THIS DID NOT LOADDDD")
+                self.performSegue(withIdentifier: "login", sender: nil)
+                
             }
-            
-        // ...
         }) { (error) in
-            print(error.localizedDescription)
+            print("WER HERE RIGTH NOW")
+            self.performSegue(withIdentifier: "login", sender: nil)
+            print("error", error)
         }
+//        print("THIS DID NOT LOADDDD")
+        
+//        Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//        // ...
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
 
         // get friendship
 //        ref.child("friendships").child(userID!).observe(.childAdded, with: {(snapshot) in
@@ -151,6 +204,12 @@ class HomeTableViewController: UITableViewController {
 //        })
         
 
+//        meButton.h = CGFloat(22)
+//        meButton.setBackgroundImage(#imageLiteral(resourceName: "logo"), for: .normal, style: .plain, barMetrics: .default)
+
+        let logo = UIImage(named: "wingman-logo-iso")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
 
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         tableView.register(SetupCell.self, forCellReuseIdentifier: "setId")
@@ -162,12 +221,13 @@ class HomeTableViewController: UITableViewController {
         getMessagesAndFriends()
         print("Dis", self.isBeingDismissed)
         print("Pres", self.isBeingPresented)
-        if UserDefaults.standard.value(forKey: "first") == nil {
-            print("yessdaskdsldasks")
-            self.dismiss(animated: false, completion: nil)
-            UserDefaults.standard.removeObject(forKey:"first")
-            UserDefaults.standard.synchronize()
-        }
+//        if UserDefaults.standard.value(forKey: "first") == nil {
+
+//            UserDefaults.standard.removeObject(forKey:"first")
+//            UserDefaults.standard.synchronize()
+//        }
+        
+//        UserDefaults.standard.set("false", forKey: "first")
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -226,12 +286,15 @@ class HomeTableViewController: UITableViewController {
         
         let ref = Database.database().reference().child("user-message").child(uid)
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            print("user-message snapshot ", snapshot)
             if let data = snapshot.value as? [String:[String:Any]] {
                 for chatpartner in data {
+                    print("CHAT PARTENER ", chatpartner )
                     //                let userId = chatpartner.key
                     //                print("User",chatpartner.key)
                     
                     for message in (chatpartner.value) {
+                        print("message to fetch ", message)
                         //                    print(message.value)
                         self.fetchMessageWithMessageId(message.key)
                     }
@@ -304,7 +367,7 @@ class HomeTableViewController: UITableViewController {
 //                print("Found next things")
 
                 let messageId = snapshot.key
-            
+            print("FOUND A UsER MESSAGE", messageId)
                 self.fetchMessageWithMessageId2(messageId)
                 
             }, withCancel: nil)
@@ -393,7 +456,7 @@ class HomeTableViewController: UITableViewController {
             if var dictionary = snapshot.value as? [String: AnyObject] {
                 dictionary["id"] = snapshot.key as AnyObject?
                 let message = Message(dictionary: dictionary)
-                
+                print("MESSAGE HERE ", message.chatPartnerId())
                 if let chatPartnerId = message.chatPartnerId() {
                     if (self.messagesDictionary[chatPartnerId]?.timestamp?.int32Value < message.timestamp?.int32Value) {
                         self.messagesDictionary[chatPartnerId] = message
@@ -776,12 +839,30 @@ class HomeTableViewController: UITableViewController {
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
-        
+        print("IN DELETING THING")
         let message = self.messages[indexPath.row]
-        
+        if let setupId = message.setupId {
+//            print("message here ",  message.chatPartnerId())
+            Database.database().reference().child("setup-messages").child(setupId).removeValue(completionBlock: { (error, ref) in
+                print("IN DELETION BLOCK")
+                if error != nil {
+                    print("Failed to delete message:", error!)
+                    return
+                }
+
+                self.setupDictionary.removeValue(forKey: setupId)
+                self.attemptReloadOfTable()
+
+                //                //this is one way of updating the table, but its actually not that safe..
+                //                self.messages.removeAtIndex(indexPath.row)
+                //                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+
+            })
+            return
+        }
         if let chatPartnerId = message.chatPartnerId() {
             Database.database().reference().child("user-message").child(uid).child(chatPartnerId).removeValue(completionBlock: { (error, ref) in
-                
+//                print("IN DELETION BLOCK")
                 if error != nil {
                     print("Failed to delete message:", error!)
                     return
@@ -824,6 +905,7 @@ class HomeTableViewController: UITableViewController {
             
            let viewController:PopUpViewController = segue.destination as! PopUpViewController
             viewController.user = sender as? AppUser
+            viewController.friends = self.friends
             viewController.currentUserName = (self.user?.name)!
             
         } else if segue.identifier == "new"{

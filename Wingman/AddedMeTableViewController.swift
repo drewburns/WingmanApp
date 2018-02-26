@@ -131,7 +131,11 @@ class AddedMeTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.user = self.users[indexPath.row]
-        cell.userImage.loadImageUsingCacheWithUrlString((cell.user?.profileImageURL)!)
+        if cell.user?.profileImageURL != nil {
+            cell.imageView?.loadImageUsingCacheWithUrlString((cell.user?.profileImageURL!)!)
+        } else {
+            cell.userImage.image = #imageLiteral(resourceName: "logo")
+        }
         return cell
     }
     

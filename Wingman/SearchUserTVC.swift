@@ -15,7 +15,7 @@ class SearchUserTVC: UITableViewCell {
             setAddButton()
             nameLabel.text! = (user?.name)!
             usernameLabel.text! = (user?.usernamesearch)!
-            userImage.maskCircle()
+//            userImage.maskCircle()
             let currentUser = Auth.auth().currentUser?.uid
             let ref = base.child("friendships").child(currentUser!)
             
@@ -45,13 +45,17 @@ class SearchUserTVC: UITableViewCell {
     }
     
     func setAddButton() {
-        //stuff
+        addButton.backgroundColor = UIColor.init(rgbColorCodeRed: 33, green: 192, blue: 252, alpha: 1)
+        addButton.setTitleColor(UIColor.white, for: .normal)
+        addButton.layer.cornerRadius = 15
+
     }
     let base = Database.database().reference()
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
+    
     
 
     @IBAction func friendChange(_ sender: Any) {

@@ -15,6 +15,7 @@ class FriendListTableViewController: UITableViewController {
     let base = Database.database().reference()
     let reachability = Reachability()!
     var internet = ""
+
     
     @IBAction func done(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -128,7 +129,13 @@ class FriendListTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.user = self.users[indexPath.row]
-        cell.userImage.loadImageUsingCacheWithUrlString((cell.user?.profileImageURL)!)
+        if cell.user?.profileImageURL != nil {
+            cell.userImage.loadImageUsingCacheWithUrlString((cell.user?.profileImageURL)!)
+        } else {
+            cell.userImage.image = #imageLiteral(resourceName: "logo")
+        }
+
+
         return cell
     }
     

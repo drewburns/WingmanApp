@@ -37,6 +37,9 @@
 		51930EBB1F5F13A80080EE11 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930EBA1F5F13A80080EE11 /* UserCell.swift */; };
 		51930EBD1F5F35840080EE11 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930EBC1F5F35840080EE11 /* ChatLogController.swift */; };
 		51930EBF1F5F38B70080EE11 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930EBE1F5F38B70080EE11 /* ChatMessageCell.swift */; };
+		519759D520432268008BA83D /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519759D420432268008BA83D /* PrivacyViewController.swift */; };
+		519759D720432274008BA83D /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519759D620432274008BA83D /* TermsViewController.swift */; };
+		519759D9204351DB008BA83D /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519759D8204351DB008BA83D /* CreditsViewController.swift */; };
 		51D33AFC1F7185DD00BD1B63 /* AddedMeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D33AFB1F7185DD00BD1B63 /* AddedMeTableViewController.swift */; };
 		51D33AFE1F71988900BD1B63 /* AddedMeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D33AFD1F71988900BD1B63 /* AddedMeTVC.swift */; };
 		62A90473C46C2FF04B7B4ACA /* Pods_Wingman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D10377704FD32A30C9A611F /* Pods_Wingman.framework */; };
@@ -91,6 +94,9 @@
 		51930EBA1F5F13A80080EE11 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		51930EBC1F5F35840080EE11 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		51930EBE1F5F38B70080EE11 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		519759D420432268008BA83D /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		519759D620432274008BA83D /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		519759D8204351DB008BA83D /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		51D33AFB1F7185DD00BD1B63 /* AddedMeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedMeTableViewController.swift; sourceTree = "<group>"; };
 		51D33AFD1F71988900BD1B63 /* AddedMeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedMeTVC.swift; sourceTree = "<group>"; };
 		B28C4332046A891909A92A6F /* Pods-Wingman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wingman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wingman/Pods-Wingman.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 		5110F9CB1F5894A100B5B26B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				519759D320432255008BA83D /* Legal */,
 				5110F9D61F58AB2800B5B26B /* User */,
 				5110F9D11F58AAE200B5B26B /* Chat */,
 				5110F9D01F58AAD500B5B26B /* Login */,
@@ -221,6 +228,16 @@
 				51076ED71F61C53700E52F46 /* Reachability.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		519759D320432255008BA83D /* Legal */ = {
+			isa = PBXGroup;
+			children = (
+				519759D420432268008BA83D /* PrivacyViewController.swift */,
+				519759D620432274008BA83D /* TermsViewController.swift */,
+				519759D8204351DB008BA83D /* CreditsViewController.swift */,
+			);
+			name = Legal;
 			sourceTree = "<group>";
 		};
 		B18C12E7E5373E97C73CB399 /* Pods */ = {
@@ -403,8 +420,10 @@
 				5110F9DE1F58AB6E00B5B26B /* FriendListTableViewController.swift in Sources */,
 				5110F9D51F58AB1600B5B26B /* CreateChatTableViewController.swift in Sources */,
 				51930EBD1F5F35840080EE11 /* ChatLogController.swift in Sources */,
+				519759D720432274008BA83D /* TermsViewController.swift in Sources */,
 				5110F9E81F59025D00B5B26B /* AppUser.swift in Sources */,
 				5110F9CA1F58949C00B5B26B /* LoginViewController.swift in Sources */,
+				519759D520432268008BA83D /* PrivacyViewController.swift in Sources */,
 				518A7A951F5915C400E65A9D /* SearchUserTVC.swift in Sources */,
 				51930EBF1F5F38B70080EE11 /* ChatMessageCell.swift in Sources */,
 				5110F9B51F58944600B5B26B /* AppDelegate.swift in Sources */,
@@ -426,6 +445,7 @@
 				518A7A981F5A1E7B00E65A9D /* Extensions.swift in Sources */,
 				51116A661F5B3B0900C38842 /* FriendTVC.swift in Sources */,
 				51930EB71F5DBF3D0080EE11 /* SettingsViewController.swift in Sources */,
+				519759D9204351DB008BA83D /* CreditsViewController.swift in Sources */,
 				51D33AFE1F71988900BD1B63 /* AddedMeTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

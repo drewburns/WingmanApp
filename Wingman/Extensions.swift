@@ -44,6 +44,35 @@ extension UIImageView {
         }).resume()
     }
     
+    func loadImageUsingCacheSync(_ urlString: String) {
+        self.image = nil
+        
+        //check cache for image first
+        if let cachedImage = imageCache.object(forKey: urlString as NSString) as? UIImage {
+            self.image = cachedImage
+            return
+        }
+        
+        //otherwise fire off a new download
+        let url = URL(string: urlString)
+        let session = URLSession.shared.synchronousDataTask(with: url!)
+        let data = session.0
+        let response = session.1
+        let error = session.2
+        
+        if let error = error {
+            print(error)
+            return
+        }
+        
+        if let downloadedImage = UIImage(data: data!) {
+            imageCache.setObject(downloadedImage, forKey: urlString as NSString)
+            
+            self.image = downloadedImage
+        }
+        
+    }
+    
 }
 
 
@@ -70,6 +99,41 @@ extension String {
             }
         }
         return result
+    }
+}
+func matches(for regex: String, in text: String) -> [String] {
+    
+    do {
+        let regex = try NSRegularExpression(pattern: regex)
+        let nsString = text as NSString
+        let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
+        return results.map { nsString.substring(with: $0.range)}
+    } catch let error {
+                print("invalid regex: \(error.localizedDescription)")
+        return []
+    }
+}
+
+extension URLSession {
+    func synchronousDataTask(with url: URL) -> (Data?, URLResponse?, Error?) {
+        var data: Data?
+        var response: URLResponse?
+        var error: Error?
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let dataTask = self.dataTask(with: url) {
+            data = $0
+            response = $1
+            error = $2
+            
+            semaphore.signal()
+        }
+        dataTask.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        return (data, response, error)
     }
 }
 

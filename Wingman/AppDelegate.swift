@@ -21,7 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-
+        
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let logerror {
+//            print(logerror)
+//        }
+    
         if Auth.auth().currentUser != nil {
 //            print(Auth.auth().currentUser)
             let loggin_status = UserDefaults.standard.value(forKey: "loggin_status") as? String
@@ -47,7 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             
         } else {
+            
             let loggin_status = UserDefaults.standard.value(forKey: "loggin_status") as? String
+            print("YAAA", loggin_status)
             if loggin_status == "verify" {
                 self.window = UIWindow(frame: UIScreen.main.bounds)
                 
@@ -74,11 +82,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         if #available(iOS 10, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge,.sound,.alert], completionHandler: { (granted, error) in })
+            print("ABOUT TO REGISTER")
             application.registerForRemoteNotifications()
         } else {
             let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             UIApplication.shared.registerUserNotificationSettings(setting)
             UIApplication.shared.registerForRemoteNotifications()
+            print("ABOUT TO REGISTER")
             application.registerForRemoteNotifications()
         }
         application.applicationIconBadgeNumber = 0
@@ -98,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("DOING SOMETHING WITH APNS TOKEN????")
         Auth.auth().setAPNSToken(deviceToken, type:AuthAPNSTokenType.sandbox )//.sandbox for development
 
-            
+        
         UserDefaults.standard.set(token, forKey: "token")
         
     }

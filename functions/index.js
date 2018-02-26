@@ -14,8 +14,124 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
-
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+// let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)! + "&alert=" + alert
+
 admin.initializeApp(functions.config().firebase);
+
+
+exports.addAccount = functions.auth.user().onCreate(event => {
+	const user = event.data; // The firebase user
+	const user_id = user.uid;
+
+	var timestamp = Math.floor(Date.now()/1000)
+	var promises = [];
+
+
+	var newMessage1 = admin.database().ref("messages").push();
+	newMessage1.set({ "from_id": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
+	 "text": "Welcome to Wingman!", "timestamp": timestamp, "to_id": user_id });
+	promises.push(newMessage1);
+	console.log("newGroupUser")
+	console.log(promises)
+
+	var keystring1 = newMessage1.key
+
+	var fields1 = keystring1.split('/');
+
+	var key1 = fields1[fields1.length - 1]
+
+	var newUserMessage1 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`).push();
+	newUserMessage1.set({ [key1] : 0 });
+	promises.push(newUserMessage1);
+
+	var newMessage2 = admin.database().ref("messages").push();
+	newMessage2.set({ "from_id": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
+	 "text": "View the following images to learn how to use Wingman", "timestamp": timestamp, "to_id": user_id });
+	promises.push(newMessage2);
+	console.log("newGroupUser")
+	console.log(promises)
+
+	var keystring2 = newMessage2.key
+
+	var fields2 = keystring2.split('/');
+
+	var key2 = fields2[fields2.length - 1]
+
+	var newUserMessage2 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`).push();
+	newUserMessage2.set({ [key2] : 0 });
+	promises.push(newUserMessage2);
+
+	var newMessage3 = admin.database().ref("messages").push();
+	newMessage3.set({ "from_id": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
+	"timestamp": timestamp, "to_id": user_id,  "imageUrl": "http://res.cloudinary.com/groupphoto/image/upload/v1519592753/Screen_Shot_2018-02-25_at_4.04.22_PM_uwqnzz.png",
+	"imageHeight" : 1136 , "imageWidth" : 640 });
+	promises.push(newMessage3);
+	console.log("newGroupUser")
+	console.log(promises)
+
+	var keystring3 = newMessage3.key
+
+	var fields3 = keystring3.split('/');
+
+	var key3 = fields3[fields3.length - 1]
+
+	var newUserMessage3 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`).push();
+	newUserMessage3.set({ [key3] : 0 });
+	promises.push(newUserMessage3);
+
+	var newMessage4 = admin.database().ref("messages").push();
+	newMessage4.set({ "from_id": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
+	"timestamp": timestamp, "to_id": user_id,  "imageUrl": "http://res.cloudinary.com/groupphoto/image/upload/v1519592753/Screen_Shot_2018-02-25_at_4.04.22_PM_uwqnzz.png",
+	"imageHeight" : 1136 , "imageWidth" : 640 });
+	promises.push(newMessage4);
+	console.log("newGroupUser4")
+	console.log(promises)
+
+	var keystring4 = newMessage4.key
+
+	var fields4 = keystring4.split('/');
+
+	var key4 = fields4[fields4.length - 1]
+
+	var newUserMessage4 = admin.database().ref(`user-message/${user_id}/UjVfdbeATnckVWUZBV5jJBsu2At2`).push();
+	newUserMessage4.set({ [key4] : 0 });
+	promises.push(newUserMessage4);
+
+	return Promise.all(promises);
+
+});
+// on user create
+// create a few messages to the current user from the id of Wingman
+// probably send them as image messages so link an image with instructions
+
+// -Kwc5T3_ckBra-wG6NUO
+// 	fromId: 
+// 	"1PWPvK1TixQCLegOIzwsILhJLFG2"
+// 	imageHeight: 
+// 	1136
+// 	imageUrl: 
+// 	"https://firebasestorage.googleapis.com/v0/b/wingman-d2039.appspot.com/o/UjVfdbeATnckVWUZBV5jJBsu2At2-profile.png?alt=media&token=9d325694-039a-4098-aa31-5c8367fe734b"
+// 	imageWidth: 
+// 	640
+// 	read: 
+// 	true
+// 	timestamp: 
+// 	1508206305
+// 	toId: 
+// 	"ZJvtjVAiK9R3O8a3UEtF4jOby242"
+
+
+
+// -Kw8bencbjC6NtMXKBCL
+// 	fromId: 
+// 	"HL9VlOyiJBYNzWnTAodtaPmWXLz1"
+// 	read: 
+// 	true
+// 	text: 
+// 	"It’s the same damn thing"
+// 	timestamp: 
+// 	1507694914
+// 	toId: 
+// 	"ZJvtjVAiK9R3O8a3UEtF4jOby242"

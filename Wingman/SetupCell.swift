@@ -89,6 +89,9 @@ class SetupCell: UITableViewCell {
                     if let profileImage = dictionary["profileImageURL"] as? String {
                         self.profileImageView.loadImageUsingCacheWithUrlString(profileImage)
                         self.profileImageView.maskCircle()
+                    } else {
+                        self.profileImageView.image = #imageLiteral(resourceName: "logo")
+                        self.profileImageView.maskCircle()
                     }
                     
                     
@@ -104,6 +107,9 @@ class SetupCell: UITableViewCell {
                             print("SNAPSHOT",self.textLabel?.text)
                             if let profileImage = dictionary["profileImageURL"] as? String {
                                 self.profileImageView2.loadImageUsingCacheWithUrlString(profileImage)
+                                self.profileImageView2.maskCircle()
+                            } else {
+                                self.profileImageView2.image = #imageLiteral(resourceName: "logo")
                                 self.profileImageView2.maskCircle()
                             }
                             

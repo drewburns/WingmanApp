@@ -18,5 +18,8 @@ class AppUser: NSObject {
     var profileImageURL: String?
     var friendship: Friendship?
     var token:String?
+    var phoneNumber:String?
+    var age:Int?
+    var sex:String?
     
 }

@@ -19,9 +19,11 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var viewFriendButton: UIButton!
+    
     let reachability = Reachability()!
     var internet = ""
     var currentUserName = ""
+    var friends:[String] = []
     
     @IBOutlet weak var mainView: UIView!
     
@@ -44,7 +46,7 @@ class PopUpViewController: UIViewController {
         startingFrame = startingImageView.superview?.convert(startingImageView.frame, to: nil)
         
         let zoomingImageView = UIImageView(frame: startingFrame!)
-        zoomingImageView.backgroundColor = UIColor.red
+        zoomingImageView.backgroundColor = UIColor.black
         zoomingImageView.image = startingImageView.image
         zoomingImageView.isUserInteractionEnabled = true
         zoomingImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
@@ -106,6 +108,14 @@ class PopUpViewController: UIViewController {
         nameLabel.text! = (user?.name)!
         usernameLabel.text! = (user?.usernamesearch)!
         
+        friendButton.backgroundColor = UIColor.init(rgbColorCodeRed: 33, green: 192, blue: 252, alpha: 1)
+        friendButton.setTitleColor(UIColor.white, for: .normal)
+        friendButton.layer.cornerRadius = 15
+        
+        viewFriendButton.backgroundColor = UIColor.init(rgbColorCodeRed: 33, green: 192, blue: 252, alpha: 1)
+        viewFriendButton.setTitleColor(UIColor.white, for: .normal)
+        viewFriendButton.layer.cornerRadius = 15
+        
         setFriendButton()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         userImage.isUserInteractionEnabled = true
@@ -149,7 +159,12 @@ class PopUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     func setImage() {
-        self.userImage.loadImageUsingCacheWithUrlString((user?.profileImageURL)!)
+        if user?.profileImageURL != nil {
+            self.userImage.loadImageUsingCacheWithUrlString((user?.profileImageURL)!)
+        } else {
+           self.userImage.image = #imageLiteral(resourceName: "logo")
+        }
+//        self.userImage.loadImageUsingCacheWithUrlString((user?.profileImageURL)!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -317,12 +332,18 @@ class PopUpViewController: UIViewController {
             
         } else if segue.identifier == "settings" {
             let viewController:SettingsViewController = segue.destination as! SettingsViewController
+            viewController.user = self.user
             viewController.vc = self.self
             
         } else if segue.identifier == "addedme" {
             var DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! AddedMeTableViewController
             targetController.user = self.user
+        } else if segue.identifier == "findfriends" {
+            var DestViewController = segue.destination as! UINavigationController
+            let targetController = DestViewController.topViewController as! FindFriendsTableViewController
+//            targetController.user = self.user
+            targetController.friends = self.friends
         }
     }
     

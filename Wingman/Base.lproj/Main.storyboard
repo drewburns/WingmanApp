@@ -30,39 +30,69 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJB-6x-er1">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wingman" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oej-k9-paw">
-                                                <rect key="frame" x="82" y="25" width="211" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="ReskaGraf" family="ReskaGraf" pointSize="29"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CbA-a8-qZF">
-                                                <rect key="frame" x="16" y="226" width="343" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-clear" translatesAutoresizingMaskIntoConstraints="NO" id="Nc5-Oy-ink">
+                                                <rect key="frame" x="132" y="81" width="111" height="110"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="110" id="H6o-FQ-lqp"/>
+                                                    <constraint firstAttribute="width" constant="111" id="TZe-CE-Esh"/>
+                                                </constraints>
+                                            </imageView>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7t-Xm-mGH">
+                                                <rect key="frame" x="82" y="199" width="211" height="216"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="211" id="AGl-k0-8uv"/>
+                                                </constraints>
+                                            </pickerView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CbA-a8-qZF">
+                                                <rect key="frame" x="82" y="423" width="211" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-clear" translatesAutoresizingMaskIntoConstraints="NO" id="Nc5-Oy-ink">
-                                                <rect key="frame" x="132" y="81" width="111" height="110"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dt9-8t-r1P">
-                                                <rect key="frame" x="16" y="264" width="343" height="36"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <state key="normal" title="Login / Create ">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dt9-8t-r1P">
+                                                <rect key="frame" x="82" y="478" width="211" height="36"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <state key="normal" title="Next">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="attemptLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LCP-24-gf9"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVY-bm-KbJ">
+                                                <rect key="frame" x="81.5" y="529" width="211" height="30"/>
+                                                <state key="normal" title="Read our privacy policy">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="privacy:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XVe-HF-kY7"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="wingman-logo-iso" translatesAutoresizingMaskIntoConstraints="NO" id="Wwf-ea-u3v">
+                                                <rect key="frame" x="94" y="11" width="186" height="62"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="186" id="bfh-8y-QJV"/>
+                                                    <constraint firstAttribute="height" constant="62" id="bio-pX-qla"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0010289045749232173" green="0.56167775392532349" blue="0.75330668687820435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="CbA-a8-qZF" firstAttribute="width" secondItem="o7t-Xm-mGH" secondAttribute="width" id="3CJ-JF-918"/>
+                                            <constraint firstItem="Nc5-Oy-ink" firstAttribute="top" secondItem="Wwf-ea-u3v" secondAttribute="bottom" constant="8" id="DJ3-r7-S0Y"/>
+                                            <constraint firstItem="o7t-Xm-mGH" firstAttribute="top" secondItem="Nc5-Oy-ink" secondAttribute="bottom" constant="8" id="Dgc-cY-VWP"/>
+                                            <constraint firstItem="Dt9-8t-r1P" firstAttribute="top" secondItem="CbA-a8-qZF" secondAttribute="bottom" constant="25" id="JC2-0N-eE2"/>
+                                            <constraint firstItem="CbA-a8-qZF" firstAttribute="centerX" secondItem="RJB-6x-er1" secondAttribute="centerX" id="Los-r2-tVK"/>
                                             <constraint firstAttribute="height" constant="720" id="Td5-2D-ZC2"/>
+                                            <constraint firstItem="Dt9-8t-r1P" firstAttribute="width" secondItem="CbA-a8-qZF" secondAttribute="width" id="VHM-tx-zoi"/>
+                                            <constraint firstItem="CVY-bm-KbJ" firstAttribute="width" secondItem="Dt9-8t-r1P" secondAttribute="width" id="Vcz-8q-ST3"/>
+                                            <constraint firstItem="Dt9-8t-r1P" firstAttribute="centerX" secondItem="RJB-6x-er1" secondAttribute="centerX" id="aB8-eg-9xL"/>
+                                            <constraint firstItem="Nc5-Oy-ink" firstAttribute="centerX" secondItem="RJB-6x-er1" secondAttribute="centerX" id="ccp-FP-Nbt"/>
+                                            <constraint firstItem="CVY-bm-KbJ" firstAttribute="centerX" secondItem="Dt9-8t-r1P" secondAttribute="centerX" id="eCR-SG-evS"/>
+                                            <constraint firstItem="o7t-Xm-mGH" firstAttribute="centerX" secondItem="RJB-6x-er1" secondAttribute="centerX" id="ejA-Cx-KyY"/>
+                                            <constraint firstItem="CbA-a8-qZF" firstAttribute="top" secondItem="o7t-Xm-mGH" secondAttribute="bottom" constant="8" id="elw-Hl-waq"/>
+                                            <constraint firstItem="Wwf-ea-u3v" firstAttribute="top" secondItem="RJB-6x-er1" secondAttribute="top" constant="11" id="uIc-wM-LFd"/>
+                                            <constraint firstItem="CVY-bm-KbJ" firstAttribute="top" secondItem="Dt9-8t-r1P" secondAttribute="bottom" constant="15" id="ua4-AA-2yE"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -86,8 +116,10 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="720"/>
                     <connections>
+                        <outlet property="agePicker" destination="o7t-Xm-mGH" id="2cl-fp-KjO"/>
                         <outlet property="emailField" destination="CbA-a8-qZF" id="hho-CF-U9s"/>
-                        <segue destination="Xif-A6-WFw" kind="show" id="htA-Eo-Ykt"/>
+                        <outlet property="nextButton" destination="Dt9-8t-r1P" id="BZw-0d-79D"/>
+                        <segue destination="Xif-A6-WFw" kind="show" identifier="code_sent" id="htA-Eo-Ykt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -112,36 +144,61 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7b-C6-6qG">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVl-aB-7cZ">
-                                                <rect key="frame" x="16" y="231" width="343" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVl-aB-7cZ">
+                                                <rect key="frame" x="81" y="231" width="212" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="212" id="uUa-kt-Gsc"/>
+                                                </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-clear" translatesAutoresizingMaskIntoConstraints="NO" id="Mnj-OK-JWJ">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-clear" translatesAutoresizingMaskIntoConstraints="NO" id="Mnj-OK-JWJ">
                                                 <rect key="frame" x="132" y="63" width="111" height="110"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="110" id="ecH-CV-zaC"/>
+                                                    <constraint firstAttribute="width" constant="111" id="gCh-KT-kmW"/>
+                                                </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUF-sF-cxZ">
-                                                <rect key="frame" x="26" y="22" width="40" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Back">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xZR-sU-Bwm">
-                                                <rect key="frame" x="16" y="269" width="343" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xZR-sU-Bwm">
+                                                <rect key="frame" x="81" y="269" width="212" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuG-2i-BGJ">
-                                                <rect key="frame" x="16" y="307" width="343" height="38"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnQ-YK-Qtg">
+                                                <rect key="frame" x="81" y="181" width="212" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="Click to select profile image">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectImageButton:" destination="3Ew-5a-FmN" eventType="touchUpInside" id="9ek-74-bNA"/>
+                                                </connections>
+                                            </button>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zRc-yN-C5s">
+                                                <rect key="frame" x="163" y="316" width="51" height="31"/>
+                                                <color key="onTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtZ-W3-Amc">
+                                                <rect key="frame" x="237" y="321" width="56" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoM-gL-4Wx">
+                                                <rect key="frame" x="101" y="321" width="37" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuG-2i-BGJ">
+                                                <rect key="frame" x="81.5" y="372" width="212" height="38"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="212" id="80R-g7-jrr"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                 <state key="normal" title="Create Account">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -149,10 +206,53 @@
                                                     <action selector="create:" destination="3Ew-5a-FmN" eventType="touchUpInside" id="V13-Kb-2lH"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0Z-oM-BpB">
+                                                <rect key="frame" x="107.5" y="425" width="160" height="30"/>
+                                                <state key="normal" title="Read our privacy policy">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="privacy:" destination="3Ew-5a-FmN" eventType="touchUpInside" id="ELH-CR-SEn"/>
+                                                    <action selector="privacy:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gvr-Kn-dAb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mu1-Ul-NQw">
+                                                <rect key="frame" x="107.5" y="463" width="160" height="30"/>
+                                                <state key="normal" title="Terms of service">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="privacy:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cwY-Yt-WXT"/>
+                                                    <action selector="terms:" destination="3Ew-5a-FmN" eventType="touchUpInside" id="Uza-Qh-kfX"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0010289045750000001" green="0.56167775389999997" blue="0.75330668690000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="720" id="2gB-Xk-jhe"/>
+                                            <constraint firstItem="Mu1-Ul-NQw" firstAttribute="centerX" secondItem="s0Z-oM-BpB" secondAttribute="centerX" id="2gO-ew-M3Z"/>
+                                            <constraint firstItem="zRc-yN-C5s" firstAttribute="centerX" secondItem="g7b-C6-6qG" secondAttribute="centerX" id="3Kg-Hw-8Su"/>
+                                            <constraint firstItem="WuG-2i-BGJ" firstAttribute="centerX" secondItem="g7b-C6-6qG" secondAttribute="centerX" id="3Ta-nB-6mH"/>
+                                            <constraint firstItem="NVl-aB-7cZ" firstAttribute="top" secondItem="nnQ-YK-Qtg" secondAttribute="bottom" constant="20" id="9eC-pn-AhE"/>
+                                            <constraint firstItem="WuG-2i-BGJ" firstAttribute="top" secondItem="zRc-yN-C5s" secondAttribute="bottom" constant="25" id="BhQ-jt-tfh"/>
+                                            <constraint firstItem="uoM-gL-4Wx" firstAttribute="top" secondItem="xZR-sU-Bwm" secondAttribute="bottom" constant="22" id="DLI-dt-rtR"/>
+                                            <constraint firstItem="s0Z-oM-BpB" firstAttribute="centerX" secondItem="g7b-C6-6qG" secondAttribute="centerX" id="DVI-Sw-cEp"/>
+                                            <constraint firstItem="xZR-sU-Bwm" firstAttribute="centerX" secondItem="NVl-aB-7cZ" secondAttribute="centerX" id="J2D-7g-jhq"/>
+                                            <constraint firstItem="s0Z-oM-BpB" firstAttribute="top" secondItem="WuG-2i-BGJ" secondAttribute="bottom" constant="15" id="JxF-lt-Rkn"/>
+                                            <constraint firstItem="NVl-aB-7cZ" firstAttribute="top" secondItem="Mnj-OK-JWJ" secondAttribute="bottom" constant="58" id="Ryl-e1-R4n"/>
+                                            <constraint firstItem="Mu1-Ul-NQw" firstAttribute="width" secondItem="s0Z-oM-BpB" secondAttribute="width" id="XGS-BT-mxm"/>
+                                            <constraint firstItem="NVl-aB-7cZ" firstAttribute="centerX" secondItem="g7b-C6-6qG" secondAttribute="centerX" id="Ywn-g0-R0m"/>
+                                            <constraint firstItem="xZR-sU-Bwm" firstAttribute="width" secondItem="NVl-aB-7cZ" secondAttribute="width" id="bWj-QW-dBb"/>
+                                            <constraint firstItem="zRc-yN-C5s" firstAttribute="top" secondItem="xZR-sU-Bwm" secondAttribute="bottom" constant="17" id="c5t-th-HIs"/>
+                                            <constraint firstItem="xZR-sU-Bwm" firstAttribute="top" secondItem="NVl-aB-7cZ" secondAttribute="bottom" constant="8" id="fBW-Ly-Bdw"/>
+                                            <constraint firstItem="HtZ-W3-Amc" firstAttribute="leading" secondItem="zRc-yN-C5s" secondAttribute="trailing" constant="25" id="gHU-T2-HYj"/>
+                                            <constraint firstItem="HtZ-W3-Amc" firstAttribute="top" secondItem="xZR-sU-Bwm" secondAttribute="bottom" constant="22" id="gbB-og-gPN"/>
+                                            <constraint firstItem="nnQ-YK-Qtg" firstAttribute="top" secondItem="Mnj-OK-JWJ" secondAttribute="bottom" constant="8" id="idq-7R-37S"/>
+                                            <constraint firstItem="zRc-yN-C5s" firstAttribute="leading" secondItem="uoM-gL-4Wx" secondAttribute="trailing" constant="25" id="igC-Lk-Chp"/>
+                                            <constraint firstItem="Mu1-Ul-NQw" firstAttribute="top" secondItem="s0Z-oM-BpB" secondAttribute="bottom" constant="8" id="ncW-d1-P64"/>
+                                            <constraint firstItem="Mnj-OK-JWJ" firstAttribute="centerX" secondItem="g7b-C6-6qG" secondAttribute="centerX" id="rPi-u9-7AP"/>
+                                            <constraint firstItem="Mnj-OK-JWJ" firstAttribute="top" secondItem="g7b-C6-6qG" secondAttribute="top" constant="63" id="tld-vY-gMV"/>
+                                            <constraint firstItem="nnQ-YK-Qtg" firstAttribute="centerX" secondItem="g7b-C6-6qG" secondAttribute="centerX" id="v6c-3J-GWg"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -176,19 +276,21 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="720"/>
                     <connections>
+                        <outlet property="createBUtton" destination="WuG-2i-BGJ" id="7gt-cc-SbE"/>
                         <outlet property="nameField" destination="xZR-sU-Bwm" id="lqF-ts-M6c"/>
+                        <outlet property="sexPicker" destination="zRc-yN-C5s" id="ziS-0X-BqQ"/>
                         <outlet property="userImage" destination="Mnj-OK-JWJ" id="K9d-OY-CLM"/>
                         <outlet property="usernameField" destination="NVl-aB-7cZ" id="ToK-fM-0QE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRY-pj-1IZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="48"/>
+            <point key="canvasLocation" x="804" y="123.23838080959521"/>
         </scene>
         <!--Verify View Controller-->
         <scene sceneID="sEJ-zy-DoG">
             <objects>
-                <viewController storyboardIdentifier="verify" id="Xif-A6-WFw" customClass="VerifyViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="verify" id="Xif-A6-WFw" customClass="VerifyViewController" customModule="Wingman" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cPV-jm-aXa"/>
                         <viewControllerLayoutGuide type="bottom" id="Pgf-oL-YoD"/>
@@ -197,40 +299,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wingman" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdz-QT-bCM">
-                                <rect key="frame" x="78" y="57" width="211" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wingman" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdz-QT-bCM">
+                                <rect key="frame" x="126.5" y="28" width="122.5" height="34"/>
                                 <fontDescription key="fontDescription" name="ReskaGraf" family="ReskaGraf" pointSize="29"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoP-vg-Ced">
-                                <rect key="frame" x="12" y="296" width="343" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoP-vg-Ced">
+                                <rect key="frame" x="82" y="279" width="211" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="attemptLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DPh-J4-20n"/>
                                     <action selector="doneButton:" destination="Xif-A6-WFw" eventType="touchUpInside" id="F0b-FZ-Vqa"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Verification Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jTU-FA-KtZ">
-                                <rect key="frame" x="12" y="258" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-clear" translatesAutoresizingMaskIntoConstraints="NO" id="SPq-oI-doY">
-                                <rect key="frame" x="128" y="113" width="111" height="110"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-clear" translatesAutoresizingMaskIntoConstraints="NO" id="SPq-oI-doY">
+                                <rect key="frame" x="132" y="84" width="111" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="ovP-m8-RHt"/>
+                                    <constraint firstAttribute="height" constant="110" id="sAz-OL-tlh"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2G4-ry-8DQ">
-                                <rect key="frame" x="12" y="340" width="343" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2G4-ry-8DQ">
+                                <rect key="frame" x="82" y="335" width="211" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="Resend Code">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -238,19 +332,42 @@
                                     <action selector="resendCode:" destination="Xif-A6-WFw" eventType="touchUpInside" id="8o9-wF-ZiO"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Verification Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jTU-FA-KtZ">
+                                <rect key="frame" x="82" y="229" width="211" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="211" id="dkn-O5-9EB"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.0034440995659999999" green="0.60855787989999999" blue="0.81270182130000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="IoP-vg-Ced" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="6P0-7O-XF7"/>
+                            <constraint firstItem="jTU-FA-KtZ" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="ANT-aN-LB8"/>
+                            <constraint firstItem="2G4-ry-8DQ" firstAttribute="top" secondItem="IoP-vg-Ced" secondAttribute="bottom" constant="20" id="ArT-GO-EG7"/>
+                            <constraint firstItem="SPq-oI-doY" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="C07-6S-21j"/>
+                            <constraint firstItem="mdz-QT-bCM" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="CBw-ym-yEf"/>
+                            <constraint firstItem="SPq-oI-doY" firstAttribute="top" secondItem="mdz-QT-bCM" secondAttribute="bottom" constant="22" id="Pua-Bf-BYL"/>
+                            <constraint firstItem="jTU-FA-KtZ" firstAttribute="top" secondItem="SPq-oI-doY" secondAttribute="bottom" constant="35" id="Zc4-UG-deO"/>
+                            <constraint firstItem="IoP-vg-Ced" firstAttribute="width" secondItem="jTU-FA-KtZ" secondAttribute="width" id="boA-dy-xQE"/>
+                            <constraint firstItem="2G4-ry-8DQ" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="lCN-Kl-0v5"/>
+                            <constraint firstItem="2G4-ry-8DQ" firstAttribute="width" secondItem="IoP-vg-Ced" secondAttribute="width" id="nmg-Rj-r9z"/>
+                            <constraint firstItem="IoP-vg-Ced" firstAttribute="top" secondItem="jTU-FA-KtZ" secondAttribute="bottom" constant="20" id="qfm-QB-wKy"/>
+                            <constraint firstItem="mdz-QT-bCM" firstAttribute="top" secondItem="cPV-jm-aXa" secondAttribute="bottom" constant="8" id="rAe-lB-6Tw"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="code" destination="jTU-FA-KtZ" id="WGr-Ok-32g"/>
                         <outlet property="doneButton" destination="IoP-vg-Ced" id="jhj-qw-t7h"/>
-                        <outlet property="resendCode" destination="2G4-ry-8DQ" id="P8b-Tq-FcT"/>
-                        <segue destination="3Ew-5a-FmN" kind="show" id="FDM-69-32V"/>
+                        <outlet property="resendCodeButton" destination="2G4-ry-8DQ" id="r0p-Kr-HUY"/>
+                        <segue destination="3Ew-5a-FmN" kind="show" identifier="add_info" id="FDM-69-32V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyD-3W-b8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="797"/>
+            <point key="canvasLocation" x="324" y="796.55172413793105"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="X25-28-sdc">
@@ -343,6 +460,491 @@
             </objects>
             <point key="canvasLocation" x="2638" y="125"/>
         </scene>
+        <!--Privacy View Controller-->
+        <scene sceneID="6CE-VA-Bjw">
+            <objects>
+                <viewController storyboardIdentifier="privacy" id="1YI-Xq-H2c" customClass="PrivacyViewController" customModule="Wingman" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bhr-hL-OZO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ujd-DX-mzn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w4G-yB-LAa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-isolated" translatesAutoresizingMaskIntoConstraints="NO" id="wfw-s7-vP6">
+                                <rect key="frame" x="158" y="20" width="58" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="58" id="KCa-ko-4ty"/>
+                                    <constraint firstAttribute="height" constant="58" id="Xvr-Hx-Qqs"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wingman Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFK-Jo-o08">
+                                <rect key="frame" x="69" y="86" width="237.5" height="27.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5w-xT-Pv7">
+                                <rect key="frame" x="25" y="128" width="325" height="447"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Wingman Privacy Policy
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Updated February 21, 2018
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Information Collection and Use
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="14" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Account and Profile Information
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">An account is needed to access every feature of the app. When an account is created we require information such as your name and phone number (“Personal Identifiable Information or “PII”).  This information is collected to create a unique user account so users can access the entire app.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Contacts">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+ICAKA
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Wingman uses your contacts so you can easily add your friends in the app. We can only access your contacts in your device’s address book should you provide us authorization. Access to contacts will be used to find users you may know and to send and accept friend requests.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Information Sent by Your Mobile Device
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Like most web and mobile applications, we may collect certain information that your mobile device sends when you use our app, such as cookies, web beacons, web storage, log data, and log information.  We may use the mentioned information to identify that you’ve logged in to the Services, to better understand how you interact with our Services, to monitor aggregate usage and web traffic routing on our Services and to customize and improve our Services
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" lineHeightMultiple="1.1500000000000001" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Information Sharing and Disclosure
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="14" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Information Shared with other Users
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">As part of our app, you may communicate with other users through group chat sessions. In order to add other users as friends, we may need to share your username with other users. Content you share with other users throughout the app will also require your authorization. 
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Information Shared with Service Providers
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">We may engage third-party service providers to perform services on our behalf.  Should we contact providers for services, they will only have access to your PII in the extent that it helps us better improve our app and will not be allowed to disclose or use you PII for any other purpose. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Information Shared with Third Parties
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">We do not share user data with third parties and do not plan to unless required for legal purposes to comply with the law.
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Information Control
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="14" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Opt-Out
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">We allow each user to determine if they want to share PII with us. If the user the does not provide the necessary PII that we request, the user may not be able to access every feature in the app. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Changing Information
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Users will have the ability to change, edit, or delete PII in the user account settings. Users will also have the ability to permanently delete their account.
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Policy on Children
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="14" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Our app is not intended for or directed to anyone under 13. We do not knowingly collect information from anyone under the age of 13. If we discover that a user has inputted personal information indicating they are under 13 years of age we will immediately take the steps necessary to remove the information and account. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Location of Information
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="14" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Personal information shared with us may be located in various facilities between us and our service providers. Note that information may be stored in countries other than your home country. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Policy Changes and Updates
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="14" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">This policy may be updated from time to time. If a change is made to the policy, we will take the following actions depending on how material we believe the change is. Users may be notified of changes to the policy in the app if we deem the change significant or change the updated date in the policy itself for lesser changes. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFZ-a5-GXb">
+                                <rect key="frame" x="22" y="20" width="42" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="6tF-7h-6Ke"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="close:" destination="1YI-Xq-H2c" eventType="touchUpInside" id="fIM-MH-DEh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="l5w-xT-Pv7" secondAttribute="trailing" constant="25" id="09V-wm-dda"/>
+                            <constraint firstItem="l5w-xT-Pv7" firstAttribute="centerX" secondItem="w4G-yB-LAa" secondAttribute="centerX" id="3aP-RB-TsP"/>
+                            <constraint firstItem="UFK-Jo-o08" firstAttribute="centerX" secondItem="w4G-yB-LAa" secondAttribute="centerX" id="801-iG-O39"/>
+                            <constraint firstItem="Ujd-DX-mzn" firstAttribute="top" secondItem="l5w-xT-Pv7" secondAttribute="bottom" constant="92" id="A7N-KF-G3u"/>
+                            <constraint firstItem="UFK-Jo-o08" firstAttribute="top" secondItem="wfw-s7-vP6" secondAttribute="bottom" constant="8" id="DPZ-zU-GgY"/>
+                            <constraint firstItem="oFZ-a5-GXb" firstAttribute="top" secondItem="bhr-hL-OZO" secondAttribute="bottom" id="GMz-Ck-Hat"/>
+                            <constraint firstItem="oFZ-a5-GXb" firstAttribute="leading" secondItem="w4G-yB-LAa" secondAttribute="leading" constant="22" id="LqZ-zL-dOo"/>
+                            <constraint firstItem="l5w-xT-Pv7" firstAttribute="top" secondItem="UFK-Jo-o08" secondAttribute="bottom" constant="14.5" id="OVT-Vb-3uy"/>
+                            <constraint firstItem="wfw-s7-vP6" firstAttribute="top" secondItem="bhr-hL-OZO" secondAttribute="bottom" id="fTb-Te-o4s"/>
+                            <constraint firstItem="l5w-xT-Pv7" firstAttribute="leading" secondItem="w4G-yB-LAa" secondAttribute="leading" constant="25" id="g7x-ad-9Ir"/>
+                            <constraint firstItem="wfw-s7-vP6" firstAttribute="centerX" secondItem="w4G-yB-LAa" secondAttribute="centerX" id="him-yY-wfY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dDW-l9-7Bm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-87.200000000000003" y="-884.70764617691157"/>
+        </scene>
         <!--Friends-->
         <scene sceneID="jaX-zt-Gos">
             <objects>
@@ -366,7 +968,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNr-c8-e9w">
-                                            <rect key="frame" x="64" y="12" width="188.5" height="18.5"/>
+                                            <rect key="frame" x="64" y="12" width="220" height="21.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="dNr-c8-e9w" secondAttribute="height" multiplier="214:21" id="9iz-4v-Uok"/>
                                             </constraints>
@@ -375,7 +977,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuu-Op-voN">
-                                            <rect key="frame" x="260.5" y="15" width="98.5" height="30"/>
+                                            <rect key="frame" x="292" y="15" width="67" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="67" id="ARx-wC-u4E"/>
+                                            </constraints>
                                             <state key="normal" title="Add">
                                                 <color key="titleColor" red="0.0034440995659999999" green="0.60855787989999999" blue="0.81270182130000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
@@ -384,7 +989,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSo-eT-9wX">
-                                            <rect key="frame" x="64" y="31.5" width="188.5" height="18"/>
+                                            <rect key="frame" x="64" y="34.5" width="220" height="15"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -475,21 +1080,99 @@
                                     <action selector="done:" destination="6Hi-kL-AUg" eventType="touchUpInside" id="xJD-nf-EMZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEU-xr-aFC">
-                                <rect key="frame" x="122" y="122" width="130" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleColor" red="0.0034440995659999999" green="0.60855787989999999" blue="0.81270182130000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ewk-Kz-bcH">
+                                <rect key="frame" x="136.5" y="78" width="102" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="101" id="a4s-bM-LIR"/>
+                                    <constraint firstAttribute="width" constant="102" id="af0-sl-eH3"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnC-UE-IBD">
+                                <rect key="frame" x="114" y="187" width="146" height="30"/>
+                                <state key="normal" title="Change profile image"/>
                                 <connections>
-                                    <action selector="logout:" destination="6Hi-kL-AUg" eventType="touchUpInside" id="6tI-sa-lgB"/>
+                                    <action selector="changeProfile:" destination="6Hi-kL-AUg" eventType="touchUpInside" id="KR1-gs-i9Z"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.2.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5g9-dy-gqR">
+                                <rect key="frame" x="114" y="414" width="146" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0JH-xj-SIf">
+                                <rect key="frame" x="114" y="338" width="146" height="30"/>
+                                <state key="normal" title="Privacy Policy"/>
+                                <connections>
+                                    <action selector="privacy:" destination="6Hi-kL-AUg" eventType="touchUpInside" id="U5t-Wp-K5j"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTm-BG-Pdp">
+                                <rect key="frame" x="114" y="472" width="146" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="6Hi-kL-AUg" eventType="touchUpInside" id="fQ8-99-yOO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFF-HA-J4U">
+                                <rect key="frame" x="114" y="300" width="146" height="30"/>
+                                <state key="normal" title="Terms of Service"/>
+                                <connections>
+                                    <action selector="terms:" destination="6Hi-kL-AUg" eventType="touchUpInside" id="IUb-rx-yaw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3AH-aR-APE">
+                                <rect key="frame" x="114" y="262" width="146" height="30"/>
+                                <state key="normal" title="Contact"/>
+                                <connections>
+                                    <action selector="contact:" destination="6Hi-kL-AUg" eventType="touchUpInside" id="RH2-8y-ruX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-mT-tAB">
+                                <rect key="frame" x="114" y="376" width="146" height="30"/>
+                                <state key="normal" title="Credits"/>
+                                <connections>
+                                    <action selector="credits:" destination="6Hi-kL-AUg" eventType="touchUpInside" id="UDN-T4-8aL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andrew Burns" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFk-m4-lWM">
+                                <rect key="frame" x="114" y="443" width="146" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0JH-xj-SIf" firstAttribute="centerX" secondItem="AFF-HA-J4U" secondAttribute="centerX" id="4SU-ge-y7R"/>
+                            <constraint firstItem="AFF-HA-J4U" firstAttribute="top" secondItem="3AH-aR-APE" secondAttribute="bottom" constant="8" id="6fw-L4-sXH"/>
+                            <constraint firstItem="AFF-HA-J4U" firstAttribute="width" secondItem="3AH-aR-APE" secondAttribute="width" id="8mD-gV-HO6"/>
+                            <constraint firstItem="dFk-m4-lWM" firstAttribute="centerX" secondItem="5g9-dy-gqR" secondAttribute="centerX" id="DpT-Uz-deQ"/>
+                            <constraint firstItem="dFk-m4-lWM" firstAttribute="width" secondItem="5g9-dy-gqR" secondAttribute="width" id="HXs-9L-khX"/>
+                            <constraint firstItem="0JH-xj-SIf" firstAttribute="width" secondItem="AFF-HA-J4U" secondAttribute="width" id="Hs9-Ub-rbj"/>
+                            <constraint firstItem="Hca-mT-tAB" firstAttribute="top" secondItem="0JH-xj-SIf" secondAttribute="bottom" constant="8" id="Kbp-x3-vbh"/>
+                            <constraint firstItem="Ewk-Kz-bcH" firstAttribute="top" secondItem="L95-wu-fzo" secondAttribute="bottom" constant="58" id="Lvn-VA-tpQ"/>
+                            <constraint firstItem="5g9-dy-gqR" firstAttribute="centerX" secondItem="Hca-mT-tAB" secondAttribute="centerX" id="OZV-ZF-LPJ"/>
+                            <constraint firstItem="Hca-mT-tAB" firstAttribute="centerX" secondItem="0JH-xj-SIf" secondAttribute="centerX" id="RNs-IJ-uxx"/>
+                            <constraint firstItem="3AH-aR-APE" firstAttribute="centerX" secondItem="mnC-UE-IBD" secondAttribute="centerX" id="TTf-yd-ZE4"/>
+                            <constraint firstItem="AFF-HA-J4U" firstAttribute="centerX" secondItem="3AH-aR-APE" secondAttribute="centerX" id="WM8-9D-lvw"/>
+                            <constraint firstItem="5g9-dy-gqR" firstAttribute="top" secondItem="Hca-mT-tAB" secondAttribute="bottom" constant="8" id="XUv-h4-uF7"/>
+                            <constraint firstItem="Hca-mT-tAB" firstAttribute="width" secondItem="0JH-xj-SIf" secondAttribute="width" id="c34-Pw-qiH"/>
+                            <constraint firstItem="3AH-aR-APE" firstAttribute="top" secondItem="mnC-UE-IBD" secondAttribute="bottom" constant="45" id="f5N-WB-RDI"/>
+                            <constraint firstItem="iTm-BG-Pdp" firstAttribute="width" secondItem="dFk-m4-lWM" secondAttribute="width" id="fpL-Jo-Szu"/>
+                            <constraint firstItem="0JH-xj-SIf" firstAttribute="top" secondItem="AFF-HA-J4U" secondAttribute="bottom" constant="8" id="hCt-IZ-YeF"/>
+                            <constraint firstItem="iTm-BG-Pdp" firstAttribute="top" secondItem="dFk-m4-lWM" secondAttribute="bottom" constant="8" id="jCH-yM-Ro1"/>
+                            <constraint firstItem="5g9-dy-gqR" firstAttribute="width" secondItem="Hca-mT-tAB" secondAttribute="width" id="jzg-ha-kMe"/>
+                            <constraint firstItem="3AH-aR-APE" firstAttribute="width" secondItem="mnC-UE-IBD" secondAttribute="width" id="qiK-TG-tkh"/>
+                            <constraint firstItem="Ewk-Kz-bcH" firstAttribute="centerX" secondItem="BlI-Gs-Dxo" secondAttribute="centerX" id="qwn-LC-evG"/>
+                            <constraint firstItem="mnC-UE-IBD" firstAttribute="top" secondItem="Ewk-Kz-bcH" secondAttribute="bottom" constant="8" id="uAX-Qf-BtI"/>
+                            <constraint firstItem="mnC-UE-IBD" firstAttribute="centerX" secondItem="BlI-Gs-Dxo" secondAttribute="centerX" id="xLS-Fk-FMP"/>
+                            <constraint firstItem="iTm-BG-Pdp" firstAttribute="centerX" secondItem="dFk-m4-lWM" secondAttribute="centerX" id="z7I-e0-b31"/>
+                            <constraint firstItem="dFk-m4-lWM" firstAttribute="top" secondItem="5g9-dy-gqR" secondAttribute="bottom" constant="8" id="zq5-m2-UKQ"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="Ewk-Kz-bcH" id="CZi-7E-zP4"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toLogin" id="wjR-KH-DnT"/>
                     </connections>
                 </viewController>
@@ -510,7 +1193,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JuV-ld-gu4">
-                                <rect key="frame" x="16" y="163" width="343" height="341"/>
+                                <rect key="frame" x="16" y="163" width="343" height="348"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Djn-KQ-VCl">
                                         <rect key="frame" x="117" y="32" width="109" height="108"/>
@@ -536,9 +1219,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w88-Ls-xdb">
-                                        <rect key="frame" x="73" y="220.5" width="196" height="42"/>
+                                        <rect key="frame" x="83" y="230.5" width="177" height="42"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="196" id="11s-ho-ydW"/>
+                                            <constraint firstAttribute="width" constant="177" id="11s-ho-ydW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Add Friend">
@@ -568,7 +1251,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Crc-UU-r9n" kind="show" id="cuM-9P-wUd"/>
+                                            <segue destination="Crc-UU-r9n" kind="show" identifier="findfriends" id="cuM-9P-wUd"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCs-wW-kAg">
@@ -581,7 +1264,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5T-ig-RfH">
-                                        <rect key="frame" x="83" y="265.5" width="177" height="40"/>
+                                        <rect key="frame" x="83" y="287.5" width="177" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="177" id="iJw-nT-311"/>
                                         </constraints>
@@ -598,16 +1281,16 @@
                                 <constraints>
                                     <constraint firstItem="zHy-Y0-RKJ" firstAttribute="leading" secondItem="JuV-ld-gu4" secondAttribute="leading" constant="35" id="Dto-3R-YI2"/>
                                     <constraint firstItem="JB7-wJ-NQK" firstAttribute="top" secondItem="JuV-ld-gu4" secondAttribute="top" constant="32" id="E3f-3V-RLa"/>
-                                    <constraint firstAttribute="height" constant="341" id="GYh-iH-1Fi"/>
+                                    <constraint firstAttribute="height" constant="348" id="GYh-iH-1Fi"/>
                                     <constraint firstAttribute="width" constant="343" id="Mv2-Nd-Kan"/>
-                                    <constraint firstItem="w88-Ls-xdb" firstAttribute="top" secondItem="tCs-wW-kAg" secondAttribute="bottom" constant="5" id="YGf-RK-LhI"/>
+                                    <constraint firstItem="w88-Ls-xdb" firstAttribute="top" secondItem="tCs-wW-kAg" secondAttribute="bottom" constant="15" id="YGf-RK-LhI"/>
                                     <constraint firstItem="Djn-KQ-VCl" firstAttribute="centerX" secondItem="JuV-ld-gu4" secondAttribute="centerX" id="c68-I8-3r4"/>
                                     <constraint firstItem="L5T-ig-RfH" firstAttribute="centerX" secondItem="JuV-ld-gu4" secondAttribute="centerX" id="f68-sT-q8H"/>
                                     <constraint firstAttribute="trailing" secondItem="JB7-wJ-NQK" secondAttribute="trailing" constant="36" id="gnt-d3-598"/>
                                     <constraint firstItem="tCs-wW-kAg" firstAttribute="centerX" secondItem="JuV-ld-gu4" secondAttribute="centerX" id="kJV-j2-WwZ"/>
                                     <constraint firstItem="w88-Ls-xdb" firstAttribute="centerX" secondItem="JuV-ld-gu4" secondAttribute="centerX" id="lN1-bL-kQa"/>
                                     <constraint firstItem="tCs-wW-kAg" firstAttribute="top" secondItem="aiu-H4-51W" secondAttribute="bottom" constant="8" id="mtp-jb-byJ"/>
-                                    <constraint firstItem="L5T-ig-RfH" firstAttribute="top" secondItem="w88-Ls-xdb" secondAttribute="bottom" constant="3" id="pVI-If-W0C"/>
+                                    <constraint firstItem="L5T-ig-RfH" firstAttribute="top" secondItem="w88-Ls-xdb" secondAttribute="bottom" constant="15" id="pVI-If-W0C"/>
                                     <constraint firstItem="aiu-H4-51W" firstAttribute="top" secondItem="Djn-KQ-VCl" secondAttribute="bottom" constant="12" id="rsP-X6-7u1"/>
                                     <constraint firstItem="zHy-Y0-RKJ" firstAttribute="top" secondItem="JuV-ld-gu4" secondAttribute="top" constant="39" id="rsn-vR-9ku"/>
                                     <constraint firstItem="Djn-KQ-VCl" firstAttribute="top" secondItem="JuV-ld-gu4" secondAttribute="top" constant="32" id="y28-tS-v7O"/>
@@ -619,7 +1302,7 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="JuV-ld-gu4" secondAttribute="trailing" id="CFb-kR-EIj"/>
                             <constraint firstItem="JuV-ld-gu4" firstAttribute="centerX" secondItem="UUr-jV-7ue" secondAttribute="centerX" id="PZK-O9-AtQ"/>
-                            <constraint firstItem="JuV-ld-gu4" firstAttribute="centerY" secondItem="UUr-jV-7ue" secondAttribute="centerY" id="THd-IW-yKo"/>
+                            <constraint firstItem="JuV-ld-gu4" firstAttribute="centerY" secondItem="UUr-jV-7ue" secondAttribute="centerY" constant="3.5" id="THd-IW-yKo"/>
                             <constraint firstAttribute="leadingMargin" secondItem="JuV-ld-gu4" secondAttribute="leading" id="flo-Dg-hfg"/>
                         </constraints>
                     </view>
@@ -673,15 +1356,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJh-QU-Jf9">
-                                            <rect key="frame" x="287" y="20" width="72" height="30"/>
-                                            <state key="normal" title="Checkbox">
-                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="clickCheckBox:" destination="l3D-e0-eLh" eventType="touchUpInside" id="CSS-MN-HbN"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEO-DB-Nz8">
                                             <rect key="frame" x="70" y="35.5" width="209" height="20.5"/>
                                             <constraints>
@@ -696,19 +1370,14 @@
                                         <constraint firstItem="qEO-DB-Nz8" firstAttribute="leading" secondItem="jrI-2d-rAb" secondAttribute="trailing" constant="17" id="2SA-xY-uey"/>
                                         <constraint firstItem="qEO-DB-Nz8" firstAttribute="top" secondItem="hQE-Jw-OSd" secondAttribute="bottom" constant="8" id="8GO-Qp-tj0"/>
                                         <constraint firstItem="qEO-DB-Nz8" firstAttribute="width" secondItem="hQE-Jw-OSd" secondAttribute="width" id="9fI-oM-J2Y"/>
-                                        <constraint firstItem="yJh-QU-Jf9" firstAttribute="leading" secondItem="hQE-Jw-OSd" secondAttribute="trailing" constant="8" id="Kqi-Au-ImJ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="qEO-DB-Nz8" secondAttribute="bottom" constant="3" id="NaQ-XG-vNO"/>
                                         <constraint firstItem="jrI-2d-rAb" firstAttribute="centerY" secondItem="p8y-Qk-BSF" secondAttribute="centerY" id="ZHR-63-2He"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="yJh-QU-Jf9" secondAttribute="trailing" id="dfM-aE-2ek"/>
-                                        <constraint firstItem="yJh-QU-Jf9" firstAttribute="leading" secondItem="qEO-DB-Nz8" secondAttribute="trailing" constant="8" id="h6S-EI-wiy"/>
                                         <constraint firstItem="hQE-Jw-OSd" firstAttribute="leading" secondItem="jrI-2d-rAb" secondAttribute="trailing" constant="17" id="jbM-hp-MZP"/>
                                         <constraint firstItem="jrI-2d-rAb" firstAttribute="leading" secondItem="p8y-Qk-BSF" secondAttribute="leadingMargin" id="kt4-sX-yLh"/>
                                         <constraint firstItem="jrI-2d-rAb" firstAttribute="top" secondItem="p8y-Qk-BSF" secondAttribute="topMargin" constant="8" id="uaM-Fu-5vP"/>
-                                        <constraint firstItem="yJh-QU-Jf9" firstAttribute="centerY" secondItem="p8y-Qk-BSF" secondAttribute="centerY" id="xOZ-CC-yUD"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="checkbox" destination="yJh-QU-Jf9" id="0kx-nm-7uB"/>
                                     <outlet property="nameLabel" destination="hQE-Jw-OSd" id="b3J-WW-dqv"/>
                                     <outlet property="userImage" destination="jrI-2d-rAb" id="zx0-hz-fch"/>
                                     <outlet property="userNameLabel" destination="qEO-DB-Nz8" id="2cB-gX-hvI"/>
@@ -1072,7 +1741,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXq-3F-oD5">
-                                        <rect key="frame" x="184" y="260" width="151" height="21"/>
+                                        <rect key="frame" x="149" y="260" width="186" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1090,11 +1759,11 @@
                                             <constraint firstAttribute="height" constant="36" id="2u5-WJ-Nbf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nK5-2H-3gS">
                                         <rect key="frame" x="74" y="303" width="196" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <state key="normal" title="Send Message">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1129,7 +1798,7 @@
                                     <constraint firstItem="ENH-7i-jJQ" firstAttribute="top" secondItem="nK5-2H-3gS" secondAttribute="bottom" constant="8" id="gP0-YN-dTE"/>
                                     <constraint firstItem="0Bw-IC-kNp" firstAttribute="trailing" secondItem="7A2-Xh-PSb" secondAttribute="trailingMargin" id="kxO-bf-Dbv"/>
                                     <constraint firstItem="FXq-3F-oD5" firstAttribute="top" secondItem="D34-JM-d2j" secondAttribute="bottom" constant="7" id="mbd-4W-9Pe"/>
-                                    <constraint firstItem="FXq-3F-oD5" firstAttribute="leading" secondItem="J7z-JL-0YM" secondAttribute="trailing" constant="25" id="t5T-zN-Ccj"/>
+                                    <constraint firstItem="FXq-3F-oD5" firstAttribute="leading" secondItem="J7z-JL-0YM" secondAttribute="trailing" constant="-10" id="t5T-zN-Ccj"/>
                                     <constraint firstItem="J7z-JL-0YM" firstAttribute="baseline" secondItem="FXq-3F-oD5" secondAttribute="firstBaseline" id="toA-8I-6ca"/>
                                     <constraint firstItem="0Bw-IC-kNp" firstAttribute="leading" secondItem="J7z-JL-0YM" secondAttribute="leading" id="xP1-Jw-Ife"/>
                                     <constraint firstItem="U5D-J5-0YH" firstAttribute="top" secondItem="7A2-Xh-PSb" secondAttribute="top" constant="80" id="xwk-B0-esq"/>
@@ -1148,6 +1817,7 @@
                     <navigationItem key="navigationItem" title="Title" id="FLP-bT-UrW"/>
                     <connections>
                         <outlet property="mainView" destination="7A2-Xh-PSb" id="kS0-Vs-0h5"/>
+                        <outlet property="sendButton" destination="nK5-2H-3gS" id="z5M-JG-R6V"/>
                         <outlet property="sendMessageButton" destination="nK5-2H-3gS" id="N2g-Jz-xKY"/>
                         <outlet property="textInput" destination="0Bw-IC-kNp" id="XEN-LH-E32"/>
                         <outlet property="user1Image" destination="oY7-Ju-txU" id="zJS-4L-rCj"/>
@@ -1271,13 +1941,999 @@
             </objects>
             <point key="canvasLocation" x="3041" y="-2100"/>
         </scene>
+        <!--Terms View Controller-->
+        <scene sceneID="PZI-A3-kct">
+            <objects>
+                <viewController storyboardIdentifier="terms" id="aDR-B0-NoC" customClass="TermsViewController" customModule="Wingman" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jJR-i8-F9k"/>
+                        <viewControllerLayoutGuide type="bottom" id="RoZ-MZ-3Le"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2u5-rO-vZy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-isolated" translatesAutoresizingMaskIntoConstraints="NO" id="OO9-Hg-9BC">
+                                <rect key="frame" x="158" y="20" width="58" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="58" id="4CK-fS-7hj"/>
+                                    <constraint firstAttribute="height" constant="58" id="jNs-Ed-7q1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wingman Terms of Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvO-5p-Bx1">
+                                <rect key="frame" x="55" y="86" width="265" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNb-de-eaQ">
+                                <rect key="frame" x="25" y="128" width="325" height="447"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Wingman Terms of Service
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Updated February 23, 2018
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">You are agreeing to all of the following terms when you download and use Wingman.
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Use of Service
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">When you agree to these terms of service, we grant you a non-exclusive, non-transferable, non-sublicensable, revocable and limited license to use Wingman as a service. Two limits to this limited license is that every user must 13 years of age and the service must be used for non-commercial purposes. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">User’s Rights
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Users may not use Wingman in any of the following ways: to bully or harass other users, to spam other users, to promote another business for financial interests, or to engage in or promote illegal activities.
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Our Rights
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Wingman may suspend or delete accounts or access to our service if we believe you are failing to comply with the terms of this agreement. 
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Disclaimer of Warranties
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Wingman is a service for use without warranties of any kid. The app must be used at your own risk. Wingman is not liable to you relating your use of the service.
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Law
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">By agreeing to these terms you agree to resolve all disputes exclusively in the United States.
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Agreement
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">These Terms of Service provide the entire relationship between you and Wingman. Any updates to this term of service will be marked by a change in the date at the top of this document. </string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="TrebuchetMS"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASL-QP-MpQ">
+                                <rect key="frame" x="22" y="20" width="42" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="8pB-4w-ndf"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="close:" destination="aDR-B0-NoC" eventType="touchUpInside" id="fCz-nj-CxX"/>
+                                    <action selector="exit:" destination="aDR-B0-NoC" eventType="touchUpInside" id="6Xs-K2-87T"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OO9-Hg-9BC" firstAttribute="centerX" secondItem="2u5-rO-vZy" secondAttribute="centerX" id="0ni-AC-W4O"/>
+                            <constraint firstItem="ASL-QP-MpQ" firstAttribute="leading" secondItem="2u5-rO-vZy" secondAttribute="leading" constant="22" id="7vc-Pt-QVP"/>
+                            <constraint firstItem="BvO-5p-Bx1" firstAttribute="centerX" secondItem="2u5-rO-vZy" secondAttribute="centerX" id="Bs7-PR-9wJ"/>
+                            <constraint firstItem="BvO-5p-Bx1" firstAttribute="top" secondItem="OO9-Hg-9BC" secondAttribute="bottom" constant="8" id="Tb3-dJ-VaP"/>
+                            <constraint firstItem="RoZ-MZ-3Le" firstAttribute="top" secondItem="zNb-de-eaQ" secondAttribute="bottom" constant="92" id="UUd-Dz-Nua"/>
+                            <constraint firstItem="zNb-de-eaQ" firstAttribute="top" secondItem="BvO-5p-Bx1" secondAttribute="bottom" constant="14.5" id="Xgs-Xg-gqw"/>
+                            <constraint firstItem="zNb-de-eaQ" firstAttribute="leading" secondItem="2u5-rO-vZy" secondAttribute="leading" constant="25" id="fdU-3F-IDd"/>
+                            <constraint firstItem="zNb-de-eaQ" firstAttribute="centerX" secondItem="2u5-rO-vZy" secondAttribute="centerX" id="go1-LR-1gj"/>
+                            <constraint firstItem="OO9-Hg-9BC" firstAttribute="top" secondItem="jJR-i8-F9k" secondAttribute="bottom" id="miO-XG-jQ0"/>
+                            <constraint firstItem="ASL-QP-MpQ" firstAttribute="top" secondItem="jJR-i8-F9k" secondAttribute="bottom" id="v6v-1M-q1R"/>
+                            <constraint firstAttribute="trailing" secondItem="zNb-de-eaQ" secondAttribute="trailing" constant="25" id="xR6-qk-41Y"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G4y-8O-zTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-740" y="-885"/>
+        </scene>
+        <!--Credits View Controller-->
+        <scene sceneID="PZI-ly-oeo">
+            <objects>
+                <viewController storyboardIdentifier="credits" id="iI4-lz-AsX" customClass="CreditsViewController" customModule="Wingman" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AAG-RK-tMb"/>
+                        <viewControllerLayoutGuide type="bottom" id="CXC-px-jvO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cnF-PH-ckV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-isolated" translatesAutoresizingMaskIntoConstraints="NO" id="P0e-i1-xRb">
+                                <rect key="frame" x="158" y="20" width="58" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="58" id="S9o-ss-aYw"/>
+                                    <constraint firstAttribute="height" constant="58" id="hpi-b5-6KT"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wingman Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mib-9E-XC8">
+                                <rect key="frame" x="102" y="86" width="172" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KU-YJ-0t5">
+                                <rect key="frame" x="25" y="128" width="325" height="447"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content"># Acknowledgements
+This application makes use of the following third party libraries:
+
+## Firebase
+
+Copyright 2017 Google
+
+## FirebaseAnalytics
+
+Copyright 2017 Google
+
+## FirebaseAuth
+
+Copyright 2017 Google
+
+## FirebaseCore
+
+Copyright 2017 Google
+
+## FirebaseDatabase
+
+Copyright 2017 Google
+
+## FirebaseInstanceID
+
+Copyright 2017 Google
+
+## FirebaseMessaging
+
+Copyright 2017 Google
+
+## FirebaseStorage
+
+Copyright 2017 Google
+
+## GTMSessionFetcher
+
+
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+## GoogleToolboxForMac
+
+
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+## IQKeyboardManagerSwift
+
+IQKeyboardManager license
+=========================
+
+The MIT License (MIT)
+
+Copyright (c) 2013-16 Iftekhar Qurashi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+## MarqueeLabel
+
+Copyright (c) 2011-2017 Charles Powell
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
+the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
+to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+
+## NotificationBannerSwift
+
+Copyright (c) 2017 Daltron &lt;daltonhint4@gmail.com&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+## Protobuf
+
+This license applies to all parts of Protocol Buffers except the following:
+
+  - Atomicops support for generic gcc, located in
+    src/google/protobuf/stubs/atomicops_internals_generic_gcc.h.
+    This file is copyrighted by Red Hat Inc.
+
+  - Atomicops support for AIX/POWER, located in
+    src/google/protobuf/stubs/atomicops_internals_power.h.
+    This file is copyrighted by Bloomberg Finance LP.
+
+Copyright 2014, Google Inc.  All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+    * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Code generated by the Protocol Buffer compiler is owned by the owner
+of the input file used when generating it.  This code is not
+standalone and requires a support library to be linked with it.  This
+support library is itself covered by the above license.
+
+
+## ReachabilitySwift
+
+Copyright (c) 2016 Ashley Mills
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+## SnapKit
+
+Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+## nanopb
+
+Copyright (c) 2011 Petteri Aimonen &lt;jpa at nanopb.mail.kapsi.fi&gt;
+
+This software is provided 'as-is', without any express or 
+implied warranty. In no event will the authors be held liable 
+for any damages arising from the use of this software.
+
+Permission is granted to anyone to use this software for any 
+purpose, including commercial applications, and to alter it and 
+redistribute it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you 
+   must not claim that you wrote the original software. If you use 
+   this software in a product, an acknowledgment in the product 
+   documentation would be appreciated but is not required.
+
+2. Altered source versions must be plainly marked as such, and 
+   must not be misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any source 
+   distribution.
+
+Generated by CocoaPods - https://cocoapods.org
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name="TrebuchetMS-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2e5-yx-g5n">
+                                <rect key="frame" x="22" y="20" width="42" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="ZAr-uG-XkW"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="close:" destination="iI4-lz-AsX" eventType="touchUpInside" id="F0A-NN-i0x"/>
+                                    <action selector="exit:" destination="iI4-lz-AsX" eventType="touchUpInside" id="0wc-Lm-pBu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2e5-yx-g5n" firstAttribute="leading" secondItem="cnF-PH-ckV" secondAttribute="leading" constant="22" id="28P-Uy-6H3"/>
+                            <constraint firstItem="Mib-9E-XC8" firstAttribute="top" secondItem="P0e-i1-xRb" secondAttribute="bottom" constant="8" id="3id-UD-by1"/>
+                            <constraint firstItem="P0e-i1-xRb" firstAttribute="top" secondItem="AAG-RK-tMb" secondAttribute="bottom" id="Cva-dx-Y5q"/>
+                            <constraint firstItem="2e5-yx-g5n" firstAttribute="top" secondItem="AAG-RK-tMb" secondAttribute="bottom" id="CxP-20-5Sg"/>
+                            <constraint firstItem="CXC-px-jvO" firstAttribute="top" secondItem="1KU-YJ-0t5" secondAttribute="bottom" constant="92" id="PLi-UF-DYr"/>
+                            <constraint firstItem="P0e-i1-xRb" firstAttribute="centerX" secondItem="cnF-PH-ckV" secondAttribute="centerX" id="WGX-de-62f"/>
+                            <constraint firstAttribute="trailing" secondItem="1KU-YJ-0t5" secondAttribute="trailing" constant="25" id="Zin-7A-f9e"/>
+                            <constraint firstItem="1KU-YJ-0t5" firstAttribute="leading" secondItem="cnF-PH-ckV" secondAttribute="leading" constant="25" id="cb1-hq-gS8"/>
+                            <constraint firstItem="1KU-YJ-0t5" firstAttribute="top" secondItem="Mib-9E-XC8" secondAttribute="bottom" constant="14.5" id="elt-jM-9C1"/>
+                            <constraint firstItem="1KU-YJ-0t5" firstAttribute="centerX" secondItem="cnF-PH-ckV" secondAttribute="centerX" id="zMq-5V-02d"/>
+                            <constraint firstItem="Mib-9E-XC8" firstAttribute="centerX" secondItem="cnF-PH-ckV" secondAttribute="centerX" id="zrg-Fi-io0"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xTk-aK-m6j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1471" y="-886"/>
+        </scene>
     </scenes>
     <resources>
         <image name="logo-clear" width="2035" height="2035"/>
+        <image name="logo-isolated" width="2035" height="2035"/>
         <image name="user" width="700" height="700"/>
+        <image name="wingman-logo-iso" width="593" height="184"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tMQ-dL-HxF"/>
-        <segue reference="wjR-KH-DnT"/>
+        <segue reference="uie-ce-g65"/>
     </inferredMetricsTieBreakers>
 </document>

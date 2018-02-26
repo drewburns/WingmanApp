@@ -26,12 +26,21 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
     let reachability = Reachability()!
     var internet = ""
     
+    @IBOutlet weak var sendButton: UIButton!
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            sendFunction()
+//            return false
+        }
+        return true
+    }
     
     func internetChanged(note: Notification) {
         
     }
     
-    @IBAction func sendMessage(_ sender: Any) {
+    func sendFunction() {
         if textInput.text != "" {
             let alert = UIAlertController(title: nil, message: "", preferredStyle: .alert)
             
@@ -49,8 +58,9 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
         } else {
             print("Please enter some text")
         }
-
-      
+    }
+    @IBAction func sendMessage(_ sender: Any) {
+        sendFunction()
     }
     
     func createFirstMessage(setupId: String) {
@@ -215,12 +225,29 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         textInput.delegate = self
-        user1Image.loadImageUsingCacheWithUrlString((users[0].profileImageURL)!)
-        user2Image.loadImageUsingCacheWithUrlString((users[1].profileImageURL)!)
+        
+        self.sendButton.backgroundColor = UIColor.white
+        self.sendButton.setTitleColor(UIColor.black, for: .normal)
+        self.sendButton.layer.cornerRadius = 15
+
+        if users[0].profileImageURL != nil {
+            user1Image.loadImageUsingCacheWithUrlString((users[0].profileImageURL)!)
+        } else {
+            user1Image.image = #imageLiteral(resourceName: "logo")
+        }
+        if users[1].profileImageURL != nil {
+            user2Image.loadImageUsingCacheWithUrlString((users[1].profileImageURL)!)
+        } else {
+            user2Image.image = #imageLiteral(resourceName: "logo")
+        }
+//        user1Image.loadImageUsingCacheWithUrlString((users[0].profileImageURL)!)
+//        user2Image.loadImageUsingCacheWithUrlString((users[1].profileImageURL)!)
+//        user1Image.image = #imageLiteral(resourceName: "logo")
+//        user2Image.image = #imageLiteral(resourceName: "logo")
         user1Image.maskCircle()
         user2Image.maskCircle()
-        user1Name.text = users[0].name
-        user2Name.text = users[1].name
+        user1Name.text = users[0].name?.components(separatedBy: " ")[0]
+        user2Name.text = users[1].name?.components(separatedBy: " ")[0]
         mainView.layer.cornerRadius = 5;
         mainView.layer.masksToBounds = true;
         self.hideKeyboardWhenTappedAround()
@@ -266,6 +293,7 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
 

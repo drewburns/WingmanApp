@@ -402,9 +402,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     fileprivate func setupCell(_ cell: ChatMessageCell, message: Message) {
-        if let profileImageUrl = self.user?.profileImageURL {
-            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
-        }
+//        if let profileImageUrl = self.user?.profileImageURL {
+//            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+        cell.profileImageView.image = #imageLiteral(resourceName: "logo")
+//        }
         cell.user = self.user!
         if message.first == true {
             // from the set up guy

@@ -48,7 +48,9 @@ class AddedMeTVC: UITableViewCell {
     }
     
     func setAddButton() {
-        //stuff
+        addButton.backgroundColor = UIColor.init(rgbColorCodeRed: 33, green: 192, blue: 252, alpha: 1)
+        addButton.setTitleColor(UIColor.white, for: .normal)
+        addButton.layer.cornerRadius = 15
     }
     let base = Database.database().reference()
     @IBOutlet weak var usernameLabel: UILabel!

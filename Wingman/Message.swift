@@ -47,6 +47,9 @@ class Message: NSObject {
     }
     
     func chatPartnerId() -> String? {
+        print("current ", Auth.auth().currentUser?.uid)
+        print("fromID ", fromId)
+        print("toId ", toId)
         return fromId == Auth.auth().currentUser?.uid ? toId : fromId
     }
     

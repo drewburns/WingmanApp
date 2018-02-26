@@ -14,7 +14,7 @@ class NewChatUserTVC: UITableViewCell {
         didSet {
             nameLabel.text! = (user?.name)!
             userNameLabel.text! = (user?.usernamesearch)!
-            checkbox.setTitle("", for: .normal)
+//            checkbox.setTitle("", for: .normal)
             userImage.maskCircle()
         }
     }
@@ -24,7 +24,6 @@ class NewChatUserTVC: UITableViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var checkbox: UIButton!
 
     
     override func awakeFromNib() {
@@ -35,9 +34,9 @@ class NewChatUserTVC: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if selected == true {
-            checkbox.setTitle("✓", for: .normal)
+//            checkbox.setTitle("✓", for: .normal)
         } else {
-            checkbox.setTitle("", for: .normal)
+//            checkbox.setTitle("", for: .normal)
         }
         // Configure the view for the selected state
     }
@@ -48,10 +47,10 @@ class NewChatUserTVC: UITableViewCell {
     
     @IBAction func clickCheckBox(_ sender: Any) {
         if isSelected == true {
-            checkbox.setTitle("", for: .normal)
+//            checkbox.setTitle("", for: .normal)
             isSelected = false
         } else {
-            checkbox.setTitle("✓", for: .normal)
+//            checkbox.setTitle("✓", for: .normal)
             isSelected = true
         }
     }

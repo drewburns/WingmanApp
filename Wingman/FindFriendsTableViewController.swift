@@ -8,14 +8,18 @@
 
 import UIKit
 import Firebase
+import Contacts
 
 class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate {
     var users:[AppUser] = []
+    var usersFromContacts:[AppUser] = []
 //    var search = ""
 
 
     let reachability = Reachability()!
     var internet = ""
+    var friends:[String] = []
+    var numbersToNotSearch:[String] = []
     @IBOutlet weak var searchUsers: UISearchBar!
     
     func internetChanged(note: Notification) {
@@ -26,6 +30,10 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getNumbersBlackList()
+//        lookForFriends()
+        
+//        users = usersFromContacts
         searchUsers.delegate = self
         reachability.whenReachable = { _ in
             if self.internet == "unreachable" {
@@ -65,17 +73,140 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        users.removeAll()
-        self.tableView.reloadData()
-        if searchUsers.text!.characters.count > 2 {
+    func getNumbersBlackList() {
+        var contacts: [CNContact] = {
+            let contactStore = CNContactStore()
+            let keysToFetch = [
+                CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
+                CNContactPhoneNumbersKey] as [Any]
+            
+            // Get all the containers
+            var allContainers: [CNContainer] = []
+            do {
+                allContainers = try contactStore.containers(matching: nil)
+            } catch {
+                print("Error fetching containers")
+            }
+            
+            var results: [CNContact] = []
+            
+            // Iterate all containers and append their contacts to our results array
+            for container in allContainers {
+                let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+                
+                do {
+                    let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch as! [CNKeyDescriptor])
+                    results.append(contentsOf: containerResults)
+                } catch {
+                    print("Error fetching results for container")
+                }
+            }
+//            let numbers = results[0].phoneNumbers
+//            for number in numbers {
+//                
+//            }
+//            print(results[0].phoneNumbers[0].value.stringValue)
+            
+            //            let phoneNumber = "(555) 564-8583"
+            
+            //            let matched = matches(for: "[0-9]", in: phoneNumber)
+            //            print("+1" + matched.flatMap({$0}).joined())
+            
+            
+            return results
+        }()
+        if let myNum = UserDefaults.standard.value(forKey: "phoneNumber") {
+            self.numbersToNotSearch.append(myNum as! String)
+        }
+        for friend in friends {
+            let ref = Database.database().reference().child("users").child(friend)
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+//                    print("SNAP", snapshot)
+                    let data = snapshot.value as? [String:Any]
+                    if let num = data!["phoneNumber"] as? String {
+                        print("NUMM", num)
+                        self.numbersToNotSearch.append(num)
+                        self.lookForFriends()
+                    }
+                }
+            }, withCancel: nil)
+        }
+    }
+    func lookForFriends() {
 
-            let ref = Database.database().reference()
+        var contacts: [CNContact] = {
+            let contactStore = CNContactStore()
+            let keysToFetch = [
+                CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
+                CNContactPhoneNumbersKey] as [Any]
+            
+            // Get all the containers
+            var allContainers: [CNContainer] = []
+            do {
+                allContainers = try contactStore.containers(matching: nil)
+            } catch {
+                print("Error fetching containers")
+            }
+            
+            var results: [CNContact] = []
+            
+            // Iterate all containers and append their contacts to our results array
+            for container in allContainers {
+                let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+                
+                do {
+                    let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch as! [CNKeyDescriptor])
+                    results.append(contentsOf: containerResults)
+                } catch {
+                    print("Error fetching results for container")
+                }
+            }
+            var numbers:[String] = []
+            
+            if results.count != 0 {
+                print("NUMS NOT TO SEARCH", numbersToNotSearch)
+                for person in results {
+                    for number in person.phoneNumbers {
+                        let string = number.value.stringValue
+                        let index = string.index(string.startIndex, offsetBy: 0)
+                        let x = String(string[index])
+                        if x == "+" {
+                            print("HAD A PLUS", string)
+                            let matched = matches(for: "[0-9]", in: number.value.stringValue)
+                            let final = ("+" + matched.flatMap({$0}).joined())
+                                                    print("JDWIDJAIODJWIAO", final)
+                            if (numbersToNotSearch.contains(final)) {
+                                // already have
+                            } else {
+                                numbers.append(final)
+                            }
+                        } else {
+                            print("DIDNT HAVE A PLUS", string)
+                            let matched = matches(for: "[0-9]", in: number.value.stringValue)
+                            let final = ("+1" + matched.flatMap({$0}).joined())
+                                                    print("JDWIDJAIODJWIAO", final)
+                            if (numbersToNotSearch.contains(final)) {
+                                // already have
+                            } else {
+                                numbers.append(final)
+                            }
+                        }
 
-            let strSearch = searchUsers.text!.lowercased()
-            print(strSearch)
-            ref.child("users").queryOrdered(byChild:  "usernamesearch").queryStarting(atValue: strSearch).queryEnding(atValue: strSearch + "\u{f8ff}").observeSingleEvent(of: .value, with: { (snapshot) in
-                if snapshot.exists() == true {
+                    }
+                }
+            }
+            self.searchForNumbers(numbers: numbers)
+//            print(results[0].phoneNumbers[0].label)
+//            print(results[0].phoneNumbers[0].value.stringValue)
+            
+            return results
+        }()
+    }
+    func searchForNumbers(numbers: [String]) {
+        for number in numbers {
+            Database.database().reference().child("users").queryOrdered(byChild: "phoneNumber").queryEqual(toValue: number).observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
                     for user in snapshot.value as! [String:[String:Any]] {
                         var params = user.value
                         params["id"] = user.key
@@ -84,6 +215,39 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
                         newUser.setValuesForKeys(params)
                         self.users.append(newUser)
                         self.tableView.reloadData()
+                    }
+                    
+                    // get the user
+                    // check to see if the user is a friend or not
+                    // then append to list -> usersFromContacts
+                    // then when search bar has input greater than 3 display search and when not display this list
+                } else {
+                    // user doesn't exist for that number
+                }
+            })
+        }
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchUsers.text!.characters.count > 2 {
+            users.removeAll()
+            self.tableView.reloadData()
+            let ref = Database.database().reference()
+
+            let strSearch = searchUsers.text!.lowercased()
+            print(strSearch)
+            ref.child("users").queryOrdered(byChild:"usernamesearch").queryStarting(atValue: strSearch).queryEnding(atValue: strSearch + "\u{f8ff}").observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() == true {
+                    for user in snapshot.value as! [String:[String:Any]] {
+                        var params = user.value
+                        params["id"] = user.key
+                        print("PARAMS", params)
+                        let newUser = AppUser()
+                        newUser.setValuesForKeys(params)
+                        self.users.append(newUser)
+//                        self.tableView.reloadData()
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
                     }
                 } else {
                     // no users found
@@ -122,8 +286,16 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
 
         // Configure the cell...
         cell.user = self.users[indexPath.row]
-        cell.userImage.loadImageUsingCacheWithUrlString((cell.user?.profileImageURL)!)
+        print("PROFILE", cell.user?.profileImageURL)
+        if cell.user?.profileImageURL != nil {
+            cell.userImage?.loadImageUsingCacheSync((cell.user?.profileImageURL!)!)
+//            cell.userImage?.maskCircle()
+        } else {
+           cell.userImage.image = #imageLiteral(resourceName: "logo")
+        }
+        cell.userImage.maskCircle()
         return cell
+        
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -183,4 +355,21 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
     }
     */
 
+}
+
+extension String {
+    
+    subscript (i: Int) -> Character {
+        return self[index(startIndex, offsetBy: i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let start = index(startIndex, offsetBy: r.lowerBound)
+        let end = index(startIndex, offsetBy: r.upperBound)
+        return self[Range(start ..< end)]
+    }
 }

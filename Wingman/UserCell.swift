@@ -76,6 +76,9 @@ class UserCell: UITableViewCell {
                     if let profileImage = dictionary["profileImageURL"] as? String {
                         self.profileImageView.loadImageUsingCacheWithUrlString(profileImage)
                         self.profileImageView.maskCircle()
+                    } else {
+                        self.profileImageView.image = #imageLiteral(resourceName: "logo")
+                        self.profileImageView.maskCircle()
                     }
                     
                     
