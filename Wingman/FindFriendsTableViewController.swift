@@ -168,6 +168,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
                 print("NUMS NOT TO SEARCH", numbersToNotSearch)
                 for person in results {
                     for number in person.phoneNumbers {
+                        print("NUMBER:" , number.label )
                         let string = number.value.stringValue
                         let index = string.index(string.startIndex, offsetBy: 0)
                         let x = String(string[index])
@@ -187,7 +188,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
                             let final = ("+1" + matched.flatMap({$0}).joined())
                                                     print("JDWIDJAIODJWIAO", final)
                             if (numbersToNotSearch.contains(final)) {
-                                // already have
+                                print("WE ALREADY HAVE THIS NUMBER")
                             } else {
                                 numbers.append(final)
                             }
@@ -215,7 +216,10 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
                         let newUser = AppUser()
                         newUser.setValuesForKeys(params)
                         self.users.append(newUser)
-                        self.tableView.reloadData()
+                        
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
                     }
                     
                     // get the user
@@ -243,6 +247,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
                         params["id"] = user.key
                         print("PARAMS", params)
                         let newUser = AppUser()
+                        params.removeValue(forKey: "age")
                         newUser.setValuesForKeys(params)
                         self.users.append(newUser)
 //                        self.tableView.reloadData()

@@ -404,7 +404,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     fileprivate func setupCell(_ cell: ChatMessageCell, message: Message) {
 //        if let profileImageUrl = self.user?.profileImageURL {
 //            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
-        cell.profileImageView.image = #imageLiteral(resourceName: "logo")
+        if self.user?.profileImageURL != nil {
+            cell.profileImageView.loadImageUsingCacheWithUrlString((user?.profileImageURL)!)
+        } else {
+            cell.profileImageView.image = #imageLiteral(resourceName: "logo")
+        }
+//        cell.profileImageView.image = #imageLiteral(resourceName: "logo")
 //        }
         cell.user = self.user!
         if message.first == true {

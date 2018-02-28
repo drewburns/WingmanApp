@@ -434,6 +434,7 @@ class HomeTableViewController: UITableViewController {
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             if var data = snapshot.value as? [String:Any] {
                 data["id"] = snapshot.key
+                data.removeValue(forKey: "age")
                 let newuser = AppUser()
                 newuser.setValuesForKeys(data)
                 let banner = NotificationBanner(title: newuser.name! + " added you as a friend!", subtitle: "Click to view profile", style: .success)
@@ -772,20 +773,23 @@ class HomeTableViewController: UITableViewController {
             print("THE SET UP IS", thesetupId)
             let ref = Database.database().reference().child("users").child(message.fromId!)
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                guard var dictionary = snapshot.value as? [String: AnyObject] else {
                     return
                 }
                 
                 let user = AppUser()
+                dictionary.removeValue(forKey: "age")
                 user.setValuesForKeys(dictionary)
                 user.id = message.fromId
                 let ref2 = Database.database().reference().child("users").child(message.toId!)
                 ref2.observeSingleEvent(of: .value, with: { (snapshot) in
-                    guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                    guard var dictionary = snapshot.value as? [String: AnyObject] else {
                         return
                     }
                     
+                    dictionary.removeValue(forKey: "age")
                     let user2 = AppUser()
+
                     user2.setValuesForKeys(dictionary)
                     user2.id = message.toId
                     //                self.wentToChatWithUserId = chatPartnerId
@@ -814,10 +818,11 @@ class HomeTableViewController: UITableViewController {
             
             let ref = Database.database().reference().child("users").child(chatPartnerId)
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                guard var dictionary = snapshot.value as? [String: AnyObject] else {
                     return
                 }
                 
+                dictionary.removeValue(forKey: "age")
                 let user = AppUser()
                 user.setValuesForKeys(dictionary)
                 user.id = chatPartnerId

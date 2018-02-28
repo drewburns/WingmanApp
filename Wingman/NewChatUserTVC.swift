@@ -13,7 +13,11 @@ class NewChatUserTVC: UITableViewCell {
     var user:AppUser? {
         didSet {
             nameLabel.text! = (user?.name)!
-            userNameLabel.text! = (user?.usernamesearch)!
+            if user?.usernamesearch != nil {
+                userNameLabel.text! = (user?.usernamesearch)!
+            } else {
+                userNameLabel.text! = (user?.phoneNumber)!
+            }
 //            checkbox.setTitle("", for: .normal)
             userImage.maskCircle()
         }

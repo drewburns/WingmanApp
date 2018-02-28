@@ -8,15 +8,20 @@
 
 import UIKit
 import Firebase
+import Contacts
+import NotificationBannerSwift
 
 class CreateChatTableViewController: UITableViewController {
     var user: AppUser?
     var users:[AppUser] = []
+    var friends:[AppUser] = []
     var selectedUsers:[AppUser] = []
     //    var search = ""
     let base = Database.database().reference()
     let reachability = Reachability()!
     var internet = ""
+    var contactUsers:[CNContact] = []
+    var contacts:[AppUser] = []
     
     @IBOutlet weak var createButton: UIBarButtonItem!
     
@@ -27,12 +32,119 @@ class CreateChatTableViewController: UITableViewController {
 //    @IBAction func done(_ sender: Any) {
 //        self.dismiss(animated: true, completion: nil)
 //    }
+    
+    func askForContactPriv() {
+        var contacts: [CNContact] = {
+            let contactStore = CNContactStore()
+            let keysToFetch = [
+                CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
+                CNContactPhoneNumbersKey] as [Any]
+            
+            // Get all the containers
+            var allContainers: [CNContainer] = []
+            do {
+                allContainers = try contactStore.containers(matching: nil)
+            } catch {
+                print("Error fetching containers")
+            }
+            
+            var results: [CNContact] = []
+            
+            // Iterate all containers and append their contacts to our results array
+            for container in allContainers {
+                let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+                
+                do {
+                    let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch as! [CNKeyDescriptor])
+                    results.append(contentsOf: containerResults)
+                } catch {
+                    print("Error fetching results for container")
+                }
+            }
+            for result in results {
+                contactUsers.append(result)
+                
+            }
+            return results
+        }()
+    }
+    
+    func getContactsOnAppNotFriends() {
+        
+        var numbersWeHave = self.users.map { $0.phoneNumber! }
+        numbersWeHave.append((self.user?.phoneNumber)!)
+        print("NUMBERS WE HAVE", numbersWeHave)
+//        let pendingToAdd = self.users
+//        self.users.removeAll()
+        for result in contactUsers {
+            let num = result.correctNumber()
+            let name = result.givenName + " " + result.familyName
+            
+            if numbersWeHave.contains(num) {
+                // we have this number as a friend so do nothing
+            } else {
+                // lets check if they exist in the app
+                self.tryToFindUserWithNum(num: num, name: name)
+            }
+            // get the phone number and name
+            // if phone number is already in friend list - don't do anything
+            // check to see if user exists in app
+            // if none of these - create a user with just phone number and name
+            // sort all alphabetically
+        }
+    }
+    
+
+    
+    func tryToFindUserWithNum(num: String, name: String) {
+        Database.database().reference().child("users").queryOrdered(byChild: "phoneNumber").queryEqual(toValue: num).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                for user in snapshot.value as! [String:[String:Any]] {
+                    var params = user.value
+                    params["id"] = user.key
+                    print(params)
+                    params.removeValue(forKey: "age")
+                    let newUser = AppUser()
+                    newUser.setValuesForKeys(params)
+//                    self.users.append(newUser)
+                    self.users.insert(newUser, at: 0)
+//                    self.users.sort { $0.name! < $1.name! }
+                    DispatchQueue.main.async(execute: {
+                        self.tableView.reloadData()
+                    })
+                }
+                
+                // get the user
+                // check to see if the user is a friend or not
+                // then append to list -> usersFromContacts
+                // then when search bar has input greater than 3 display search and when not display this list
+            } else {
+                if num != "none" {
+                    var params = ["phoneNumber": num, "name": name]
+                    //                params.removeValue(forKey: "age")
+                    let newUser = AppUser()
+                    newUser.setValuesForKeys(params)
+                    self.users.append(newUser)
+//                    self.users.sort { $0.name! < $1.name! }
+                    DispatchQueue.main.async(execute: {
+                        self.tableView.reloadData()
+                    })
+                }
+
+                // user doesn't exist for that number
+            }
+//            self.users = pending + self.users
+        })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 //        searchUsers.delegate = self
 
-
-        getFriends()
+        askForContactPriv()
+//        getFriends()
+//        askForContactPriv()
+        getContactsOnAppNotFriends()
         createButton.isEnabled = false
         reachability.whenReachable = { _ in
             if self.internet == "unreachable" {
@@ -105,6 +217,7 @@ class CreateChatTableViewController: UITableViewController {
                             }
                         })
                     }
+                    self.getContactsOnAppNotFriends()
                     
                 }
             } else {
@@ -112,6 +225,7 @@ class CreateChatTableViewController: UITableViewController {
                 // no friends
             }
         })
+
     }
     
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -135,7 +249,14 @@ class CreateChatTableViewController: UITableViewController {
 //        createFirstMessage()
 //        let presenting = self.presentingViewController
         print("here")
-        performSegue(withIdentifier: "confirm", sender: nil)
+        if self.selectedUsers[0].id != nil || self.selectedUsers[1].id != nil {
+            performSegue(withIdentifier: "confirm", sender: nil)
+        } else {
+            let banner = NotificationBanner(title: "Error", subtitle: "One user in the chat must have an account", style: .danger)
+            banner.autoDismiss = true
+            banner.show()
+            // make an alert saying one user must already have the app installed
+        }
         
 //        let nav = self.navigationController
 //        
@@ -235,4 +356,61 @@ class CreateChatTableViewController: UITableViewController {
     }
     
 
+}
+
+extension CNContact {
+//    _$!<Mobile>!$_
+    func correctNumber() -> String {
+        var final_num = "none"
+        if let mobile = self.phoneNumbers.first(where: { $0.label == "_$!<Mobile>!$_" }) {
+            let string = mobile.value.stringValue
+            let index = string.index(string.startIndex, offsetBy: 0)
+            let x = String(string[index])
+            if x == "+" {
+                print("HAD A PLUS", string)
+                let matched = matches(for: "[0-9]", in: mobile.value.stringValue)
+                let final = ("+" + matched.flatMap({$0}).joined())
+                print("JDWIDJAIODJWIAO", final)
+                final_num = final
+            } else {
+                print("DIDNT HAVE A PLUS", string)
+                let matched = matches(for: "[0-9]", in: mobile.value.stringValue)
+                let final = ("+1" + matched.flatMap({$0}).joined())
+                print("JDWIDJAIODJWIAO", final)
+                final_num =  final
+            }
+        } else {
+            let number = self.phoneNumbers.first
+            if let string = number?.value.stringValue {
+                let index = string.index((string.startIndex), offsetBy: 0)
+                let x = String(string[index])
+                if x == "+" {
+                    print("HAD A PLUS", string)
+                    let matched = matches(for: "[0-9]", in: (number?.value.stringValue)!)
+                    let final = ("+" + matched.flatMap({$0}).joined())
+                    print("JDWIDJAIODJWIAO", final)
+                    
+                    final_num = final
+                } else {
+                    print("DIDNT HAVE A PLUS", string)
+                    let matched = matches(for: "[0-9]", in: (number?.value.stringValue)!)
+                    let final = ("+1" + matched.flatMap({$0}).joined())
+                    print("JDWIDJAIODJWIAO", final)
+                    final_num = final
+                }
+            } else {
+                // we have an error
+            }
+
+        }
+        return final_num
+    }
+    
+    
+}
+
+extension Array where Element : Hashable {
+    var unique: [Element] {
+        return Array(Set(self))
+    }
 }

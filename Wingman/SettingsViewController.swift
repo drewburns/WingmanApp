@@ -202,20 +202,20 @@ class SettingsViewController: UIViewController, UITextViewDelegate, UINavigation
     @IBAction func terms(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "terms")
-        self.vc?.show(vc, sender: self)
+        self.show(vc, sender: self)
     }
     
     @IBAction func privacy(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "privacy")
-        self.vc?.show(vc, sender: self)
+        self.show(vc, sender: self)
     }
     
     
     @IBAction func credits(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "credits")
-        self.vc?.show(vc, sender: self)
+        self.show(vc, sender: self)
     }
     
     

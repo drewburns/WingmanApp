@@ -30,7 +30,14 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
-            sendFunction()
+            if users[0].id != nil && users[1].id != nil {
+                           sendFunction()
+//                print("WE SHOUDLN'T BE HERE RIGHT NOW!!!")
+            } else {
+                sendWithOneUser()
+                // one of these users is not on the app
+                // need to create pending messages
+            }
 //            return false
         }
         return true
@@ -60,7 +67,49 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
         }
     }
     @IBAction func sendMessage(_ sender: Any) {
-        sendFunction()
+        if users[0].id != nil && users[1].id != nil {
+           sendFunction()
+//            print("WE SHOUDLN'T BE HERE RIGHT NOW!!!")
+        } else {
+            sendWithOneUser()
+            // one of these users is not on the app
+            // need to create pending messages
+        }
+    }
+    
+    func sendWithOneUser() {
+        var fromId = ""
+        var telephone = ""
+        var name = ""
+        if users[0].phoneNumber == "none" {
+            fromId = users[1].id!
+            telephone = users[0].phoneNumber!
+            name = users[0].name!
+        } else {
+            fromId = users[0].id!
+            telephone = users[1].phoneNumber!
+            name = users[1].name!
+        }
+        let values = ["text": "From a wingman: " + textInput.text! , "fromId": fromId, "setUpId": ((self.user?.id!)!) ]
+        let pendingRef = Database.database().reference().child("pending").childByAutoId()
+
+        pendingRef.updateChildValues(values) { (err, ref) in
+            let userPending = Database.database().reference().child("user-pending").child(telephone)
+            userPending.updateChildValues([ref.key : 0])
+            
+        }
+        
+        let banner = NotificationBanner(title: "Success", subtitle: "Chat will be created when " + name + " downloads the app!", style: .warning)
+        banner.autoDismiss = true
+        banner.show()
+        self.goBack()
+        // create pending node: first message string, fromId(real user), setUpUser: set up's id,
+        // create user-pending-node: key is phone number value is pending node id
+        
+        // show thing saying they were added to a chat but must wait
+        // goBack()
+        
+        
     }
     
     func createFirstMessage(setupId: String) {
