@@ -18,27 +18,29 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 // let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)! + "&alert=" + alert
 
-// https://stackoverflow.com/questions/21242441/avoiding-nested-callbacks-with-promises
-
 admin.initializeApp(functions.config().firebase);
 
 exports.addedFake = functions.database.ref('/fakes').onWrite(event => {
-		const root = event.data.ref.root;
-		return root.child(`user-pending/+18608718055`).once('value')
+	var promises = [];
+	const root = event.data.ref.root;
+	return root.child(`user-pending/+18608718055`).once('value')
 	.then((snapshot) => {
 		const data = snapshot.val();
-		var promises = [];
+		for (var pending in data) {
+			console.log("PENDING")
+
+		}
 		return data
 	})
 	.then((result) => {
-    	console.log('2/Step');
-    // Perform some manipulation over result. But meanwhile:
-    	return result;
-  	})
-  .catch((err) => {
-    console.log(`Failed with error info: ${err}`);
-    return err
-  });
+		console.log('2/Step');
+		// Perform some manipulation over result. But meanwhile:
+		return result;
+	})
+	.catch((err) => {
+		console.log(`Failed with error info: ${err}`);
+		return err
+	});
 
 });
 
@@ -110,7 +112,7 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 
 	// }
 
-	
+	//
 
 	var newMessage1 = admin.database().ref("messages").push();
 	newMessage1.set({ "fromId": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
