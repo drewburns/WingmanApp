@@ -91,13 +91,15 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
             name = users[1].name!
         }
         let values = ["text": "From a wingman: " + textInput.text! , "fromId": fromId, "setUpId": ((self.user?.id!)!) ]
-        let pendingRef = Database.database().reference().child("pending").childByAutoId()
+        let pendingRef = Database.database().reference().child("user-pending").child(telephone).childByAutoId()
+        
+        pendingRef.updateChildValues(values)
 
-        pendingRef.updateChildValues(values) { (err, ref) in
-            let userPending = Database.database().reference().child("user-pending").child(telephone)
-            userPending.updateChildValues([ref.key : 0])
-            
-        }
+//        pendingRef.updateChildValues(values) { (err, ref) in
+//            let userPending = Database.database().reference().child("user-pending").child(telephone)
+//            userPending.updateChildValues([ref.key : 0])
+//
+//        }
         
         let banner = NotificationBanner(title: "Success", subtitle: "Chat will be created when " + name + " downloads the app!", style: .warning)
         banner.autoDismiss = true
