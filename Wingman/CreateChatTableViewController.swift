@@ -11,7 +11,7 @@ import Firebase
 import Contacts
 import NotificationBannerSwift
 
-class CreateChatTableViewController: UITableViewController {
+class CreateChatTableViewController: UITableViewController, UISearchBarDelegate {
     var user: AppUser?
     var users:[AppUser] = []
     var friends:[AppUser] = []
@@ -22,6 +22,8 @@ class CreateChatTableViewController: UITableViewController {
     var internet = ""
     var contactUsers:[CNContact] = []
     var contacts:[AppUser] = []
+    var searchUsers:[AppUser] = []
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var createButton: UIBarButtonItem!
     
@@ -71,7 +73,7 @@ class CreateChatTableViewController: UITableViewController {
     
     func getContactsOnAppNotFriends() {
         
-        var numbersWeHave = self.users.map { $0.phoneNumber! }
+        var numbersWeHave = self.friends.map { $0.phoneNumber! }
         numbersWeHave.append((self.user?.phoneNumber)!)
         print("NUMBERS WE HAVE", numbersWeHave)
 //        let pendingToAdd = self.users
@@ -94,6 +96,9 @@ class CreateChatTableViewController: UITableViewController {
         }
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // filter the things
+    }
 
     
     func tryToFindUserWithNum(num: String, name: String) {
@@ -107,8 +112,10 @@ class CreateChatTableViewController: UITableViewController {
                     let newUser = AppUser()
                     newUser.setValuesForKeys(params)
 //                    self.users.append(newUser)
-                    self.users.insert(newUser, at: 0)
-//                    self.users.sort { $0.name! < $1.name! }
+                    self.friends.append(newUser)
+                    self.friends.sort { $0.name! < $1.name! }
+                    
+                    self.users = self.friends + self.contacts
                     DispatchQueue.main.async(execute: {
                         self.tableView.reloadData()
                     })
@@ -124,8 +131,11 @@ class CreateChatTableViewController: UITableViewController {
                     //                params.removeValue(forKey: "age")
                     let newUser = AppUser()
                     newUser.setValuesForKeys(params)
-                    self.users.append(newUser)
-//                    self.users.sort { $0.name! < $1.name! }
+                    self.contacts.append(newUser)
+                    
+                    self.contacts.sort { $0.name! < $1.name! }
+                    
+                    self.users = self.friends + self.contacts
                     DispatchQueue.main.async(execute: {
                         self.tableView.reloadData()
                     })

@@ -49,6 +49,7 @@ class HomeTableViewController: UITableViewController {
     var fromLogin = ""
     var setupArray:[String] = []
     var setupsObserving:[String] = []
+    var friendUsers:[AppUser] = []
     
 //    var newUser:AppUser?
     @IBOutlet weak var newChatButton: UIBarButtonItem!
@@ -338,6 +339,7 @@ class HomeTableViewController: UITableViewController {
                 for friend in data {
                     //                    print(friend.key)
                     self.friends.append(friend.key)
+                    self.addFriendForKey(key: friend.key)
                 }
             }
             //            print("Friends in" , self.friends)
@@ -348,6 +350,20 @@ class HomeTableViewController: UITableViewController {
 
 
         
+    }
+    
+    func addFriendForKey(key: String) {
+        let ref1 = Database.database().reference().child("users").child(key)
+        ref1.observeSingleEvent(of: .value, with: { (snapshot) in
+            if var params = snapshot.value as? [String:Any] {
+                params["id"] = snapshot.key
+                print(params)
+                params.removeValue(forKey: "age")
+                let newUser = AppUser()
+                newUser.setValuesForKeys(params)
+                self.friendUsers.append(newUser)
+            }
+        }, withCancel: nil)
     }
     
     func fetchUserWithId(id: String) {
@@ -900,7 +916,25 @@ class HomeTableViewController: UITableViewController {
         return true
     }
     */
-
+    func getFriendsFromKeys() -> [AppUser] {
+        var friendUsers:[AppUser] = []
+        for key in self.friends {
+            let ref = Database.database().reference().child("users").child(key)
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                    if var params = snapshot.value as? [String:Any] {
+                        params["id"] = snapshot.key
+                        print(params)
+                        params.removeValue(forKey: "age")
+                        let newUser = AppUser()
+                        newUser.setValuesForKeys(params)
+                        friendUsers.append(newUser)
+                    }
+                }
+            })
+        }
+        return friendUsers
+    }
     
     // MARK: - Navigation
 
@@ -916,8 +950,10 @@ class HomeTableViewController: UITableViewController {
             viewController.currentUserName = (self.user?.name)!
             
         } else if segue.identifier == "new"{
+//            print("FRIENDS FROM KEYS" , getFriendsFromKeys())
             let viewController:CreateChatTableViewController = segue.destination as! CreateChatTableViewController
             viewController.user = self.user
+            viewController.friends =  self.friendUsers.sorted(by: { $0.name < $1.name })
         }
         
     }

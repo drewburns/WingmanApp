@@ -20,14 +20,96 @@ const admin = require('firebase-admin');
 
 admin.initializeApp(functions.config().firebase);
 
+exports.addedFake = functions.database.ref('/fakes').onWrite(event => {
+	var promises = [];
+	const root = event.data.ref.root;
+	return root.child(`user-pending`).once('value')
+	.then((snapshot) => {
+		const data = snapshot.val();
+		
+		return data
+	})
+	.then((result) => {
+    console.log('2/Step');
+    // Perform some manipulation over result. But meanwhile:
+    return result;
+  })
+  .catch((err) => {
+    console.log(`Failed with error info: ${err}`);
+    return err
+  });
+
+});
 
 exports.addAccount = functions.auth.user().onCreate(event => {
 	const user = event.data; // The firebase user
 	const user_id = user.uid;
+	const number = user.providerData.uid
 
 	var timestamp = Math.floor(Date.now()/1000)
 	var promises = [];
 
+	// var pendings = []
+	// var getUserPendings = firebase.database().ref(`user-pending/${number}`);
+	// getUserPendings.once('value').then(snapshot => {
+	// 	pendings = snapshot.val();
+	// });
+
+	// var pending;
+	// for (pending in pendings) {
+	// 	var setUpUId = ""
+	// 	var fromId = ""
+	// 	var text = ""
+	// 	var getPending = firebase.database().ref(`pending/${pending.key}`);
+	// 	getPending.once('value').then(snapshot => {
+	// 		setUpUId = snapshot.child("setUpId").val();
+	// 		fromId = snapshot.child("fromId").val();
+	// 		text = snapshot.child("text").val();	
+	// 	});
+
+
+	// 	var setUpRef = admin.database().ref("setup").push();
+	// 	setUpRef.set({ "n": 10, "timestamp" : timestamp , "user1": user_id, "fromId": fromId  });
+	// 	promises.push(setUpRef)
+
+	// 	var keystring10 = setUpRef.key
+
+	// 	var fields10 = keystring10.split('/');
+
+	// 	var setupkey = fields10[fields10.length - 1]
+
+	// 	var firstMessageRef = admin.database().ref(`messages`).push();
+	// 	firstMessageRef.set({ "first": true, "fromId": fromId, "toId": user_id, "read": false,
+	// 	 "setupId": setupkey, "text": text , "timestamp": timestamp, "userWhoSetUp": setUpUId});
+	// 	promises.push(firstMessageRef);
+
+	// 	var keystring20 = firstMessageRef.key
+
+	// 	var fields20 = keystring20.split('/');
+
+	// 	var messageKey = fields20[fields20.length - 1]
+
+	// 	var user1MessageRef = admin.database().ref(`user-message/${fromId}/${toId}`);
+	// 	user1MessageRef.set({ [messageKey]: 1 });
+	// 	promises.push(user1MessageRef);
+
+	// 	var user2MessageRef = admin.database().ref(`user-message/${toId}/${fromId}`);
+	// 	user2MessageRef.set({ [messageKey]: 1 });
+	// 	promises.push(user2MessageRef);
+
+	// 	var userSetUpRef = admin.database().ref(`user-setup/${setUpUId}`);
+	// 	userSetUpRef.set({ [setupkey] : 1 });
+	// 	promises.push(userSetUpRef);
+
+	// 	var setUpMessagesRef = admin.database().ref(`setup-messages/${setupkey}`);
+	// 	setUpMessages.set({ [messageKey] : 1 })
+
+	// 	// maybe send notifs here
+
+
+	// }
+
+	//
 
 	var newMessage1 = admin.database().ref("messages").push();
 	newMessage1.set({ "fromId": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,

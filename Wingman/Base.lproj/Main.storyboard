@@ -1334,9 +1334,14 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="Q4v-2m-1Zc">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friend" rowHeight="70" id="l3D-e0-eLh" customClass="NewChatUserTVC" customModule="Wingman" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3D-e0-eLh" id="p8y-Qk-BSF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
@@ -1400,6 +1405,7 @@ Cg
                     </navigationItem>
                     <connections>
                         <outlet property="createButton" destination="HZ5-B9-TqD" id="GXB-aN-pya"/>
+                        <outlet property="searchBar" destination="Q4v-2m-1Zc" id="bHs-dj-7S8"/>
                         <segue destination="jbv-aU-xn2" kind="presentation" identifier="confirm" id="Oqe-Lk-Y1R"/>
                     </connections>
                 </tableViewController>
