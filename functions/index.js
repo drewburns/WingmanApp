@@ -21,7 +21,27 @@ const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
 exports.addedFake = functions.database.ref('/fakes').onWrite(event => {
-
+	return admin.database().ref(`user-pending/${number}`).once('value')
+	.then((snapshot) => {
+		console.log("SNAPSHOT:", snapshot)
+		var promises = [];
+		const data = snapshot.val();
+		console.log("DATA", data);
+		for (var pending in data) {
+			console.log("Pending", pending);
+			for (var x in pending) {
+				const setUpUId = pending[x]["setUpId"];
+				const fromId = pending[x]["fromId"];
+				const text = pending[x]["text"];
+				console.log("setUpUid", setUpUId);
+			}
+		}
+		return data
+	})
+	.catch((err) => {
+		console.log(`Failed with error info: ${err}`);
+		return err
+	});
 
 });
 
@@ -32,17 +52,24 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 
 	var timestamp = Math.floor(Date.now()/1000)
 
-	const root = event.data.ref.root;
-	return root.child(`user-pending/${number}`).once('value')
+	return admin.database().ref(`user-pending/${number}`).once('value')
 	.then((snapshot) => {
 		var promises = [];
+		console.log("snapshot: ",  snapshot )
 		const data = snapshot.val();
+		console.log("DATA", data)
 		for (var pending in data) {
+			console.log("PENDING:", pending)
+			var setUpUId = ""
+			var fromId = ""
+			var text = ""
 			for (var x in pending) {
-				const setUpUId = pending[x]["setUpId"];
-				const fromId = pending[x]["fromId"];
-				const text = pending[x]["text"];
+				setUpUId = pending[x]["setUpId"];
+				fromId = pending[x]["fromId"];
+				text = pending[x]["text"];
 			}
+			console.log("SetUPId:", setUpUId)
+			console.log("fromId: ", fromId)
 
 
 
@@ -83,7 +110,7 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 			setUpMessagesRef.set({ [messageKey] : 1 })
 			promises.push(setUpMessagesRef);
 		}
-		
+
 			var newMessage1 = admin.database().ref("messages").push();
 			newMessage1.set({ "fromId": "UjVfdbeATnckVWUZBV5jJBsu2At2", "read": false,
 			 "text": "Welcome to Wingman!", "timestamp": timestamp, "toId": user_id });
