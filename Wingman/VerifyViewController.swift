@@ -21,6 +21,7 @@ class VerifyViewController: UIViewController, UITextFieldDelegate {
         print("MADE IT TO VERIFT")
         self.code.delegate = self
         setUpButton()
+        self.hideKeyboardWhenTappedAround()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
@@ -28,6 +29,26 @@ class VerifyViewController: UIViewController, UITextFieldDelegate {
         
         view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
+    }
+    func doneButtonAction() {
+        self.code.resignFirstResponder()
+         loginOrCreate()
+    }
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle       = UIBarStyle.default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.code.inputAccessoryView = doneToolbar
     }
     
     func setUpButton() {

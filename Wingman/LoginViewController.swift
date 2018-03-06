@@ -27,10 +27,32 @@ class LoginViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         agePicker.dataSource = self
         agePicker.delegate = self
         setUpNextButton()
+        self.addDoneButtonOnKeyboard()
         
         self.hideKeyboardWhenTappedAround() 
 
         // Do any additional setup after loading the view.
+    }
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle       = UIBarStyle.default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.emailField.inputAccessoryView = doneToolbar
+    }
+    
+    func doneButtonAction() {
+        self.emailField.resignFirstResponder()
+        attemptLogin("nothing")
     }
     
     @IBAction func privacy(_ sender: Any) {
@@ -119,7 +141,7 @@ class LoginViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             
             PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber) { (verificationID, error) in
                 if error != nil {
-                    print("WE GOT AN ERROR!")
+                    print("WE GOT AN ERROR!", error)
                     let banner = NotificationBanner(title: "Error", subtitle: "Invalid Phone Number", style: .danger)
                     banner.autoDismiss = true
                     banner.show(queuePosition: .front)

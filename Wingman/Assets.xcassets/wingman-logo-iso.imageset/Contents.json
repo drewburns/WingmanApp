@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "wingman-logo-iso.png",
+      "filename" : "wingman-logo-iso1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "wingman-logo-iso2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "wingman-logo-iso.png",
       "scale" : "3x"
     }
   ],

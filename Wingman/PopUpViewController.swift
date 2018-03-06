@@ -101,6 +101,9 @@ class PopUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hideKeyboardWhenTappedAround()
+        
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
         downSwipe.direction = UISwipeGestureRecognizerDirection.down
         self.mainView.addGestureRecognizer(downSwipe)

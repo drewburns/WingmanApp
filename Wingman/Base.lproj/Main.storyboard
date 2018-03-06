@@ -300,12 +300,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wingman" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdz-QT-bCM">
-                                <rect key="frame" x="126.5" y="28" width="122.5" height="34"/>
-                                <fontDescription key="fontDescription" name="ReskaGraf" family="ReskaGraf" pointSize="29"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoP-vg-Ced">
                                 <rect key="frame" x="82" y="279" width="211" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -342,21 +336,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wingman-logo-iso" translatesAutoresizingMaskIntoConstraints="NO" id="yH1-ez-raa">
+                                <rect key="frame" x="94" y="14" width="186" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="186" id="0J7-8O-k3s"/>
+                                    <constraint firstAttribute="height" constant="62" id="1X0-m3-k1A"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0034440995659999999" green="0.60855787989999999" blue="0.81270182130000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="yH1-ez-raa" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="3JU-F6-GE5"/>
                             <constraint firstItem="IoP-vg-Ced" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="6P0-7O-XF7"/>
                             <constraint firstItem="jTU-FA-KtZ" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="ANT-aN-LB8"/>
                             <constraint firstItem="2G4-ry-8DQ" firstAttribute="top" secondItem="IoP-vg-Ced" secondAttribute="bottom" constant="20" id="ArT-GO-EG7"/>
                             <constraint firstItem="SPq-oI-doY" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="C07-6S-21j"/>
-                            <constraint firstItem="mdz-QT-bCM" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="CBw-ym-yEf"/>
-                            <constraint firstItem="SPq-oI-doY" firstAttribute="top" secondItem="mdz-QT-bCM" secondAttribute="bottom" constant="22" id="Pua-Bf-BYL"/>
+                            <constraint firstItem="yH1-ez-raa" firstAttribute="top" secondItem="cPV-jm-aXa" secondAttribute="bottom" constant="-6" id="FQJ-Vp-3tZ"/>
                             <constraint firstItem="jTU-FA-KtZ" firstAttribute="top" secondItem="SPq-oI-doY" secondAttribute="bottom" constant="35" id="Zc4-UG-deO"/>
+                            <constraint firstItem="SPq-oI-doY" firstAttribute="top" secondItem="yH1-ez-raa" secondAttribute="bottom" constant="8" id="be2-cM-o3L"/>
                             <constraint firstItem="IoP-vg-Ced" firstAttribute="width" secondItem="jTU-FA-KtZ" secondAttribute="width" id="boA-dy-xQE"/>
                             <constraint firstItem="2G4-ry-8DQ" firstAttribute="centerX" secondItem="7AL-Ye-gYV" secondAttribute="centerX" id="lCN-Kl-0v5"/>
                             <constraint firstItem="2G4-ry-8DQ" firstAttribute="width" secondItem="IoP-vg-Ced" secondAttribute="width" id="nmg-Rj-r9z"/>
                             <constraint firstItem="IoP-vg-Ced" firstAttribute="top" secondItem="jTU-FA-KtZ" secondAttribute="bottom" constant="20" id="qfm-QB-wKy"/>
-                            <constraint firstItem="mdz-QT-bCM" firstAttribute="top" secondItem="cPV-jm-aXa" secondAttribute="bottom" constant="8" id="rAe-lB-6Tw"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2200,7 +2201,6 @@ Cg
                                 </constraints>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="close:" destination="aDR-B0-NoC" eventType="touchUpInside" id="fCz-nj-CxX"/>
                                     <action selector="exit:" destination="aDR-B0-NoC" eventType="touchUpInside" id="6Xs-K2-87T"/>
                                 </connections>
                             </button>
@@ -2907,7 +2907,6 @@ Generated by CocoaPods - https://cocoapods.org
                                 </constraints>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="close:" destination="iI4-lz-AsX" eventType="touchUpInside" id="F0A-NN-i0x"/>
                                     <action selector="exit:" destination="iI4-lz-AsX" eventType="touchUpInside" id="0wc-Lm-pBu"/>
                                 </connections>
                             </button>
@@ -2934,10 +2933,10 @@ Generated by CocoaPods - https://cocoapods.org
         </scene>
     </scenes>
     <resources>
-        <image name="logo-clear" width="2035" height="2035"/>
-        <image name="logo-isolated" width="2035" height="2035"/>
-        <image name="user" width="700" height="700"/>
-        <image name="wingman-logo-iso" width="593" height="184"/>
+        <image name="logo-clear" width="672" height="672"/>
+        <image name="logo-isolated" width="672" height="672"/>
+        <image name="user" width="231" height="231"/>
+        <image name="wingman-logo-iso" width="196" height="61"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tMQ-dL-HxF"/>

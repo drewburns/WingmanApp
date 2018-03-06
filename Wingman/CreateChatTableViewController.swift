@@ -23,6 +23,9 @@ class CreateChatTableViewController: UITableViewController, UISearchBarDelegate 
     var contactUsers:[CNContact] = []
     var contacts:[AppUser] = []
     var searchUsers:[AppUser] = []
+    
+    var isSearching = false
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var createButton: UIBarButtonItem!
@@ -98,7 +101,22 @@ class CreateChatTableViewController: UITableViewController, UISearchBarDelegate 
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // filter the things
+        if searchBar.text == "" || searchBar.text == nil {
+            print("TEXT IS NIL HERE", searchBar.text)
+            isSearching = false
+            view.endEditing(true)
+            searchUsers = []
+            tableView.reloadData()
+        } else {
+            print("TEXT IS EXISTING HERE", searchBar.text)
+            isSearching = true
+            
+            let text = searchBar.text!
+            searchUsers = users.filter({ ($0.name?.contains(text))! })
+            tableView.reloadData()
+        }
     }
+    
 
     
     func tryToFindUserWithNum(num: String, name: String) {
@@ -149,7 +167,8 @@ class CreateChatTableViewController: UITableViewController, UISearchBarDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        searchUsers.delegate = self
+        searchBar.delegate = self
+        
 
         askForContactPriv()
 //        getFriends()
@@ -294,6 +313,9 @@ class CreateChatTableViewController: UITableViewController, UISearchBarDelegate 
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if isSearching {
+            return self.searchUsers.count
+        }
         return self.users.count
     }
     
@@ -302,7 +324,11 @@ class CreateChatTableViewController: UITableViewController, UISearchBarDelegate 
         let cell = tableView.dequeueReusableCell(withIdentifier: "friend", for: indexPath) as! NewChatUserTVC
         
         // Configure the cell...
-        cell.user = self.users[indexPath.row]
+        if isSearching {
+            cell.user = self.searchUsers[indexPath.row]
+        } else {
+            cell.user = self.users[indexPath.row]
+        }
         if cell.user?.profileImageURL != nil {
             cell.userImage.loadImageUsingCacheWithUrlString((cell.user?.profileImageURL)!)
         } else {

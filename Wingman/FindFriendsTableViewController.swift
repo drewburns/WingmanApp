@@ -167,6 +167,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
             if results.count != 0 {
                 print("NUMS NOT TO SEARCH", numbersToNotSearch)
                 for person in results {
+                    print("WE GOT A PERSON", person )
                     for number in person.phoneNumbers {
                         print("NUMBER:" , number.label )
                         let string = number.value.stringValue
@@ -179,6 +180,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
                                                     print("JDWIDJAIODJWIAO", final)
                             if (numbersToNotSearch.contains(final)) {
                                 // already have
+                                print("WE ALREADY HAVE A NUMBER?", number)
                             } else {
                                 numbers.append(final)
                             }
@@ -206,6 +208,7 @@ class FindFriendsTableViewController: UITableViewController, UISearchBarDelegate
     }
     func searchForNumbers(numbers: [String]) {
         for number in numbers {
+            print("WE SHOULD BE LOOKING UP THIS NUMBER ", number)
             Database.database().reference().child("users").queryOrdered(byChild: "phoneNumber").queryEqual(toValue: number).observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
                     for user in snapshot.value as! [String:[String:Any]] {

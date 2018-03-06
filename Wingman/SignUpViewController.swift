@@ -256,6 +256,10 @@ class SignUpViewController: UIViewController ,UINavigationControllerDelegate, UI
         if nameField.text! == "" {
             errors.append("Enter a name")
         }
+        
+        if userImage.image == #imageLiteral(resourceName: "logo-clear") {
+            errors.append("Please select a profile image")
+        }
 
         let refUsers = Database.database().reference(fromURL: "https://wingman-d2039.firebaseio.com/").child("users")
         refUsers.queryOrdered(byChild: "username").queryEqual(toValue: usernameField.text!).observeSingleEvent(of: .value , with: {

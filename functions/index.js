@@ -21,7 +21,7 @@ const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
 exports.addedFake = functions.database.ref('/fakes').onWrite(event => {
-	return admin.database().ref(`user-pending/${number}`).once('value')
+	return admin.database().ref(`user-pending/+18607346043`).once('value')
 	.then((snapshot) => {
 		console.log("SNAPSHOT:", snapshot)
 		var promises = [];
@@ -48,10 +48,12 @@ exports.addedFake = functions.database.ref('/fakes').onWrite(event => {
 exports.addAccount = functions.auth.user().onCreate(event => {
 	const user = event.data; // The firebase user
 	const user_id = user.uid;
-	const number = user.providerData.uid
+	const number = user.phoneNumber
+
+	console.log("USER DATA", user)
 
 	var timestamp = Math.floor(Date.now()/1000)
-
+	console.log("number: ", number)
 	return admin.database().ref(`user-pending/${number}`).once('value')
 	.then((snapshot) => {
 		var promises = [];
@@ -59,23 +61,23 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 		const data = snapshot.val();
 		console.log("DATA", data)
 		for (var pending in data) {
-			console.log("PENDING:", pending)
+			console.log("PENDING:", pending);
+			console.log("DAT_PEND: ", data[pending]);
+			console.log("TESTING THIS OUT: ", data[pending]["text"]);
 			var setUpUId = ""
 			var fromId = ""
 			var text = ""
-			for (var x in pending) {
-				setUpUId = pending[x]["setUpId"];
-				fromId = pending[x]["fromId"];
-				text = pending[x]["text"];
-			}
-			console.log("SetUPId:", setUpUId)
-			console.log("fromId: ", fromId)
+			setUpUId = data[pending]["setUpId"];
+			fromId = data[pending]["fromId"];
+			text = data[pending]["text"];
+			console.log("SetUPId:", setUpUId);
+			console.log("fromId: ", fromId);
 
 
 
 			var setUpRef = admin.database().ref(`setup`).push();
 			setUpRef.set({ "n": 10, "timestamp" : timestamp , "user1": user_id, "fromId": fromId  });
-			promises.push(setUpRef)
+			promises.push(setUpRef);
 
 			var keystring10 = setUpRef.key
 
@@ -94,11 +96,11 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 
 			var messageKey = fields20[fields20.length - 1]
 
-			var user1MessageRef = admin.database().ref(`user-message/${fromId}/${toId}`);
+			var user1MessageRef = admin.database().ref(`user-message/${fromId}/${user_id}`);
 			user1MessageRef.set({ [messageKey]: 1 });
 			promises.push(user1MessageRef);
 
-			var user2MessageRef = admin.database().ref(`user-message/${toId}/${fromId}`);
+			var user2MessageRef = admin.database().ref(`user-message/${user_id}/${fromId}`);
 			user2MessageRef.set({ [messageKey]: 1 });
 			promises.push(user2MessageRef);
 
