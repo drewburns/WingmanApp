@@ -90,6 +90,7 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
             telephone = users[1].phoneNumber!
             name = users[1].name!
         }
+        
         let values = ["text": "From a wingman: " + textInput.text! , "fromId": fromId, "setUpId": ((self.user?.id!)!) ]
         let pendingRef = Database.database().reference().child("user-pending").child(telephone).childByAutoId()
         
@@ -100,6 +101,23 @@ class ChatConfirmViewController: UIViewController , UITextViewDelegate{
 //            userPending.updateChildValues([ref.key : 0])
 //
 //        }
+        var alert = "An anonymous friend put you into a Wingman chat with " + name + " and said: " + textInput.text! + ". Download Wingman to chat!"
+        alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        let string = "https://wingman-notifs.herokuapp.com/text?phone_number=" + telephone + "&message=" + alert
+        
+        let url = URL(string: string)
+        URLSession.shared.dataTask(with: url!, completionHandler: {
+            (data, response, error) in
+            if(error != nil){
+                print("error")
+            }else{
+                do{
+                    
+                } catch let error as NSError{
+                    print(error)
+                }
+            }
+        }).resume()
         
         let banner = NotificationBanner(title: "Success", subtitle: "Chat will be created when " + name + " downloads the app!", style: .warning)
         banner.autoDismiss = true
